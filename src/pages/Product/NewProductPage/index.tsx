@@ -42,7 +42,7 @@ export default function NewProductPage() {
         api.post('/products', data)
         alert("Cadastro Realizado com Sucesso!")
     }
-
+ 
 
     return (
         <Container>
