@@ -33,7 +33,7 @@ export default function NewPaymentOption() {
     return (
         <Container>
             <Form>
-                <h3>Novo Produto</h3>
+                <h3>Nova Opção de Pagamento</h3>
 
                 <FormPaymentBlock>
                     <MainSection>

@@ -9,6 +9,9 @@ export const Container = styled.div `
     border-radius: 5px;
     padding: 2rem;
 
+    h4 {
+        font-size: 1.3rem;
+    }
 
     p {
         font-size: 0.7rem
@@ -19,7 +22,7 @@ export const Container = styled.div `
         font-style: bold;
         color: #F28118;
 
-        margin-top: 0.3rem;
+        margin-top: 0.2rem;
     }
 
     transition:  0.2s;

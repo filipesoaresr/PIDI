@@ -19,6 +19,7 @@ interface User {
 export default function UserPage() {
 
     const [users, setUsers] = useState<User[]>([]);
+    const [newUser, setNewUser] = useState<User>()
     const [id, setId] = useState('');
 
 
@@ -33,14 +34,15 @@ export default function UserPage() {
 
 
     function handleUpdate(id: any) {
-        setId(id)
+        
+        
         
     }
 
     async function handleDelete(id: any) {
         api.delete(`users/${id}`)
     }
-    
+     
     
 
 
