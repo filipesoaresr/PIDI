@@ -1,15 +1,22 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
 import { Container,Form, MainSection, AddProductSection, FormBlock } from './styles'
 
 export default function NewPromotionPage() {
 
 
-    const [name, setName] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [discount, setDiscount] = useState('');
+   const {
+    name,
+    setName,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    discount,
+    setDiscount,
+} = useContext(PromotionContext)
 
     function handleCreateNewPromotion(event: FormEvent) {
         event.preventDefault();

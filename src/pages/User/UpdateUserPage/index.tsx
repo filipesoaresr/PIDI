@@ -1,26 +1,32 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
 import { Container, Form, FormBlock, MainSection, SecondSection } from './styles';
 
-export default function UpdateUserPage(event: FormEvent) {
-
-    const { id }: any = useParams();
-   
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmedPassword, setconfirmedPassword] = useState('');
+export default function UpdateUserPage() {
     
-   
+   const {
+    id,
+    phone,
+    setPhone,
+    email,
+    setEmail,
+    role,
+    setRole,
+    login,
+    setLogin,
+    password,
+    setPassword,
+    confirmedPassword,
+    setconfirmedPassword
+   } = useContext(UserContext)
 
-    function handleEdit() {
+
+
+    function handleUpdate(id: string) {
         
-       
-
         const userUpdated = {
             phone,
             email,
@@ -32,9 +38,7 @@ export default function UpdateUserPage(event: FormEvent) {
         
 
         api.put(`/users/${id}`, userUpdated)
-        //alert("Usuario atualizado com sucesso")
-
-        
+        alert("Usuario atualizado com sucesso") 
     }
 
 
@@ -100,7 +104,12 @@ export default function UpdateUserPage(event: FormEvent) {
               
                 </FormBlock>
                 
-                <Link to='/users'><button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="form-btn" type="submit" onClick={handleEdit}>Alterar</button>
+                <Link to='/users'>
+                    <button id="buttonCancel" type="reset">Cancelar</button>
+                </Link> 
+                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>
+                    Alterar
+                </button>
 
             </Form>
         </Container>

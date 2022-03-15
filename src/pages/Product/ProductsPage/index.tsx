@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
+import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
+import UpdateProductPage from '../UpdateProductPage';
 import { Container, ProductIntro, ProductTable } from './styles'
 
 interface Product {
@@ -20,22 +22,22 @@ interface Product {
     value: string;
 }
 
+
 export default function ProductsPage() {
 
-    const [products, setProducts] = useState<Product[]>([])
-
-    useEffect(() => {
-        api.get('/products').then((response) => {
-            setProducts(response.data.product)
-        })
-    }, [])
-    console.log(products)
+    const {products, id, setId} = useContext(ProductContext)
 
     
-    async function handleDelete(id: any) {
-        api.delete(`/products/${id}`)
+    function idTransfer(id: string) {
+        setId(id)
     }
 
+    async function handleDelete(id: string) {
+        api.delete(`/products/${id}`)
+
+    }
+
+    
 
     return (
         <Container>
@@ -72,8 +74,9 @@ export default function ProductsPage() {
                         </tr>
                     </thead>
                     <tbody>
+                        {console.log(products)}
                         {
-                            products.map((product) => (
+                            products.map((product: Product) => (
                                 <tr key={product._id}>
                                     <th scope="row">
                                         {product._id}
@@ -88,10 +91,16 @@ export default function ProductsPage() {
                                         {product.value}
                                     </td>
                                     <td>
-                                        <Link to='/products/updateproduct'><Button id="updateButton" variant="primary" size="sm">Alterar</Button></Link>
+                                        <Link to='/products/updateproduct' >
+                                            <Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(product._id)}}>
+                                                Alterar
+                                            </Button>
+                                        </Link>
                                         &nbsp;
                                         &nbsp;
-                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(product._id)}>Excluir</Button>
+                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(product._id)}>
+                                            Excluir
+                                        </Button>
                                     </td>
                                 </tr>
                             ))

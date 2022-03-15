@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { Container, UserIntro, UserTable } from './styles'
 import { api } from '../../../services/api';
-import axios from 'axios';
+import { UserContext } from '../../../contexts/UserContext';
+
 
 interface User {
     _id: string;
@@ -18,34 +19,18 @@ interface User {
 
 export default function UserPage() {
 
-    const [users, setUsers] = useState<User[]>([]);
-    const [newUser, setNewUser] = useState<User>()
-    const [id, setId] = useState('');
+   const {users, setUsers, id, setId} = useContext(UserContext)
+    
 
-
-    useEffect(() => {
-        api.get('/users')
-        .then(response => {
-            setUsers(response.data);
-        })
-        //eslint-disable-next-line
-    }, [])
-    console.log(users)
-
-
-    function handleUpdate(id: any) {
-        
-        
-        
+    function idTransfer(id: string) {
+        setId(id)
     }
 
-    async function handleDelete(id: any) {
+    async function handleDelete(id: string) {
         api.delete(`users/${id}`)
     }
      
     
-
-
     return (
         <Container>
            
@@ -84,7 +69,7 @@ export default function UserPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => (
+                        {users.map((user: User) => (
                             
                                 <tr key={user._id}>
                                     <th scope="row">
@@ -103,7 +88,7 @@ export default function UserPage() {
                                         {user.dateCreated}
                                     </td>
                                     <td>
-                                        <Link to='/users/updateuser/:id'><Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdate(user._id)}>Alterar</Button></Link>
+                                        <Link to='/users/updateuser/:id'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user._id);}}>Alterar</Button></Link>
                                         &nbsp;
                                         &nbsp;
                                         <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(user._id)}>Excluir</Button>

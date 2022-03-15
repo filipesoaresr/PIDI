@@ -1,5 +1,6 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
 import { 
@@ -11,18 +12,31 @@ import {
 
 export default function NewUserPage() {
 
-    const [name, setName] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [gender, setGender] = useState('');
-    const [phone, setPhone] = useState('');
-    const [dateCreated, setDateCreated] = useState('');
-    const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmedPassword, setconfirmedPassword] = useState('');
-    
+   
+    const {
+        name,
+        setName,
+        cpf,
+        setCpf,
+        birthDate,
+        setBirthDate,
+        gender,
+        setGender,
+        phone,
+        setPhone,
+        dateCreated,
+        setDateCreated,
+        email,
+        setEmail,
+        role,
+        setRole,
+        login,
+        setLogin,
+        password,
+        setPassword,
+        confirmedPassword,
+        setconfirmedPassword
+    } = useContext(UserContext)
    
 
     function handleCreateNewUser(event: FormEvent) {
@@ -42,7 +56,6 @@ export default function NewUserPage() {
         };
 
         api.post('/users', data);
-
         alert("Cadastro Realizado com Sucesso!")
     }
 
@@ -137,7 +150,12 @@ export default function NewUserPage() {
                         value={confirmedPassword} 
                         onChange={event =>setconfirmedPassword(event.target.value)}/>
                 <br />
-                <Link to='/users'><button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="form-btn" type="submit" onClick={handleCreateNewUser} >Cadastrar</button>
+                <Link to='/users'>
+                    <button id="buttonCancel" type="reset">Cancelar</button>
+                </Link> 
+                <button id="form-btn" type="submit" onClick={handleCreateNewUser} >
+                    Cadastrar
+                </button>
 
             </Form>
 

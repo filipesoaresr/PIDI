@@ -1,5 +1,6 @@
-import React, { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { 
     Container,
@@ -10,18 +11,29 @@ import {
 
 export default function NewProductPage() {
 
-    const [productType, setProductType] = useState('');
-    const [name, setName] = useState('');
-    const [colection, setColection] = useState('');
-    const [date, setDate] = useState('');
-    const [value, setValue] = useState(0);
-    const [pp, setPP] = useState(0);
-    const [p, setP] = useState(0);
-    const [m, setM] = useState(0);
-    const [g, setG] = useState(0);
-    const [gg, setGG] = useState(0);
-    
    
+   const {
+    productType,
+    setProductType,
+    name,
+    setName,
+    colection,
+    setColection,
+    date,
+    setDate,
+    value,
+    setValue,
+    pp,
+    setPP,
+    p,
+    setP,
+    m,
+    setM,
+    g,
+    setG,
+    gg,
+    setGG 
+   } = useContext(ProductContext)
 
     function handleCreateNewProduct(event: FormEvent) {
         event.preventDefault();
@@ -148,7 +160,12 @@ export default function NewProductPage() {
 
                 </FormProductBlock>
                 <br/>
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}>Cadastrar</button>
+                <Link to="/products">
+                    <button id="buttonCancel" type="reset">Cancelar</button>
+                </Link> 
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}>
+                    Cadastrar
+                </button>
             </Form>
         </Container>
     )

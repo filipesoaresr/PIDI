@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, PromoIntro, PromoDisplay } from './styles'
 import Promotion from '../../../components/Promotion'
 import { Link } from 'react-router-dom'
 import { api } from '../../../services/api';
+import { PromotionContext } from '../../../contexts/PromotionContext';
 
-interface Promotion {
+interface PromotionPage {
     _id: string,
     name: string,
     startDate: Date,
@@ -12,17 +13,14 @@ interface Promotion {
     discount: string,
 }
 
+interface PromotionPageProps {
+    promotions: PromotionPage[];
+}
 
 export default function PromotionsPage() {
 
-    const [promotions, setPromotions] = useState<Promotion[]>([])
-
-    useEffect(() => {
-        api.get('/promotions').then((response) => {
-            setPromotions(response.data)
-        })
-    }, [])
-    console.log(promotions)
+    
+    const {promotions} = useContext(PromotionContext);
 
     return (
         <Container>
@@ -35,11 +33,11 @@ export default function PromotionsPage() {
             </PromoIntro>
             
             <PromoDisplay>
-
                 {
-                    promotions.map((promotion) => (
+                    
+                    promotions.map((promotion: PromotionPage) => (
                         <Promotion
-                            id={promotion._id}
+                            _id={promotion._id}
                             name={promotion.name}
                             startDate={promotion.startDate}
                             endDate={promotion.endDate}
@@ -51,7 +49,7 @@ export default function PromotionsPage() {
             </PromoDisplay>
             
             <Link to='/promotion/newpromotion'>
-            <button type='submit' className ="register">+ Cadastrar</button>
+                +<button type='submit' className ="register">+ Cadastrar</button>
             </ Link>
 
         </Container>

@@ -1,26 +1,34 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Container } from './styles';
 import { TiTrash, TiPencil, TiDocumentText } from "react-icons/ti";
 import { api } from '../..//services/api';
 import { Link } from 'react-router-dom';
+import { PromotionContext } from '../../contexts/PromotionContext';
 
+interface Promotion {
+    _id: string,
+    name: string,
+    startDate: Date,
+    endDate: Date,
+    discount: string,
+}
 
-export default function Promotion({ id, name, startDate, endDate, discount }: any) {
+export default function Promotion({ _id, name, startDate, endDate, discount }: Promotion) {
     const deleteIcon = { color: "red", fontSize: "1.5em", marginLeft:"" }
     const editIcon = { color: "white", fontSize: "1.5em", marginLeft:"" }
     const showIcon = { color: "yellow", fontSize: "1.5em", marginLeft:"" }
 
+    const {setId} = useContext(PromotionContext)
 
-    async function handleDelete(id: any) {
+    async function handleDelete(id: string) {
         api.delete(`/promotions/${id}`)
 
         console.log(id)
     }
 
-    async function handleEdit(id: any) {
-
+    function idTransfer(id: string) {
+        setId(id)
     }
-    
 
     return (
 
@@ -31,7 +39,12 @@ export default function Promotion({ id, name, startDate, endDate, discount }: an
             <p>{endDate}</p>
             <p className="discount">{discount}%OFF</p>
             
-            <Link to="/promotions/updatepromotions"> <TiPencil style={editIcon}/></Link> <TiDocumentText style={showIcon}/> <TiTrash onClick={() => handleDelete(id)} style={deleteIcon}/> 
+            <Link to="/promotion/updatepromotions">
+                <TiPencil style={editIcon} onClick={() =>{idTransfer(_id)}}/>
+            </Link> 
+            <TiDocumentText style={showIcon}/> 
+            <TiTrash onClick={() => handleDelete(_id)} style={deleteIcon}/> 
+
         </Container>
     )
 }

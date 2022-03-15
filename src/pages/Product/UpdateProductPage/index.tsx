@@ -1,5 +1,7 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { ProductContext } from '../../../contexts/ProductContext';
+import { api } from '../../../services/api';
 import { 
     Container,
     Form, 
@@ -7,31 +9,64 @@ import {
     ImageSection, 
     FormProductBlock } from './styles';
 
+
+interface Product {
+    _id: string;
+    productType: string;
+    name: string;
+    collection: string;
+    dateCreated: string;
+    pp: number;
+    p: number;
+    m: number;
+    g: number;
+    gg: number;
+    promotion: string;
+    value: string;
+}
+
+
+
 export default function UpdateProductPage() {
 
-   
-    const [value, setValue] = useState(0);
-    const [qtdPP, setQtdPP] = useState(0);
-    const [qtdP, setQtdP] = useState(0);
-    const [qtdM, setQtdM] = useState(0);
-    const [qtdG, setQtdG] = useState(0);
-    const [qtdGG, setQtdGG] = useState(0);
-    
-   
+    //const [products, setProducts] = useState();
+    //const [id, setId] = useState('')
 
-    function handleCreateNewProduct(event: FormEvent) {
-        event.preventDefault();
+    const {
+        id,
+        value,
+        setValue,
+        pp,
+        setPP,
+        p,
+        setP,
+        m,
+        setM,
+        g,
+        setG,
+        gg,
+        setGG 
+    } = useContext(ProductContext)
 
-        console.log({
 
-            value,
-            qtdPP,
-            qtdP,
-            qtdM,
-            qtdG,
-            qtdGG
-        });
+
+    async function handleUpdate(id: string) {
+
+        
+       const dataUpdated = {
+           value,
+           pp,
+           p,
+           m,
+           g,
+           gg
+       }
+
+        console.log(dataUpdated)
+        api.put(`/products/${id}`, dataUpdated)
+        
     }
+
 
 
     return (
@@ -47,8 +82,8 @@ export default function UpdateProductPage() {
                             PP: <input 
                             className='size-qtd' 
                             type="number" 
-                            value={qtdPP}
-                            onChange={event => setQtdPP(Number(event.target.value))}
+                            value={pp}
+                            onChange={event => setP(Number(event.target.value))}
                             />
                         </label>
 
@@ -56,8 +91,8 @@ export default function UpdateProductPage() {
                             P: <input 
                             className='size-qtd' 
                             type="number"
-                            value={qtdP}
-                            onChange={event => setQtdP(Number(event.target.value))} 
+                            value={p}
+                            onChange={event => setPP(Number(event.target.value))} 
                             />
                         </label>
 
@@ -65,8 +100,8 @@ export default function UpdateProductPage() {
                             M: <input 
                             className='size-qtd' 
                             type="number"
-                            value={qtdM}
-                            onChange={event => setQtdM(Number(event.target.value))} 
+                            value={m}
+                            onChange={event => setM(Number(event.target.value))} 
                             />
                         </label>
 
@@ -74,8 +109,8 @@ export default function UpdateProductPage() {
                             G: <input 
                             className='size-qtd' 
                             type="number"
-                            value={qtdG}
-                            onChange={event => setQtdG(Number(event.target.value))} 
+                            value={g}
+                            onChange={event => setG(Number(event.target.value))} 
                             />
                         </label>
 
@@ -83,8 +118,8 @@ export default function UpdateProductPage() {
                             GG: <input 
                             className='size-qtd' 
                             type="number"
-                            value={qtdGG}
-                            onChange={event => setQtdGG(Number(event.target.value))} 
+                            value={gg}
+                            onChange={event => setGG(Number(event.target.value))} 
                             />
                         </label>
 
@@ -94,7 +129,7 @@ export default function UpdateProductPage() {
                         //id='value-input' 
                         type="number" 
                         value={value}
-                        onChange={event => setValue(Number(event.target.value))}
+                        onChange={event => setValue(event.target.value)}
                         />
                     </MainSection>
 
@@ -106,7 +141,14 @@ export default function UpdateProductPage() {
 
                 </FormProductBlock>
                 <br/>
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}>Alterar</button>
+                <Link to="/products">
+                    <button id="buttonCancel" type="reset">Cancelar</button>
+                </Link> 
+               
+                    <button id="buttonRegister" type="submit" onClick={() => { handleUpdate(id) }}>
+                        Alterar
+                    </button>
+
             </Form>
         </Container>
     )

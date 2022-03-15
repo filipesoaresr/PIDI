@@ -20,7 +20,11 @@ import PaymentOption from './pages/PaymentOption/PaymentOptionPage';
 import NewPaymentOption from './pages/PaymentOption/NewPaymentOption';
 import UpdateUserPage from './pages/User/UpdateUserPage';
 import UpdateProductPage from './pages/Product/UpdateProductPage';
-import { UserContextProvider } from './contexts/UserContext';
+
+import { ProductProvider } from './contexts/ProductContext';
+import { UserProvider } from './contexts/UserContext';
+import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
+import { PromotionProvider } from './contexts/PromotionContext';
 
 
 export function App() {
@@ -29,31 +33,36 @@ export function App() {
    <Router>
       <div className="App">
 
-        <UserContextProvider>
+        <UserProvider>
+        <PromotionProvider>
+        <ProductProvider >
           <Header />
 
           <Switch>
             <Route path="/" exact component={HomeBoard} />
-            <Route path="/products" exact component={ProductsPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/promotions" component={PromotionsPage} />
-            <Route path="/order" exact component={OrderPage} />
-            <Route path="/report" component={ReportPage} />
+            <Route path="/products" exact component={ProductsPage} />
+            <Route path="/products/newproduct" component={NewProductPage} />
+            <Route path="/products/updateproduct" component={UpdateProductPage} />
             <Route path="/users" exact component={UserPage} />
-            <Route path="/sales" exact component={SalesPage} />
+            <Route path="/users/newuser" component={NewUserPage} />
+            <Route path="/users/updateuser/" exact component={UpdateUserPage} />
+            <Route path="/promotions" component={PromotionsPage} />
+            <Route path="/promotion/newpromotion" component={NewPromotionPage} />
+            <Route path="/promotion/updatepromotions" component={UpdatePromotionPage} />
             <Route path="/paymentoption" exact component={PaymentOption} />
             <Route path="/paymentoption/newpaymentoption" component={NewPaymentOption} />
-            <Route path="/products/newproduct" component={NewProductPage} />
-            <Route path="/promotion/newpromotion" component={NewPromotionPage} />
+            <Route path="/order" exact component={OrderPage} />
             <Route path="/order/neworder" component={NewOrderPage} />
-            <Route path="/users/newuser" component={NewUserPage} />
-            <Route path="/users/updateuser/:id" exact component={UpdateUserPage} />
-            <Route path="/products/updateproduct" component={UpdateProductPage} />
-            <Route path="/promotions/updatepromotions" component={UpdateProductPage} />
+            <Route path="/report" component={ReportPage} />
+            <Route path="/sales" exact component={SalesPage} />
           </Switch>
 
           <Footer />
-        </UserContextProvider>
+        </ProductProvider>
+        </PromotionProvider>
+        </UserProvider>
+
         <GlobalStyle />
       </div>
    </Router>
