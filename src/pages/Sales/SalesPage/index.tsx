@@ -29,3 +29,4 @@ export default function SalesPage() {
         </Container>
     )
 }
+
