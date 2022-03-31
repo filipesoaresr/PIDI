@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-
 export const Container = styled.div `
 
-    display: flex;
+    display: block; 
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    width: 100%;
+    margin-bottom: 5rem;
+    
 
     button.register {
         position:fixed;
@@ -18,23 +20,23 @@ export const Container = styled.div `
         border-radius: 5px;
         color: #FFFF;
         background: #F28118;
-
-        cursor:pointer;
         transition: filter 0.2s;
 
         &:hover {
         filter: brightness(0.8);
+        cursor: pointer;
         }
     }
 
 `;
 
-export const ProductIntro = styled.div `
+export const OrderIntro = styled.div `
 
     display: block;
     justify-content: center;
     align-items: center;
 
+    margin-left: 30rem;
     margin-top: 5rem;
 
     h1{
@@ -55,7 +57,7 @@ export const ProductIntro = styled.div `
 
     button {
         margin-top: 2rem;
-        //margin-left: 4rem;
+        //margin-left: 7.5rem;
 
         width: 25rem;
         height: 2rem;
@@ -76,7 +78,39 @@ export const ProductIntro = styled.div `
     }
 `;
 
-export const ProductTable = styled.div `
+export const OrderTable = styled.div `
 
+    
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+    
+   
+    
+  table{
+      border: 5px solid;
+      width: 60%;
+      margin-left: 19rem;
+      
+  }
+
+  th {
+    max-width: 80px;
+  }
+
+  td{
+      max-width: 60px;
+  }
+
+  #updateButton{
+      background-color: blue;
+      width: 5rem;
+  }
+
+  #deleteButton{
+      background-color: red;
+      width: 5rem;
+  }
+   
 
 `;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
-import { Container,Form, MainSection, AddProductSection, FormBlock } from './styles'
+import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles'
 
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
@@ -80,12 +80,10 @@ const { products } = useContext(ProductContext)
                         />
 
 
-                        <p>Fim da Promoção</p>
-                        <input 
-                        type="date" 
-                        value={endDate}
-                        onChange={event => setEndDate(event.target.value)}
-                        />
+                     
+                    </MainSection>
+
+                    <SecondSection>
 
                         <p>Desconto</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
@@ -96,7 +94,17 @@ const { products } = useContext(ProductContext)
                             <option value="20">20% OFF</option>
                             <option value="10">10% OFF</option>
                         </select>
-                    </MainSection>
+
+                        <p>Fim da Promoção</p>
+                        <input 
+                        type="date" 
+                        value={endDate}
+                        onChange={event => setEndDate(event.target.value)}
+                        />
+
+                    </SecondSection>
+
+                    </FormBlock>
 
                     <AddProductSection>
                     <Table bordered hover responsive >
@@ -151,7 +159,6 @@ const { products } = useContext(ProductContext)
                 </Table>
                     </AddProductSection>
                     <br />               
-                </FormBlock>
 
                 <Link to="/promotions">
                     <button id="buttonCancel" type="reset">Voltar</button>

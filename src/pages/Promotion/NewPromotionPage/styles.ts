@@ -10,7 +10,16 @@ export const Container = styled.div `
 
 export const FormBlock = styled.div `
    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+`;
+
+export const SecondSection = styled.section `
+    margin-left: 2rem;
+    margin-top: 3rem;
+    
 `;
 
 export const Form = styled.form `
@@ -47,7 +56,7 @@ export const Form = styled.form `
     }
 
     select {
-        width: 15%;
+        width: 15rem;
         height: 1.5rem;
 
         border-radius: 5px;
@@ -66,7 +75,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #F28118;
+        background: green;
         color: #fff;
         
     }
@@ -90,24 +99,30 @@ export const Form = styled.form `
 export const MainSection = styled.section `
     margin-right: 2rem;
     margin-top: 3rem;
+    
+    p{
+        margin-right: 2rem;
+    }
 
 `;
 
 
 export const AddProductSection = styled.section `
     margin-left: 2rem;
+    margin-right: 2rem;
     margin-top: 3rem;
+
+    background: #F28118;
 
     padding: 2rem;
 
     table {
         color: #fff;
+        
 
         button {
             background: green;
         }
-    }
-
-
+    } 
     
-`;
+    `;

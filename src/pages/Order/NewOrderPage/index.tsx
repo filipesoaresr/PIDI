@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
-import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection  } from './styles';
+import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection  } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 
