@@ -107,6 +107,10 @@ const { products } = useContext(ProductContext)
                     </FormBlock>
 
                     <AddProductSection>
+                    <h4>Nome do Produto</h4>
+                    <input type="text"/>
+                    <br />
+                    <button>Consultar</button>
                     <Table bordered hover responsive >
                     <thead>
                         <tr>

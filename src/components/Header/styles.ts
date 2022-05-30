@@ -11,7 +11,7 @@ export const Container = styled.header `
 
 
 export const Content = styled.div `
-    max-width: 1120px;
+    max-width: 1320px;
 
     //Sempre centralizado
     margin: 0 auto;
@@ -21,12 +21,24 @@ export const Content = styled.div `
     align-items: center;
     justify-content: space-between;
 
+    button{
+        width: 5rem;
+        height: 3rem;
+        color: #fff;
+
+        border-radius: 4px;
+        border-style: none;
+
+        //padding: 1rem 10rem;
+        background: #F28118;
+
+        font-size: 15px;
+    }
 
     img {
 
         height: 4rem;
         width: 8rem;
-
         
     }
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div `
     
@@ -41,7 +41,7 @@ export const Form = styled.form `
     border-radius: 5px;
 
 
-    h3 {
+    h2 {
         margin-top: 2rem;
     }
 
@@ -75,7 +75,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: green;
+        background: #42EB32;
         color: #fff;
         
     }
@@ -110,15 +110,15 @@ export const MainSection = styled.section `
 export const AddProductSection = styled.section `
     margin-left: 2rem;
     margin-right: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 
     background: #F28118;
 
     padding: 2rem;
-    border-radius: 5px;    
 
-    input{
+    h5{
         margin-top: 1rem;
+        font-style: bold;
     }
 
     button{
@@ -129,7 +129,9 @@ export const AddProductSection = styled.section `
         background: #16425B;
         color: #fff;
         border-radius: 5px;
+
     }
+
     table {
         color: #fff;
         margin-top: 2rem;

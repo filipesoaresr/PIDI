@@ -10,15 +10,16 @@ export default function LoginPage() {
             <UserImage>
                 <img src="https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png" alt="" />
             </UserImage>
-                <p>Usuário:</p>
-                <input type="text" placeholder="Nome de Usuário" />
+            <br />
+                <h5>Usuário:</h5>
+                <input type="text" placeholder="Digite seu login" />
                 <br/>
-                <p>Senha:</p>
-                <input type="password" placeholder="Senha" />
+                <h5>Senha:</h5>
+                <input type="password" placeholder="Digite sua senha" />
                 <br />
                 <ButtonsBlock>
 
-                    <Link to="/users/newuser"><a>Criar Conta</a></Link>
+                    <Link to="/users/newuser"><a id="createUser">Criar Conta</a></Link>
                     <br />
                     <Link to="/products"><button id="entrar" type="submit">Entrar</button></Link>
 

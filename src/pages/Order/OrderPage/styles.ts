@@ -36,7 +36,7 @@ export const OrderIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-left: 30rem;
+    margin-left: 48rem;
     margin-top: 5rem;
 
     h1{
@@ -90,7 +90,7 @@ export const OrderTable = styled.div `
   table{
       border: 5px solid;
       width: 60%;
-      margin-left: 19rem;
+      margin-left: 25rem;
       
   }
 

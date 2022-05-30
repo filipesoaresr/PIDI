@@ -13,21 +13,21 @@ export function Header() {
                     <img src={LogoImg} alt="Logo imagem" />
                 </Link>
                 <div className="links">
-                    <Link to="/products">Produtos</Link>
+                    <Link to="/products"><h6>Produtos</h6></Link>
 
-                    <Link to="/promotions">Promoções</Link>
+                    <Link to="/promotions"><h6>Promoções</h6></Link>
 
-                    <Link to="/paymentoption">Opções de Pagamento</Link>
+                    <Link to="/paymentoption"><h6>Opções de Pagamento</h6></Link>
 
-                    <Link className ="Users" to="/users">Usuários</Link>
+                    <Link className ="Users" to="/users"><h6>Usuários</h6></Link>
 
-                    <Link to="/order">Pedidos</Link>
+                    <Link to="/order"><h6>Pedidos</h6></Link>
                     
-                    <Link to="/sales">Vendas</Link>
+                    <Link to="/sales"><h6>Vendas</h6></Link>
 
-                    <Link to="/report">Relatório Inteligente</Link>
+                    <Link to="/report"><h6>Relatório Inteligente</h6></Link>
 
-                    <Link className ="Login" to="/login">Entrar</Link>
+                    <Link className ="Login" to="/login"><button type='button' className="register">Entrar</button></Link>
                     
                 </div>
 

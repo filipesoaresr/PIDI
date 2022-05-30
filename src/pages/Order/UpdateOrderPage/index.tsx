@@ -23,7 +23,7 @@ interface Product {
     value: string;
     }
 
-export default function NewOrderPage() {
+export default function UpdateOrderPage() {
 
     const {
         name,
@@ -56,7 +56,7 @@ export default function NewOrderPage() {
         <Container>
 
             <Form>
-                <h2>Novo Pedido</h2>
+                <h2>Alterar Pedido</h2>
 
                 <AddProductSection>
                     <BsCartFill style={{fontSize: "2.5rem"}}></BsCartFill>

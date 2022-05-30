@@ -9,8 +9,10 @@ export const Container = styled.div `
 export const LoginBlock = styled.div `
 
     margin-top: 8rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
 
-    padding: 5rem 6rem;
+    padding: 3rem 6rem;
     background: #16425B;
 
     border-radius: 5px;
@@ -36,18 +38,23 @@ export const ButtonsBlock = styled.div `
      display: block;
      align-items: center;
      justify-content: center;
+
+     #createUser{
+       
+         margin-left: 35px;
+     }
      
      button {
-        margin-top: 2rem;
+        margin-top: 1rem;
  
 
         background: #F28118;
         color: #fff;
 
         border-radius: 5px;
-        margin-left: -20px;
-        padding: 0.5rem 2rem;
-        width: 100%;
+        margin-left: 20px;
+        padding: 0.5rem 0.5rem;
+        width: 60%;
 
         cursor: pointer;
         transition: filter 0.2s;
@@ -62,7 +69,7 @@ export const ButtonsBlock = styled.div `
         margin-left: 1.6rem;
         margin-right: 1.3rem;
 
-        font-size: 0.7rem;
+        font-size: 1rem;
 
         color: #fff;
         text-decoration: none;
@@ -84,7 +91,9 @@ export const UserImage = styled.div `
      img{
          width: 10rem;
          height: 10rem;
-         margin-bottom: 10px ;
+         margin-bottom: 10px;
+         margin-left: 25px;
+
      }
      
 `;

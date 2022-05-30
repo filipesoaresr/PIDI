@@ -55,7 +55,7 @@ export default function OrderPage() {
                                 168
                             </td>
                             <td>
-                                <Link to='/products/updateproduct' >
+                                <Link to='/order/updateorder' >
                                     <Button id="updateButton" variant="primary" size="sm">
                                         Alterar
                                     </Button>

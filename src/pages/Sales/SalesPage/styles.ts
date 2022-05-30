@@ -38,8 +38,10 @@ export const Form = styled.form `
    width: 40rem;
    height: 20rem;
    border-radius: 10px;
-   margin-left: 25rem;
+   margin-left: 42rem;
+   margin-top: 10rem;
    margin-right: 7rem;
+   
    
     
 

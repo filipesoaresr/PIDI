@@ -20,6 +20,7 @@ import PaymentOption from './pages/PaymentOption/PaymentOptionPage';
 import NewPaymentOption from './pages/PaymentOption/NewPaymentOption';
 import UpdateUserPage from './pages/User/UpdateUserPage';
 import UpdateProductPage from './pages/Product/UpdateProductPage';
+import UpdateOrderPage from './pages/Order/UpdateOrderPage';
 
 import { ProductProvider } from './contexts/ProductContext';
 import { UserProvider } from './contexts/UserContext';
@@ -56,6 +57,7 @@ export function App() {
             <Route path="/order/neworder" component={NewOrderPage} />
             <Route path="/report" component={ReportPage} />
             <Route path="/sales" exact component={SalesPage} />
+            <Route path="/order/updateorder" exact component={UpdateOrderPage} />
           </Switch>
 
           <Footer />

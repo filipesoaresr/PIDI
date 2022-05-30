@@ -35,7 +35,7 @@ export const PaymentIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-left: 35rem;
+    margin-left: 50rem;
     margin-top: 5rem;
 
     h1{
@@ -88,7 +88,7 @@ export const PaymentTable = styled.div `
     table{
       border: 5px solid;
       width: 70%;
-      margin-left: 14rem;
+      margin-left: 22rem;
       
   }
   th {

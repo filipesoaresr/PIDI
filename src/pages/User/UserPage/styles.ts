@@ -37,7 +37,7 @@ export const UserIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-left: 34rem;
+    margin-left: 50rem;
     margin-top: 5rem;
 
     h1{
@@ -92,7 +92,7 @@ export const UserTable = styled.div `
     table{
       border: 5px solid;
       width: 70%;
-      margin-left: 13rem;
+      margin-left: 20rem;
       
   }
 

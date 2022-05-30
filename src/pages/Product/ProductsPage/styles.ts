@@ -38,7 +38,7 @@ export const ProductIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-left: 35rem;
+    margin-left: 50rem;
     margin-top: 5rem;
 
     h1{
@@ -86,6 +86,7 @@ export const ProductTable = styled.div `
     justify-content: center;
     align-items: center;
     margin-top: 8rem;
+    margin-left: 12rem;
     
    
     
