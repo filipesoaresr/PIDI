@@ -55,13 +55,18 @@ export default function OrderPage() {
                                 168
                             </td>
                             <td>
+                                <Link to='/order/showorder' >
+                                    <Button id="showButton" variant="primary" size="sm">
+                                        Exibir
+                                    </Button>
+                                </Link>
+
                                 <Link to='/order/updateorder' >
                                     <Button id="updateButton" variant="primary" size="sm">
                                         Alterar
                                     </Button>
                                 </Link>
-                                &nbsp;
-                                &nbsp;
+                                
                                 <Button id="deleteButton" variant="danger" size="sm">
                                     Excluir
                                 </Button>

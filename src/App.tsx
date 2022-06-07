@@ -21,6 +21,13 @@ import NewPaymentOption from './pages/PaymentOption/NewPaymentOption';
 import UpdateUserPage from './pages/User/UpdateUserPage';
 import UpdateProductPage from './pages/Product/UpdateProductPage';
 import UpdateOrderPage from './pages/Order/UpdateOrderPage';
+import ShowOrderPage from './pages/Order/ShowOrderPage';
+import ErrorServerPage from './pages/ErrorPages/internal-server-error';
+import ErrorUnauthorizedPage from './pages/ErrorPages/unauthorized';
+import ErrorNotFoundPage from './pages/ErrorPages/not-found'
+import ErrorRequestPage from './pages/ErrorPages/bad-request'
+import ErrorForbiddenPage from './pages/ErrorPages/forbidden'
+
 
 import { ProductProvider } from './contexts/ProductContext';
 import { UserProvider } from './contexts/UserContext';
@@ -58,6 +65,9 @@ export function App() {
             <Route path="/report" component={ReportPage} />
             <Route path="/sales" exact component={SalesPage} />
             <Route path="/order/updateorder" exact component={UpdateOrderPage} />
+            <Route path="/order/showorder" exact component={ShowOrderPage} />
+            <Route path="/internal-server-error-500" exact component={ErrorServerPage} />
+
           </Switch>
 
           <Footer />

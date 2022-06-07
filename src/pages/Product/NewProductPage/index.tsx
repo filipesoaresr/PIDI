@@ -2,6 +2,7 @@ import { FormEvent, useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { 
     Container,
     Form, 
@@ -59,7 +60,7 @@ export default function NewProductPage() {
     return (
         <Container>
             <Form>
-                <h3>Novo Produto</h3>
+                <h1>Novo Produto</h1>
 
                 <FormProductBlock>
                     <MainSection>
@@ -153,19 +154,12 @@ export default function NewProductPage() {
                     </MainSection>
 
                     <ImageSection>
-                        <p>Imagem:</p>
-                        <input id="image-input" type="image" alt="Imagem do Produto"/>
-                        
+                    <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
                     </ImageSection>
 
                 </FormProductBlock>
                 <br/>
-                <Link to="/products">
-                    <button id="buttonCancel" type="reset">Cancelar</button>
-                </Link> 
-                <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}>
-                    Cadastrar
-                </button>
+                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill/></button>
             </Form>
         </Container>
     )

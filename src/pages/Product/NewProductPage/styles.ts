@@ -48,11 +48,11 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #42EB32;
+        background: #0FB700;
     }
 
     #buttonCancel{
-        background: #E8563A;
+        background: #E00D09;
     }
 
     
@@ -106,17 +106,14 @@ export const ImageSection = styled.div `
     margin-right: 2rem;
     margin-top: 3rem;
 
-    width: 18rem;
+    width: 25rem;
     height: 25rem;
 
-    background: #F28118;
+    background: #FFFF;
     border-radius: 5px;
 
     p {
         margin-top: 1rem
     }
 
-    input#image-input {
-        margin-top: 10rem;
-    }
 `;

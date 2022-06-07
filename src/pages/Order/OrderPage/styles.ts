@@ -104,12 +104,21 @@ export const OrderTable = styled.div `
 
   #updateButton{
       background-color: blue;
+      margin: 10px;
       width: 5rem;
   }
 
   #deleteButton{
       background-color: red;
       width: 5rem;
+      margin: 10px;
+  }
+
+  #showButton{
+    display: block;
+    margin: auto;
+    background-color: green;
+    width: 5rem;
   }
    
 
