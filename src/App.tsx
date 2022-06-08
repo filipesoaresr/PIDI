@@ -33,6 +33,7 @@ import { ProductProvider } from './contexts/ProductContext';
 import { UserProvider } from './contexts/UserContext';
 import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
 import { PromotionProvider } from './contexts/PromotionContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 
 export function App() {
@@ -40,7 +41,7 @@ export function App() {
    
    <Router>
       <div className="App">
-
+        <AuthProvider>
         <UserProvider>
         <PromotionProvider>
         <ProductProvider >
@@ -74,7 +75,7 @@ export function App() {
         </ProductProvider>
         </PromotionProvider>
         </UserProvider>
-
+        </AuthProvider>
         <GlobalStyle />
       </div>
    </Router>

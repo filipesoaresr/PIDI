@@ -8,7 +8,7 @@ import UpdateProductPage from '../UpdateProductPage';
 import { Container, ProductIntro, ProductTable } from './styles'
 
 interface Product {
-    _id: string;
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -25,19 +25,28 @@ interface Product {
 
 export default function ProductsPage() {
 
-    const {products, id, setId} = useContext(ProductContext)
 
-    
+    const { products, setId, setProducts } = useContext(ProductContext)
+
     function idTransfer(id: string) {
         setId(id)
     }
 
+    function updateProducts() {
+        console.log("++++++++++++++++++++")
+        api.get('/products').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setProducts(response.data)
+        })
+    }
+
     async function handleDelete(id: string) {
-        api.delete(`/products/${id}`)
+        await api.delete(`/products/${id}`)
+        updateProducts()
 
     }
 
-    
+
 
     return (
         <Container>
@@ -52,7 +61,7 @@ export default function ProductsPage() {
             </ProductIntro>
 
             <ProductTable>
-                
+
                 <Table bordered hover responsive >
                     <thead>
                         <tr>
@@ -77,9 +86,9 @@ export default function ProductsPage() {
                         {console.log(products)}
                         {
                             products.map((product: Product) => (
-                                <tr key={product._id}>
+                                <tr key={product.id}>
                                     <th scope="row">
-                                        {product._id}
+                                        {product.id}
                                     </th>
                                     <td>
                                         {product.name}
@@ -92,13 +101,13 @@ export default function ProductsPage() {
                                     </td>
                                     <td>
                                         <Link to='/products/updateproduct' >
-                                            <Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(product._id)}}>
+                                            <Button id="updateButton" variant="primary" size="sm" onClick={() => { idTransfer(product.id) }}>
                                                 Alterar
                                             </Button>
                                         </Link>
                                         &nbsp;
                                         &nbsp;
-                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(product._id)}>
+                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(product.id)}>
                                             Excluir
                                         </Button>
                                     </td>

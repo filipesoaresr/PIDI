@@ -23,13 +23,13 @@ interface ProductProviderProps {
 
 export const ProductContext = createContext<any>([]);
 
-export function ProductProvider({children}: ProductProviderProps) {
+export function ProductProvider({ children }: ProductProviderProps) {
 
     const [products, setProducts] = useState<Product[]>([])
 
     const [id, setId] = useState('');
 
-    const [productType, setProductType] = useState('');
+    const [product_type, setProductType] = useState('');
     const [name, setName] = useState('');
     const [colection, setColection] = useState('');
     const [date, setDate] = useState('');
@@ -43,41 +43,44 @@ export function ProductProvider({children}: ProductProviderProps) {
 
 
     useEffect(() => {
+
+        //console.log("=========TOKEN=======", token)
         api.get('/products').then((response) => {
-            setProducts(response.data.product)
+            console.log("++++++++++++TESTE++++++++=", response.data)
+            setProducts(response.data)
         })
     }, [])
-   
+
 
     return (
         <ProductContext.Provider value={{
-        products,
-        setProducts,
-        id,
-        setId,
-        productType,
-        setProductType,
-        name,
-        setName,
-        colection,
-        setColection,
-        date,
-        setDate,
-        value,
-        setValue,
-        pp,
-        setPP,
-        p,
-        setP,
-        m,
-        setM,
-        g,
-        setG,
-        gg,
-        setGG 
+            products,
+            setProducts,
+            id,
+            setId,
+            product_type,
+            setProductType,
+            name,
+            setName,
+            colection,
+            setColection,
+            date,
+            setDate,
+            value,
+            setValue,
+            pp,
+            setPP,
+            p,
+            setP,
+            m,
+            setM,
+            g,
+            setG,
+            gg,
+            setGG
         }}>
             {children}
-        </ProductContext.Provider> 
+        </ProductContext.Provider>
     )
 
 }

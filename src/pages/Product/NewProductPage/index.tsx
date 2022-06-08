@@ -3,44 +3,57 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { BsFillPlusSquareFill } from 'react-icons/bs';
-import { 
+import { useHistory } from "react-router-dom";
+import {
     Container,
-    Form, 
-    MainSection, 
-    ImageSection, 
-    FormProductBlock } from './styles';
+    Form,
+    MainSection,
+    ImageSection,
+    FormProductBlock
+} from './styles';
 
 export default function NewProductPage() {
 
-   
-   const {
-    productType,
-    setProductType,
-    name,
-    setName,
-    colection,
-    setColection,
-    date,
-    setDate,
-    value,
-    setValue,
-    pp,
-    setPP,
-    p,
-    setP,
-    m,
-    setM,
-    g,
-    setG,
-    gg,
-    setGG 
-   } = useContext(ProductContext)
 
-    function handleCreateNewProduct(event: FormEvent) {
+    const {
+        product_type,
+        setProductType,
+        name,
+        setName,
+        colection,
+        setColection,
+        date,
+        setDate,
+        value,
+        setValue,
+        pp,
+        setPP,
+        p,
+        setP,
+        m,
+        setM,
+        g,
+        setG,
+        gg,
+        setGG,
+        setProducts
+    } = useContext(ProductContext)
+
+    const history = useHistory();
+
+    function updateProducts() {
+        console.log("++++++++++++++++++++")
+        api.get('/products').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setProducts(response.data)
+        })
+    }
+
+    async function handleCreateNewProduct(event: FormEvent) {
         event.preventDefault();
 
         const data = {
-            productType,
+            product_type,
             name,
             colection,
             date,
@@ -52,10 +65,12 @@ export default function NewProductPage() {
             gg
         };
 
-        api.post('/products', data)
+        await api.post('/products', data)
         alert("Cadastro Realizado com Sucesso!")
+        updateProducts()
+        history.push("/products")
     }
- 
+
 
     return (
         <Container>
@@ -65,7 +80,7 @@ export default function NewProductPage() {
                 <FormProductBlock>
                     <MainSection>
                         <p>Tipo de Produto:</p>
-                        <select value={productType} onChange={event => setProductType(event.target.value)}>
+                        <select value={product_type} onChange={event => setProductType(event.target.value)}>
                             <option value="Camisa">Camisa</option>
                             <option value="Boné">Boné</option>
                             <option value="Casaco">Casaco</option>
@@ -76,90 +91,90 @@ export default function NewProductPage() {
                         </select>
 
                         <p>Nome do Produto:</p>
-                        <input 
-                        type="text" 
-                        placeholder="Nome do Produto" 
-                        value={name}
-                        onChange={event => setName(event.target.value)}
+                        <input
+                            type="text"
+                            placeholder="Nome do Produto"
+                            value={name}
+                            onChange={event => setName(event.target.value)}
                         />
 
                         <p>Coleção:</p>
-                        <input 
-                        type="text" 
-                        value={colection}
-                        onChange={event => setColection(event.target.value)}
+                        <input
+                            type="text"
+                            value={colection}
+                            onChange={event => setColection(event.target.value)}
                         />
 
                         <p>Data do Cadastro: </p>
-                        <input 
-                        type="date" 
-                        value={date}
-                        onChange={event =>setDate(event.target.value)}
+                        <input
+                            type="date"
+                            value={date}
+                            onChange={event => setDate(event.target.value)}
                         />
 
                         <p>Quantidade/Tamanho</p>
                         <label>
-                            PP: <input 
-                            className='size-qtd' 
-                            type="number" 
-                            value={pp}
-                            onChange={event => setPP(Number(event.target.value))}
+                            PP: <input
+                                className='size-qtd'
+                                type="number"
+                                value={pp}
+                                onChange={event => setPP(Number(event.target.value))}
                             />
                         </label>
 
                         <label>
-                            P: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={p}
-                            onChange={event => setP(Number(event.target.value))} 
+                            P: <input
+                                className='size-qtd'
+                                type="number"
+                                value={p}
+                                onChange={event => setP(Number(event.target.value))}
                             />
                         </label>
 
                         <label>
-                            M: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={m}
-                            onChange={event => setM(Number(event.target.value))} 
+                            M: <input
+                                className='size-qtd'
+                                type="number"
+                                value={m}
+                                onChange={event => setM(Number(event.target.value))}
                             />
                         </label>
 
                         <label>
-                            G: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={g}
-                            onChange={event => setG(Number(event.target.value))} 
+                            G: <input
+                                className='size-qtd'
+                                type="number"
+                                value={g}
+                                onChange={event => setG(Number(event.target.value))}
                             />
                         </label>
 
                         <label>
-                            GG: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={gg}
-                            onChange={event => setGG(Number(event.target.value))} 
+                            GG: <input
+                                className='size-qtd'
+                                type="number"
+                                value={gg}
+                                onChange={event => setGG(Number(event.target.value))}
                             />
                         </label>
 
 
                         <p>Valor:</p>
                         <input
-                        //id='value-input' 
-                        type="number" 
-                        value={value}
-                        onChange={event => setValue(Number(event.target.value))}
+                            //id='value-input' 
+                            type="number"
+                            value={value}
+                            onChange={event => setValue(Number(event.target.value))}
                         />
                     </MainSection>
 
                     <ImageSection>
-                    <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
+                        <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
                     </ImageSection>
 
                 </FormProductBlock>
-                <br/>
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill/></button>
+                <br />
+                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill /></button>
             </Form>
         </Container>
     )

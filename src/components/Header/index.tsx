@@ -1,14 +1,25 @@
 import { Container, Content } from "./styles";
 import LogoImg from '../../assets/piticas-logo-transparente.png';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 export function Header() {
-    
+
+    const { token, setToken } = useContext(AuthContext)
+    const history = useHistory();
+
+    function handleLogOut() {
+        localStorage.clear();
+        history.push("/login")
+    }
+
     return (
 
-        <Container>       
+        <Container>
             <Content>
-                
+
                 <Link to='/'>
                     <img src={LogoImg} alt="Logo imagem" />
                 </Link>
@@ -19,16 +30,20 @@ export function Header() {
 
                     <Link to="/paymentoption"><h6>Opções de Pagamento</h6></Link>
 
-                    <Link className ="Users" to="/users"><h6>Usuários</h6></Link>
+                    <Link className="Users" to="/users"><h6>Usuários</h6></Link>
 
                     <Link to="/order"><h6>Pedidos</h6></Link>
-                    
+
                     <Link to="/sales"><h6>Vendas</h6></Link>
 
                     <Link to="/report"><h6>Relatório Inteligente</h6></Link>
 
-                    <Link className ="Login" to="/login"><button type='button' className="register">Entrar</button></Link>
-                    
+                    <Link className="Login" to="/login">
+                        <button type='button' className="register">Entrar</button>
+                    </Link>
+
+                    <button id="sair" type="submit" onClick={() => handleLogOut()}>Sair</button>
+
                 </div>
 
             </Content>
