@@ -1,166 +1,167 @@
 import { FormEvent, useContext, useState } from 'react'
+import * as React from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { BsFillPlusSquareFill } from 'react-icons/bs';
-import { 
+import { useForm, SubmitHandler } from "react-hook-form";
+import {
     Container,
-    Form, 
-    MainSection, 
-    ImageSection, 
-    FormProductBlock } from './styles';
+    Form,
+    MainSection,
+    ImageSection,
+    FormProductBlock
+} from './styles';
+import ReactDOM from 'react-dom';
+
+let renderCount = 0;
+
+type FormProductValues = {
+    productType: string,
+    name: string,
+    collection: string,
+    dateCreated: Date,
+    pp: number,
+    p: number,
+    m: number,
+    g: number,
+    gg: number,
+    value: number
+}
 
 export default function NewProductPage() {
 
-   
-   const {
-    productType,
-    setProductType,
-    name,
-    setName,
-    colection,
-    setColection,
-    date,
-    setDate,
-    value,
-    setValue,
-    pp,
-    setPP,
-    p,
-    setP,
-    m,
-    setM,
-    g,
-    setG,
-    gg,
-    setGG 
-   } = useContext(ProductContext)
+    renderCount++;
 
-    function handleCreateNewProduct(event: FormEvent) {
-        event.preventDefault();
-
-        const data = {
-            productType,
-            name,
-            colection,
-            date,
-            value,
-            pp,
-            p,
-            m,
-            g,
-            gg
-        };
-
-        api.post('/products', data)
-        alert("Cadastro Realizado com Sucesso!")
-    }
+    const { register, handleSubmit, formState: { errors } } = useForm<FormProductValues>({});
+    
+    console.log("errors", errors);
  
 
     return (
         <Container>
-            <Form>
+            <Form onSubmit={handleSubmit((data) => {
+                console.log(data);
+            })}>
                 <h1>Novo Produto</h1>
 
                 <FormProductBlock>
                     <MainSection>
-                        <p>Tipo de Produto:</p>
-                        <select value={productType} onChange={event => setProductType(event.target.value)}>
-                            <option value="Camisa">Camisa</option>
-                            <option value="Boné">Boné</option>
-                            <option value="Casaco">Casaco</option>
-                            <option value="Caneca">Caneca</option>
-                            <option value="Chaveiro">Chaveiro</option>
-                            <option value="Garrafa">Garrafa</option>
-                            <option value="Action Figure">Action Figure</option>
-                        </select>
+                        <form>
 
-                        <p>Nome do Produto:</p>
-                        <input 
-                        type="text" 
-                        placeholder="Nome do Produto" 
-                        value={name}
-                        onChange={event => setName(event.target.value)}
-                        />
+                            <p>Tipo de Produto:</p>
+                            <select {...register("productType", {
+                            })}>
+                                <option value="Camisa">Camisa</option>
+                                <option value="Boné">Boné</option>
+                                <option value="Casaco">Casaco</option>
+                                <option value="Caneca">Caneca</option>
+                                <option value="Chaveiro">Chaveiro</option>
+                                <option value="Garrafa">Garrafa</option>
+                                <option value="Action Figure">Action Figure</option>
+                            </select>
 
-                        <p>Coleção:</p>
-                        <input 
-                        type="text" 
-                        value={colection}
-                        onChange={event => setColection(event.target.value)}
-                        />
-
-                        <p>Data do Cadastro: </p>
-                        <input 
-                        type="date" 
-                        value={date}
-                        onChange={event =>setDate(event.target.value)}
-                        />
-
-                        <p>Quantidade/Tamanho</p>
-                        <label>
-                            PP: <input 
-                            className='size-qtd' 
-                            type="number" 
-                            value={pp}
-                            onChange={event => setPP(Number(event.target.value))}
+                            <p>Nome do Produto:</p>
+                            <input
+                                type="text"
+                                placeholder="Nome do Produto"
+                                {...register("name", {
+                                    required: "This is required.", 
+                                    maxLength: {value: 50, message: 'You exceed max length'}
+                                })}
                             />
-                        </label>
+                            {errors.name && <p>{errors.name.message}</p>}
 
-                        <label>
-                            P: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={p}
-                            onChange={event => setP(Number(event.target.value))} 
+                            <p>Coleção:</p>
+                            <input
+                                type="text"
+                                {...register("collection", {
+                                    required: "This is required.",
+                                    maxLength: 40
+                                })}
                             />
-                        </label>
 
-                        <label>
-                            M: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={m}
-                            onChange={event => setM(Number(event.target.value))} 
+                            <p>Data do Cadastro: </p>
+                            <input
+                                type="date"
+                                {...register("dateCreated", {
+                                    required: "This is required."
+                                })}
                             />
-                        </label>
 
-                        <label>
-                            G: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={g}
-                            onChange={event => setG(Number(event.target.value))} 
+                            <p>Quantidade/Tamanho</p>
+                            <label>
+                                PP: <input
+                                    className='size-qtd'
+                                    type="number"
+                                    {...register("pp", {
+                                        required: false,
+                                    })}
+                                />
+                            </label>
+
+                            <label>
+                                P: <input
+                                    className='size-qtd'
+                                    type="number"
+                                    {...register("p", {
+                                        required: false,
+                                    })}
+                                />
+                            </label>
+
+                            <label>
+                                M: <input
+                                    className='size-qtd'
+                                    type="number"
+                                    {...register("m", {
+                                        required: false,
+                                    })}
+                                />
+                            </label>
+
+                            <label>
+                                G: <input
+                                    className='size-qtd'
+                                    type="number"
+                                    {...register("g", {
+                                        required: false,
+                                    })}
+                                />
+                            </label>
+
+                            <label>
+                                GG: <input
+                                    className='size-qtd'
+                                    type="number"
+                                    {...register("gg", {
+                                        required: false,
+                                    })}
+                                />
+                            </label>
+
+
+                            <p>Valor:</p>
+                            <input
+                                //id='value-input' 
+                                type="number"
+                                {...register("value", {
+                                    required: false,
+                                })}
                             />
-                        </label>
-
-                        <label>
-                            GG: <input 
-                            className='size-qtd' 
-                            type="number"
-                            value={gg}
-                            onChange={event => setGG(Number(event.target.value))} 
-                            />
-                        </label>
-
-
-                        <p>Valor:</p>
-                        <input
-                        //id='value-input' 
-                        type="number" 
-                        value={value}
-                        onChange={event => setValue(Number(event.target.value))}
-                        />
+                        </form>
                     </MainSection>
 
                     <ImageSection>
-                    <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
+                        <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
                     </ImageSection>
 
                 </FormProductBlock>
-                <br/>
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill/></button>
+                <br />
+                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit"> Cadastrar <BsFillPlusSquareFill /></button>
             </Form>
         </Container>
     )
+
+
 }
