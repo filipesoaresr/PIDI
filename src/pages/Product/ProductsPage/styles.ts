@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div `
 
-    display: block; 
+    display: flex; 
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    flex-direction: column;
+    
     width: 100%;
     margin-bottom: 5rem;
     
@@ -38,8 +40,8 @@ export const ProductIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-left: 50rem;
-    margin-top: 5rem;
+    //margin-left: 10%;
+    margin-top: 5%;
 
     h1{
         margin-left: 7rem;
@@ -85,15 +87,15 @@ export const ProductTable = styled.div `
     
     justify-content: center;
     align-items: center;
-    margin-top: 8rem;
-    margin-left: 12rem;
+    margin-top: 3%;
+    //margin-left: 12rem;
     
    
     
   table{
       border: 5px solid;
-      width: 60%;
-      margin-left: 19rem;
+      width: 50rem;
+      //margin-left: 10%;
       
   }
 

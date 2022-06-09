@@ -2,6 +2,8 @@ import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
+import { useHistory } from "react-router-dom";
+
 import { 
     Container,
     Form, 
@@ -22,7 +24,7 @@ interface Product {
     g: number;
     gg: number;
     promotion: string;
-    value: string;
+    value: number;
 }
 
 
@@ -31,6 +33,7 @@ export default function UpdateProductPage() {
 
     //const [products, setProducts] = useState();
     //const [id, setId] = useState('')
+    const history = useHistory();
 
     const {
         id,
@@ -45,14 +48,16 @@ export default function UpdateProductPage() {
         g,
         setG,
         gg,
-        setGG 
+        setGG,
+        getProducts 
     } = useContext(ProductContext)
 
 
 
-    async function handleUpdate(id: string) {
+    async function handleUpdate(event: FormEvent, id: string) {
 
-        
+        event.preventDefault();
+
        const dataUpdated = {
            value,
            pp,
@@ -63,7 +68,9 @@ export default function UpdateProductPage() {
        }
 
         console.log(dataUpdated)
-        api.put(`/products/${id}`, dataUpdated)
+        await api.put(`/products/${id}`, dataUpdated)
+        getProducts()
+        history.push("/products")
         
     }
 
@@ -129,7 +136,7 @@ export default function UpdateProductPage() {
                         //id='value-input' 
                         type="number" 
                         value={value}
-                        onChange={event => setValue(event.target.value)}
+                        onChange={event => setValue(Number(event.target.value))}
                         />
                     </MainSection>
 
@@ -145,7 +152,7 @@ export default function UpdateProductPage() {
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link> 
                
-                    <button id="buttonRegister" type="submit" onClick={() => { handleUpdate(id) }}>
+                    <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>
                         Alterar
                     </button>
 

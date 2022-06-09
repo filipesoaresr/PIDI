@@ -14,7 +14,7 @@ interface Product {
     g: number;
     gg: number;
     promotion: string;
-    value: string;
+    value: number;
 }
 
 interface ProductProviderProps {
@@ -33,7 +33,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
     const [name, setName] = useState('');
     const [colection, setColection] = useState('');
     const [date, setDate] = useState('');
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(0);
     const [pp, setPP] = useState(0);
     const [p, setP] = useState(0);
     const [m, setM] = useState(0);
@@ -41,14 +41,18 @@ export function ProductProvider({ children }: ProductProviderProps) {
     const [gg, setGG] = useState(0);
 
 
+    function getProducts() {
+        api.get('/products').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setProducts(response.data)
+        })
+    }
+
 
     useEffect(() => {
 
         //console.log("=========TOKEN=======", token)
-        api.get('/products').then((response) => {
-            console.log("++++++++++++TESTE++++++++=", response.data)
-            setProducts(response.data)
-        })
+        getProducts()
     }, [])
 
 
@@ -77,7 +81,8 @@ export function ProductProvider({ children }: ProductProviderProps) {
             g,
             setG,
             gg,
-            setGG
+            setGG,
+            getProducts
         }}>
             {children}
         </ProductContext.Provider>

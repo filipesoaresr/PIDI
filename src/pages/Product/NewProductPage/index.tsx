@@ -36,18 +36,12 @@ export default function NewProductPage() {
         setG,
         gg,
         setGG,
-        setProducts
+        setProducts,
+        getProducts
     } = useContext(ProductContext)
 
     const history = useHistory();
 
-    function updateProducts() {
-        console.log("++++++++++++++++++++")
-        api.get('/products').then((response) => {
-            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
-            setProducts(response.data)
-        })
-    }
 
     async function handleCreateNewProduct(event: FormEvent) {
         event.preventDefault();
@@ -67,7 +61,7 @@ export default function NewProductPage() {
 
         await api.post('/products', data)
         alert("Cadastro Realizado com Sucesso!")
-        updateProducts()
+        getProducts()
         history.push("/products")
     }
 
