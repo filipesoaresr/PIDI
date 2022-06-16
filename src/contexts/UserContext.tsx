@@ -33,15 +33,21 @@ export function UserProvider({children}: UserProviderProps) {
     const [dateCreated, setDateCreated] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
-    const [login, setLogin] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setconfirmedPassword] = useState('');
 
-    useEffect(() => {
+
+    function getUsers() {
         api.get('/users')
         .then(response => {
+            console.log("=========GET USERS=======", response.data)
             setUsers(response.data);
         })
+    }
+
+    useEffect(() => {
+        getUsers()
         
     }, [])
 
@@ -67,12 +73,13 @@ export function UserProvider({children}: UserProviderProps) {
             setEmail,
             role,
             setRole,
-            login,
-            setLogin,
+            username,
+            setUsername,
             password,
             setPassword,
             confirmedPassword,
-            setconfirmedPassword
+            setconfirmedPassword,
+            getUsers
         }}>
             {children}
         </UserContext.Provider>

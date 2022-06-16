@@ -1,5 +1,5 @@
 import React, { FormEvent, useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
@@ -30,16 +30,18 @@ export default function NewUserPage() {
         setEmail,
         role,
         setRole,
-        login,
-        setLogin,
+        username,
+        setUsername,
         password,
         setPassword,
         confirmedPassword,
-        setconfirmedPassword
+        setconfirmedPassword,
+        getUsers
     } = useContext(UserContext)
    
+    const history = useHistory();
 
-    function handleCreateNewUser(event: FormEvent) {
+    async function handleCreateNewUser(event: FormEvent) {
         event.preventDefault();
 
         const data = {
@@ -51,12 +53,15 @@ export default function NewUserPage() {
             dateCreated,
             email,
             role,
-            login,
+            username,
             password,
         };
 
-        api.post('/users', data);
+        await api.post('/users', data);
+        getUsers()
         alert("Cadastro Realizado com Sucesso!")
+        history.push("/users")
+
     }
 
 
@@ -99,8 +104,8 @@ export default function NewUserPage() {
                         <p>Login: </p>
                         <input 
                         type="text" 
-                        value={login} 
-                        onChange={event =>setLogin(event.target.value)}/>  
+                        value={username} 
+                        onChange={event =>setUsername(event.target.value)}/>  
 
                     </MainSection>
 

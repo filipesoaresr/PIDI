@@ -43,7 +43,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
 
     function getProducts() {
         api.get('/products').then((response) => {
-            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            console.log("++++++++++GET PRODUCTS++++++++++=", response.data)
             setProducts(response.data)
         })
     }

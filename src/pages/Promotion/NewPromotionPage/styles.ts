@@ -133,6 +133,8 @@ export const AddProductSection = styled.section `
     table {
         color: #fff;
         margin-top: 2rem;
+
+        width: 100%;
         
 
         button {

@@ -1,5 +1,5 @@
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
@@ -7,6 +7,8 @@ import { Container, Form, FormBlock, MainSection, SecondSection } from './styles
 
 export default function UpdateUserPage() {
     
+    const history = useHistory();
+
    const {
     id,
     phone,
@@ -20,13 +22,18 @@ export default function UpdateUserPage() {
     password,
     setPassword,
     confirmedPassword,
-    setconfirmedPassword
+    setconfirmedPassword,
+    getUsers
    } = useContext(UserContext)
 
 
 
-    function handleUpdate(id: string) {
+    async function handleUpdate(event: FormEvent, id: string) {
+
+        event.preventDefault();
         
+        console.log("========ID======",id)
+
         const userUpdated = {
             phone,
             email,
@@ -37,8 +44,10 @@ export default function UpdateUserPage() {
         };
         
 
-        api.put(`/users/${id}`, userUpdated)
-        alert("Usuario atualizado com sucesso") 
+        await api.put(`/users/${id}`, userUpdated)
+        alert("Usuario atualizado com sucesso")
+        getUsers();
+        history.push("/users") 
     }
 
 
@@ -107,7 +116,7 @@ export default function UpdateUserPage() {
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link> 
-                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>
+                <button id="form-btn" type="submit" onClick={(event) => {handleUpdate(event, id)}}>
                     Alterar
                 </button>
 

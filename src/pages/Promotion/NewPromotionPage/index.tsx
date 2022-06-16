@@ -65,22 +65,22 @@ const { products } = useContext(ProductContext)
                     <MainSection>
 
                         <p>Nome da Promoção:</p>
-                        <input 
-                        type="text" 
-                        placeholder="Nome da Promoção" 
-                        value={name}
-                        onChange={event => setName(event.target.value)}
+                        <input
+                            type="text"
+                            placeholder="Nome da Promoção"
+                            value={name}
+                            onChange={event => setName(event.target.value)}
                         />
 
                         <p>Inicio da Promoção:</p>
-                        <input 
-                        type="date" 
-                        value={startDate}
-                        onChange={event => setStartDate(event.target.value)}
+                        <input
+                            type="date"
+                            value={startDate}
+                            onChange={event => setStartDate(event.target.value)}
                         />
 
 
-                     
+
                     </MainSection>
 
                     <SecondSection>
@@ -96,77 +96,77 @@ const { products } = useContext(ProductContext)
                         </select>
 
                         <p>Fim da Promoção</p>
-                        <input 
-                        type="date" 
-                        value={endDate}
-                        onChange={event => setEndDate(event.target.value)}
+                        <input
+                            type="date"
+                            value={endDate}
+                            onChange={event => setEndDate(event.target.value)}
                         />
 
                     </SecondSection>
 
-                    </FormBlock>
+                </FormBlock>
 
-                    <AddProductSection>
+                <AddProductSection>
                     <h4>Nome do Produto</h4>
-                    <input type="text"/>
+                    <input type="text" />
                     <br />
                     <button>Consultar</button>
                     <Table bordered hover responsive >
-                    <thead>
-                        <tr>
-                            <th>
-                                Código
-                            </th>
-                            <th>
-                                Produto
-                            </th>
-                            <th>
-                                Promoção
-                            </th>
-                            <th>
-                                Valor
-                            </th>
-                            <th>
-                                Ações
-                            </th>
-                        </tr>
-                    </thead>
-        
-                    <tbody>
-                        {console.log(products)}
-                        {
-                            products.map((product: Product) => (
-                                <tr key={product._id}>
-                                    <th scope="row">
-                                        {product._id}
-                                    </th>
-                                    <td>
-                                        {product.name}
-                                    </td>
-                                    <td>
-                                        {product.promotion}
-                                    </td>
-                                    <td>
-                                        {product.value}
-                                    </td>
-                                    <td>
-                                        <Link to='/products/updateproduct' >
+                        <thead>
+                            <tr>
+                                <th>
+                                    Código
+                                </th>
+                                <th>
+                                    Produto
+                                </th>
+                                <th>
+                                    Promoção
+                                </th>
+                                <th>
+                                    Valor
+                                </th>
+                                <th>
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {console.log(products)}
+                            {
+                                products.map((product: Product) => (
+                                    <tr key={product._id}>
+                                        <th scope="row">
+                                            {product._id}
+                                        </th>
+                                        <td>
+                                            {product.name}
+                                        </td>
+                                        <td>
+                                            {product.promotion}
+                                        </td>
+                                        <td>
+                                            {product.value}
+                                        </td>
+                                        <td>
+
                                             <Button id="updateButton" variant="primary" size="sm" >
                                                 Incluir
                                             </Button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </Table>
-                    </AddProductSection>
-                    <br />               
+
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </Table>
+                </AddProductSection>
+                <br />
 
                 <Link to="/promotions">
                     <button id="buttonCancel" type="reset">Voltar</button>
-                </Link>  
+                </Link>
                 <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}>
                     Cadastrar
                 </button>
