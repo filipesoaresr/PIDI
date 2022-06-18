@@ -36,12 +36,16 @@ export default function NewUserPage() {
         setUsername,
         password,
         setPassword,
+        confirmedPassword,
+        setconfirmedPassword,
+        getUsers,
         setUsers
-    } = useContext(UserContext)
+        } = useContext(UserContext)         
     
+
     const history = useHistory();
 
-    function handleCreateNewUser(event: FormEvent) {
+    async function handleCreateNewUser(event: FormEvent) {
         event.preventDefault();
 
         const data = {
@@ -52,16 +56,16 @@ export default function NewUserPage() {
             sex,
             role,
             phone,
-            username,
             cpf,
             email,
+            username,
             password,
         };
 
-        api.post('/users', data);
+        await api.post('/users', data);
+        getUsers()
         alert("Cadastro Realizado com Sucesso!")
-        setUsers()
-        console.log(data)
+
         history.push("/users")
     }
 

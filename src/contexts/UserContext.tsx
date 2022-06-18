@@ -42,17 +42,19 @@ export function UserProvider({children}: UserProviderProps) {
     const [password, setPassword] = useState('');
     const [confirmedPassword, setconfirmedPassword] = useState('');
 
-    
+
+
     function getUsers() {
-        api.get('/users').then((response) => {
-            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
-            setUsers(response.data)
+        api.get('/users')
+        .then(response => {
+            console.log("=========GET USERS=======", response.data)
+            setUsers(response.data);
         })
     }
 
     useEffect(() => {
+        getUsers()
         
-        getUsers();
     }, [])
 
     return (

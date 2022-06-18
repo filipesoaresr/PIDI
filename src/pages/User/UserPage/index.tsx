@@ -14,13 +14,15 @@ interface User {
     phone: string;
     username: string;
     cpf: string;
+    email: string;
+    role: string;
 }
 
 
 export default function UserPage() {
 
-   const {users, setUsers, setId} = useContext(UserContext)
-   console.log(users)
+
+   const {users, setId, getUsers, setUsers} = useContext(UserContext)
     
 
     function idTransfer(id: string) {
@@ -36,9 +38,9 @@ export default function UserPage() {
     }
 
     async function handleDelete(id: string) {
-        console.log(id)
-        await api.delete(`/users/${id}`)
-        updateUser()
+
+        api.delete(`users/${id}`)
+        getUsers()
     }
      
     
@@ -72,7 +74,7 @@ export default function UserPage() {
                                 Telefone
                             </th>
                             <th id="dateColumn">
-                                Data do Cadastro
+                                Role
                             </th>
                             <th id="actionsColumn">
                                 Ações
@@ -80,26 +82,31 @@ export default function UserPage() {
                         </tr>
                     </thead>
                     <tbody>
+                        {console.log("TESTE ID", users)}
                         {users.map((user: User) => (
                             
                                 <tr key={user.id}>
-                                    <td scope="row">
+
+                                    <th scope="row">
+
                                         {user.cpf}
-                                    </td>
+                                    </th>
                                     <td>
                                         {user.name}
                                     </td>
                                     <td>
-                                       {user.username}
+                                       {user.email}
+
                                     </td>
                                     <td>
                                         {user.phone}
                                     </td>
                                     <td>
-                                        {user.dateCreated}
+                                        {user.role}
                                     </td>
                                     <td>
-                                        <Link to='/users/updateuser/:id'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user.id);}}>Alterar</Button></Link>
+
+                                        <Link to='/users/updateuser'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user.id);}}>Alterar</Button></Link>
                                         &nbsp;
                                         &nbsp;
                                         <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(user.id)}>Excluir</Button>

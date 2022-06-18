@@ -8,7 +8,8 @@ import { Container, Form, FormBlock, MainSection, SecondSection } from './styles
 export default function UpdateUserPage() {
 
     const history = useHistory();
-    
+
+
    const {
     id,
     phone,
@@ -27,12 +28,12 @@ export default function UpdateUserPage() {
    } = useContext(UserContext)
 
 
-
-    function handleUpdate(event: FormEvent, id: string) {
+    async function handleUpdate(event: FormEvent, id: string) {
 
         event.preventDefault();
+        
+        console.log("========ID======",id)
 
-        console.log("=======ID========", id);
 
         const userUpdated = {
             phone,
@@ -43,8 +44,7 @@ export default function UpdateUserPage() {
             confirmedPassword
         };
         
-
-        api.put(`/users/${id}`, userUpdated)
+        await api.put(`/users/${id}`, userUpdated)
         alert("Usuario atualizado com sucesso")
         getUsers();
         history.push("/users") 

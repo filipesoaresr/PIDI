@@ -115,7 +115,8 @@ export const AddProductSection = styled.section `
     background: #F28118;
 
     padding: 2rem;
-    border-radius: 8px;    
+    border-radius: 8px;
+    width: 100%;  
 
     input{
         margin-top: 1rem;
@@ -138,6 +139,7 @@ export const AddProductSection = styled.section `
     table {
         color: #fff;
         margin-top: 2rem;
+
     }
 
     th {
