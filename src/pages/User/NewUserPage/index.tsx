@@ -1,5 +1,5 @@
 import React, { FormEvent, useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
@@ -14,14 +14,16 @@ export default function NewUserPage() {
 
    
     const {
+        id,
+        setId,
         name,
         setName,
         cpf,
         setCpf,
         birthDate,
         setBirthDate,
-        gender,
-        setGender,
+        sex,
+        setSex,
         phone,
         setPhone,
         dateCreated,
@@ -30,33 +32,37 @@ export default function NewUserPage() {
         setEmail,
         role,
         setRole,
-        login,
-        setLogin,
+        username,
+        setUsername,
         password,
         setPassword,
-        confirmedPassword,
-        setconfirmedPassword
+        setUsers
     } = useContext(UserContext)
-   
+    
+    const history = useHistory();
 
     function handleCreateNewUser(event: FormEvent) {
         event.preventDefault();
 
         const data = {
+            id,
             name,
-            cpf,
             birthDate,
-            gender,
-            phone,
             dateCreated,
-            email,
+            sex,
             role,
-            login,
+            phone,
+            username,
+            cpf,
+            email,
             password,
         };
 
         api.post('/users', data);
         alert("Cadastro Realizado com Sucesso!")
+        setUsers()
+        console.log(data)
+        history.push("/users")
     }
 
 
@@ -96,11 +102,11 @@ export default function NewUserPage() {
                         onChange={event =>setEmail(event.target.value)}
                         />
 
-                        <p>Login: </p>
+                        <p>Username: </p>
                         <input 
                         type="text" 
-                        value={login} 
-                        onChange={event =>setLogin(event.target.value)}/>  
+                        value={username} 
+                        onChange={event =>setUsername(event.target.value)}/>  
 
                     </MainSection>
 
@@ -114,7 +120,7 @@ export default function NewUserPage() {
                         />
 
                         <p>Sexo:</p>
-                        <select value={gender} onChange={event => setGender(event.target.value)}>
+                        <select value={sex} onChange={event => setSex(event.target.value)}>
                             <option value="Atendimento">Masculino</option>
                             <option value="Financeiro">Feminino</option>
                         </select>
@@ -144,12 +150,12 @@ export default function NewUserPage() {
               
                 </FormBlock>
                 <br />
-                <p>Confirmar Senha: </p>
+                {/* <p>Confirmar Senha: </p>
                         <input 
                         type="text" 
                         value={confirmedPassword} 
                         onChange={event =>setconfirmedPassword(event.target.value)}/>
-                <br />
+                <br /> */}
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link> 
@@ -163,3 +169,5 @@ export default function NewUserPage() {
         </Container>
     )
 }
+
+

@@ -39,6 +39,8 @@ export const ProductIntro = styled.div `
     display: block;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 
     //margin-left: 10%;
     margin-top: 5%;
@@ -61,14 +63,14 @@ export const ProductIntro = styled.div `
 
     button {
         margin-top: 2rem;
-        //margin-left: 7.5rem;
+        margin-left: 3rem;
+        margin-right: auto;
 
-        width: 25rem;
-        height: 2rem;
+        width: 80%;
         color: #fff;
 
         border-radius: 5px;
-        border-style: none;
+        border-style: solid 1.5px;
 
         //padding: 1rem 10rem;
         background: #F28118;
@@ -93,19 +95,31 @@ export const ProductTable = styled.div `
    
     
   table{
-      border: 5px solid;
-      width: 50rem;
+      border: 1.5px solid;
+      width: 100%;
+      align-items: center;
+      text-align: left;
+      margin-left: auto;
+      margin-right: auto;
       //margin-left: 10%;
-      
-  }
+    }
 
-  th {
-    max-width: 80px;
-  }
+    th, td {
+        padding: 22px;
+        text-align: left;
+    }
 
-  td{
-      max-width: 60px;
-  }
+    td{
+        font-size: 18px;
+    }
+
+    th {
+        background-color: #FF9947;
+        font-size: 24px;
+        color: black;
+    }
+
+    tr:hover {background-color:  #F58C36;}
 
   #updateButton{
       background-color: blue;
@@ -114,6 +128,10 @@ export const ProductTable = styled.div `
   #deleteButton{
       background-color: red;
   }
+
+  #divTable{
+    overflow-x:auto;
+}
    
 
 `;

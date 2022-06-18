@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
+import { PaymentContext } from '../../../contexts/PaymentContext';
 import { api } from '../../../services/api';
 import { Container, PaymentIntro, PaymentTable} from './styles'
 
 interface PaymentOption {
-    _id: string;
+    id: string;
     name: string;
     flag: string;
     installment: string;
@@ -16,18 +17,24 @@ interface PaymentOption {
 
 export default function PaymentOption(){
 
-    const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
+    const { payment, setId, setPayment } = useContext(PaymentContext)
 
-    useEffect(() => {
-        api.get('/payment-options').then(response => {
-            setPaymentOptions(response.data.paymentOption)
+
+    function updatePayment() {
+        console.log("++++++++++++++++++++")
+        api.get('/payment_options').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setPayment(response.data)
         })
-    }, [])
-    console.log(paymentOptions)
+    }
 
+    async function handleDelete(id: string) {
+        console.log(id)
+        const delete_req = await api.delete(`/payment_options/${id}`)
+        console.log(`/payment_options/${id}`)
+        console.log(delete_req)
+        updatePayment()
 
-    async function handleDelete(id: any) {
-        api.delete(`/payment-options/${id}`)
     }
 
 
@@ -64,23 +71,22 @@ export default function PaymentOption(){
                         </tr>
                     </thead>
                     <tbody>
-                        {paymentOptions.map(paymentOption => (
-
-                            <tr key={paymentOption._id}>
+                        {payment.map((payment: PaymentOption) => (
+                            <tr key={payment.id}>
                                 <th scope="row">
-                                    {paymentOption._id}
+                                    {payment.id}
                                 </th>
                                 <td>
-                                    {paymentOption.name}
+                                    {payment.name}
                                 </td>
                                 <td>
-                                    {paymentOption.flag}
+                                    {payment.flag}
                                 </td>
                                 <td>
-                                    {paymentOption.installment}
+                                    {payment.installment}
                                 </td>
                                 <td>
-                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(paymentOption._id)}>Excluir</Button>
+                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(payment.id)}>Excluir</Button>
                                 </td>
                             </tr>
                         ))}

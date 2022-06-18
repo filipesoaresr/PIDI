@@ -110,34 +110,57 @@ export const MainSection = styled.section `
 export const AddProductSection = styled.section `
     margin-left: 2rem;
     margin-right: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 
     background: #F28118;
 
     padding: 2rem;
-    border-radius: 5px;    
+    border-radius: 8px;    
 
     input{
         margin-top: 1rem;
     }
 
+    h5{
+        margin-top: 1rem;
+        font-style: bold;
+    }
+
     button{
         margin-top: 1rem;
-        margin-left: 52rem;
-        width: 6rem;
-        height: 2.5rem;
-        background: #16425B;
-        color: #fff;
+        margin-left: 1rem;
+        width: 20%;
+        height: 20%;
         border-radius: 5px;
+
     }
+
     table {
         color: #fff;
         margin-top: 2rem;
-        
+    }
 
-        button {
-            background: green;
-        }
-    } 
+    th {
+        font-size: 20px;
+        padding: 1rem;
+    }
+
+    #searchButton{
+        width: 10%;
+        background: blue;
+        color: white;
+        margin-top: 2rem;
+    }
+
+    #addProductButton{
+        width: 30%;
+        background: green;
+    }
+
+    #deleteProductButton{
+        width: 30%;
+        background: red;
+    }
+
     
     `;

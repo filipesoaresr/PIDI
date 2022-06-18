@@ -1,15 +1,15 @@
-import  { FormEvent, useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { ProductContext } from '../../../contexts/ProductContext';
-import { PromotionContext } from '../../../contexts/PromotionContext';
+import { FormEvent, useContext, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../../services/api';
-import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection  } from './styles';
+import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill } from "react-icons/bs";
+import { OrderContext } from '../../../contexts/OrderContext';
+import { ProductContext } from '../../../contexts/ProductContext';
 
-interface Product {
-    _id: string;
+interface IProduct {
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -20,128 +20,190 @@ interface Product {
     g: number;
     gg: number;
     promotion: string;
+    value: number;
+}
+
+interface IProductHasOrder {
+    id: string;
+    name: string;
+    collection: string;
+    pp: number;
+    p: number;
+    m: number;
+    g: number;
+    gg: number;
+    promotion: string;
     value: string;
-    }
+}
+
+interface  IOrder{
+    id: string;
+    dateCreated: Date;
+    fk_id_payment_options: string
+    fk_id_user: string;
+    dateSubmitted: Date;
+    totalValue: number;
+    isOpen: boolean;
+    installment: string;
+    productHasOrder: [{}];
+}
 
 export default function NewOrderPage() {
 
+    const history = useHistory();
+
     const {
-        name,
-        setName,
-        startDate,
-        setStartDate,
-        endDate,
-        setEndDate,
-        discount,
-        setDiscount,
-    } = useContext(PromotionContext)
+       id,
+       dateCreated,
+       fk_id_payment_options,
+       fk_id_user,
+       dateSubmitted,
+       totalValue,
+       isOpen,
+       installment,
+       productHasOrder,
+       getOrder      
+    } = useContext(OrderContext)
+
+    const { orders } = useContext(OrderContext)
 
     const { products } = useContext(ProductContext)
 
-    function handleCreateNewPromotion(event: FormEvent) {
+    function handleCreateNewOrder(event: FormEvent) {
         event.preventDefault();
 
         const data = {
-            name,
-            startDate,
-            endDate,
-            discount,
+            id,
+            dateCreated,
+            fk_id_payment_options,
+            fk_id_user,
+            dateSubmitted,
+            totalValue,
+            installment,
+            isOpen,
+            productHasOrder 
         };
 
-        api.post('/promotions', data)
+
+        api.post('/orders', data)
         alert("Cadastro Realizado com Sucesso!")
+        getOrder();
+        history.push("/orders")
     }
 
     return (
         <Container>
 
             <Form>
-                <h2>Novo Pedido</h2>
+                <h1>Novo Pedido</h1>
 
                 <AddProductSection>
-                    <BsCartFill style={{fontSize: "2.5rem"}}></BsCartFill>
+                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
-                    <input type="text"/>
+                    <input type="text" />
                     <br />
-                    <button>Consultar</button>
-                        <Table bordered hover responsive >
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Código
-                                    </th>
-                                    <th>
-                                        Produto
-                                    </th>
-                                    <th>
-                                        Tamanho/Qtd
-                                    </th>
-                                    <th>
-                                        Promoção
-                                    </th>
-                                    <th>
-                                        Valor
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        Ações
-                                    </th>
-                                </tr>
-                            </thead>
+                    <button id="searchButton">Consultar</button>
+                    <Table bordered hover responsive >
+                        <thead>
+                            <tr>
+                                <th>
+                                    Produto
+                                </th>
+                                <th>
+                                    Tamanho/Qtd
+                                </th>
+                                <th>
+                                    Promoção
+                                </th>
+                                <th>
+                                    Valor
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                <th>
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                {console.log(products)}
-                                {
-                                    products.map((product: Product) => (
-                                        <tr key={product._id}>
-                                            <th scope="row">
-                                                {product._id}
-                                            </th>
-                                            <td>
-                                                {product.name}
-                                            </td>
-                                            <td>
-                                                Tamanho e quantidade
-                                            </td>
-                                            <td>
-                                                {product.promotion}
-                                            </td>
-                                            <td>
-                                                {product.value}
-                                            </td>
-                                            <td>
-                                                Total
-                                            </td>
-                                            <td>
-                                              <Button id="addProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                              <Button id="deleteProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </Table>
-                    </AddProductSection>
+                        <tbody>
+                            {console.log(products)}
+                            {
+                                products.map((product: IProduct) => (
+                                    <tr key={product.name}>
+                                        <td scope="row">
+                                            {product.name}
+                                        </td>
+                                        <td>
+                                            <label>
+                                                PP: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
 
-                    <FormBlock>
+                                            <label>
+                                                P: <input
+                                                    className='size-qtd'
+                                                    type="number" 
+                                                />
+                                            </label>
+
+                                            <label>
+                                                M: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
+
+                                            <label>
+                                                G: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
+
+                                            <label>
+                                                GG: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                    
+                                                />
+                                            </label>
+
+                                        </td>
+                                        <td>
+                                            {product.promotion}
+                                        </td>
+                                        <td>
+                                            {product.value}
+                                        </td>
+                                        <td>
+                                            Total
+                                        </td>
+                                        <td>
+                                            <Button id="addProductButton" variant="primary" size="sm" >Incluir</Button> 
+                                            <Button id="deleteProductButton" variant="danger" size="sm" >Excluir</Button>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </Table>
+                </AddProductSection>
+
+                <FormBlock>
 
                     <MainSection>
-                    <p>Data do Pedido:</p>
+                        <p>Data do Pedido:</p>
                         <input
                             type="date"
                             placeholder="--/--/--"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
                         />
 
                         <p>Opçao de Pagamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
+                        <select>
                             <option value="dinheiro">Dinheiro</option>
                             <option value="credito">Cartão Crédito</option>
                             <option value="debito">Cartão Débito</option>
@@ -152,7 +214,7 @@ export default function NewOrderPage() {
 
 
                         <p>Parcelamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
+                        <select>
                             <option value="vista">A vista</option>
                             <option value="2x">2x</option>
                             <option value="3x">3x</option>
@@ -166,46 +228,36 @@ export default function NewOrderPage() {
                             <option value="11x">11x</option>
                             <option value="12x">12x</option>
                         </select>
-                                              
+
                     </MainSection>
 
                     <SecondSection>
 
-                    <p>Nome atendente:</p>
+                        <p>Nome atendente:</p>
                         <input
                             type="text"
                             placeholder="Digite seu nome"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
                         />
 
                         <p>Número do Pedido:</p>
                         <input
                             type="text"
                             placeholder=""
-                            value={name}
-                            onChange={event => setName(event.target.value)}
                         />
 
-                        
-                    <p>Total do Pedido:</p>
-                    <input
-                        type="text"
-                        placeholder=""
-                        value={name}
-                        onChange={event => setName(event.target.value)}
-                    />
 
-                    
+                        <p>Total do Pedido:</p>
+                        <input
+                            type="text"
+                            placeholder=""
+                        />
+
+
                     </SecondSection>
 
-                    </FormBlock>
+                </FormBlock>
 
-                <Link to="/order">
-                    <button id="buttonCancel" type="reset">Voltar</button>
-                </Link>
-                <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}>
-                    Cadastrar
+                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="form-btn" type="submit" onClick={handleCreateNewOrder}>Cadastrar
                 </button>
 
             </Form>

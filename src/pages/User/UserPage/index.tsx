@@ -8,26 +8,37 @@ import { UserContext } from '../../../contexts/UserContext';
 
 
 interface User {
-    _id: string;
+    id: string;
     name: string;
     dateCreated: Date;
     phone: string;
-    login: string;
+    username: string;
     cpf: string;
 }
 
 
 export default function UserPage() {
 
-   const {users, setUsers, id, setId} = useContext(UserContext)
+   const {users, setUsers, setId} = useContext(UserContext)
+   console.log(users)
     
 
     function idTransfer(id: string) {
         setId(id)
     }
 
+    function updateUser() {
+        console.log("++++++++++++++++++++")
+        api.get('/users').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setUsers(response.data)
+        })
+    }
+
     async function handleDelete(id: string) {
-        api.delete(`users/${id}`)
+        console.log(id)
+        await api.delete(`/users/${id}`)
+        updateUser()
     }
      
     
@@ -46,7 +57,7 @@ export default function UserPage() {
 
             <UserTable>
                 <Table bordered hover responsive >
-                    <thead>
+                    <thead> 
                         <tr>
                             <th id="cpfColumn">
                                 CPF
@@ -55,7 +66,7 @@ export default function UserPage() {
                                 Nome
                             </th>
                             <th id="loginColumn">
-                                Login
+                                Username
                             </th>
                             <th id="telefoneColumn">
                                 Telefone
@@ -71,15 +82,15 @@ export default function UserPage() {
                     <tbody>
                         {users.map((user: User) => (
                             
-                                <tr key={user._id}>
-                                    <th scope="row">
+                                <tr key={user.id}>
+                                    <td scope="row">
                                         {user.cpf}
-                                    </th>
+                                    </td>
                                     <td>
                                         {user.name}
                                     </td>
                                     <td>
-                                       {user.login}
+                                       {user.username}
                                     </td>
                                     <td>
                                         {user.phone}
@@ -88,10 +99,10 @@ export default function UserPage() {
                                         {user.dateCreated}
                                     </td>
                                     <td>
-                                        <Link to='/users/updateuser/:id'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user._id);}}>Alterar</Button></Link>
+                                        <Link to='/users/updateuser/:id'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user.id);}}>Alterar</Button></Link>
                                         &nbsp;
                                         &nbsp;
-                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(user._id)}>Excluir</Button>
+                                        <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(user.id)}>Excluir</Button>
                                     </td>
                                 </tr>                       
                         ))}

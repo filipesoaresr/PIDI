@@ -3,12 +3,17 @@ import { api } from "../services/api";
 
 
 interface User {
-    _id: string;
+    id: string;
     name: string;
+    birthDate: Date;
     dateCreated: Date;
+    sex: string;
+    role: string;
     phone: string;
-    login: string;
+    username: string;
     cpf: string;
+    email: string;
+    password: string;
 }
 
 
@@ -28,21 +33,26 @@ export function UserProvider({children}: UserProviderProps) {
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
     const [birthDate, setBirthDate] = useState('');
-    const [gender, setGender] = useState('');
+    const [sex, setSex] = useState('');
     const [phone, setPhone] = useState('');
     const [dateCreated, setDateCreated] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
-    const [login, setLogin] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setconfirmedPassword] = useState('');
 
-    useEffect(() => {
-        api.get('/users')
-        .then(response => {
-            setUsers(response.data);
+    
+    function getUsers() {
+        api.get('/users').then((response) => {
+            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
+            setUsers(response.data)
         })
+    }
+
+    useEffect(() => {
         
+        getUsers();
     }, [])
 
     return (
@@ -57,8 +67,8 @@ export function UserProvider({children}: UserProviderProps) {
             setCpf,
             birthDate,
             setBirthDate,
-            gender,
-            setGender,
+            sex,
+            setSex,
             phone,
             setPhone,
             dateCreated,
@@ -67,12 +77,13 @@ export function UserProvider({children}: UserProviderProps) {
             setEmail,
             role,
             setRole,
-            login,
-            setLogin,
+            username,
+            setUsername,
             password,
             setPassword,
             confirmedPassword,
-            setconfirmedPassword
+            setconfirmedPassword,
+            getUsers
         }}>
             {children}
         </UserContext.Provider>

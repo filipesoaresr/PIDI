@@ -31,6 +31,7 @@ import ErrorForbiddenPage from './pages/ErrorPages/forbidden'
 
 import { ProductProvider } from './contexts/ProductContext';
 import { UserProvider } from './contexts/UserContext';
+import { PaymentProvider } from './contexts/PaymentContext';
 import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -43,6 +44,7 @@ export function App() {
       <div className="App">
         <AuthProvider>
         <UserProvider>
+        <PaymentProvider>
         <PromotionProvider>
         <ProductProvider >
           <Header />
@@ -74,6 +76,7 @@ export function App() {
           <Footer />
         </ProductProvider>
         </PromotionProvider>
+        </PaymentProvider>
         </UserProvider>
         </AuthProvider>
         <GlobalStyle />

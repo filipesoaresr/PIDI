@@ -36,7 +36,6 @@ export default function NewProductPage() {
         setG,
         gg,
         setGG,
-        setProducts,
         getProducts
     } = useContext(ProductContext)
 
@@ -172,4 +171,4 @@ export default function NewProductPage() {
             </Form>
         </Container>
     )
-}
+} 

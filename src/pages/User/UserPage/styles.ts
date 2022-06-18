@@ -82,23 +82,33 @@ export const UserIntro = styled.div `
 export const UserTable = styled.div `
 
     //display: flex;
+      
     justify-content: center;
     align-items: center;
     margin-top: 5rem;
     margin-bottom: 5rem;
     
-   
-    
+       
     table{
-      border: 5px solid;
-      width: 70%;
-      margin-left: 20rem;
-      
-  }
+      border: 2px solid;
+      width: 60%;
+      align-items: center;
+      font-size: 18px;
+      text-align: left;
+      //margin-left: 10%;
+    }
 
-  td{
-      max-width: 40px;
-  }
+    th, td {
+        padding: 22px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #FF9947 ;
+        color: black;
+    }
+
+    tr:hover {background-color:  #F58C36;}
 
   #updateButton{
       background-color: blue;
@@ -107,30 +117,6 @@ export const UserTable = styled.div `
 
   #deleteButton{
       background-color: red;
-  }
-  
-  #cpfColumn{
-      width: 10rem;
-  }
-
-  #nomeColumn{
-      width: 18rem;
-  }
-
-  #loginColumn{
-      width: 12rem;
-  }
-
-  #telefoneColumn{
-      width: 10rem;
-  }
-
-  #dateColumn{
-      width: 12rem;
-  }
-
-  #actionsColumn{
-      width: 10rem;
   }
 
 

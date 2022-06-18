@@ -1,6 +1,7 @@
-import React, { FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { FormEvent, useContext, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../../services/api';
+import { PaymentContext } from '../../../contexts/PaymentContext';
 import { 
     Container,
     Form, 
@@ -10,12 +11,19 @@ import {
 
 export default function NewPaymentOption() {
 
-    const [name, setName] = useState('');
-    const [flag, setFlag] = useState('');
-    const [id, setId] = useState('');
-    const [installment, setInstallment] = useState('');
+    const {
+        name,
+        setName,
+        flag,
+        setFlag,
+        installment,
+        setInstallment,
+        getPaymentOptions
+    } = useContext(PaymentContext)
 
-    function handleCreateNewPaymentOption(event: FormEvent) {
+    const history = useHistory();
+
+    async function handleCreateNewPayment(event: FormEvent) {
         event.preventDefault();
 
         const data = {
@@ -24,8 +32,10 @@ export default function NewPaymentOption() {
             installment
         };
 
-        api.post('/payment-options', data)
+        await api.post('/payment_options', data)
         alert("Cadastro Realizado com Sucesso!")
+        getPaymentOptions()
+        history.push("/paymentoption")
 
     }
 
@@ -90,9 +100,8 @@ export default function NewPaymentOption() {
                     
 
                 </FormPaymentBlock>
-                
                 <br/>
-                <Link to='/paymentoption'> <button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="buttonRegister" type="submit" onClick={handleCreateNewPaymentOption}>Cadastrar</button>
+                <Link to='/paymentoption'> <button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="buttonRegister" type="submit" onClick={handleCreateNewPayment}>Cadastrar</button>
             </Form>
         </Container>
     )

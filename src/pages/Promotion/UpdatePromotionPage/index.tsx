@@ -1,12 +1,27 @@
 import React, { FormEvent, useContext } from 'react'
+import { BsCartFill } from 'react-icons/bs';
+import { Button, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
 
-import { Container,Form, MainSection, AddProductSection, FormBlock } from './styles'
+import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection} from './styles'
+import { ProductContext } from '../../../contexts/ProductContext';
 
-
-
+interface IProduct {
+    id: string;
+    productType: string;
+    name: string;
+    collection: string;
+    dateCreated: string;
+    pp: number;
+    p: number;
+    m: number;
+    g: number;
+    gg: number;
+    promotion: string;
+    value: number;
+}
 
 export default function UpdatePromotionPage() {
 
@@ -20,7 +35,10 @@ export default function UpdatePromotionPage() {
         setEndDate,
         discount,
         setDiscount,
+        getProducts
         } = useContext(PromotionContext)
+
+        const { products } = useContext(ProductContext)
 
     function handleUpdate( id: string) {
 
@@ -47,23 +65,24 @@ export default function UpdatePromotionPage() {
 
                         <p>Nome da Promoção:</p>
                         <input 
-                        type="text"
-                        placeholder="Nome da Promoção"
+                        type="text" 
+                        placeholder="Nome da Promoção" 
                         value={name}
-                        onChange={(event) => setName(event.target.value)} />
+                        onChange={event => setName(event.target.value)}
+                        />
 
                         <p>Inicio da Promoção:</p>
                         <input 
-                        type="date"
+                        type="date" 
                         value={startDate}
-                        onChange={event => setStartDate(event.target.value)} />
+                        onChange={event => setStartDate(event.target.value)}
+                        />
 
 
-                        <p>Fim da Promoção</p>
-                        <input 
-                        type="date"
-                        value={endDate}
-                        onChange={event => setEndDate(event.target.value)} />
+                     
+                    </MainSection>
+
+                    <SecondSection>
 
                         <p>Desconto</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
@@ -74,23 +93,78 @@ export default function UpdatePromotionPage() {
                             <option value="20">20% OFF</option>
                             <option value="10">10% OFF</option>
                         </select>
-                    </MainSection>
+
+                        <p>Fim da Promoção</p>
+                        <input 
+                        type="date" 
+                        value={endDate}
+                        onChange={event => setEndDate(event.target.value)}
+                        />
+
+                    </SecondSection>
+
+                    </FormBlock>
 
                     <AddProductSection>
-                        <h5>Incluir Produtos:</h5>
-
-                        <p>Nome do Produto:</p>
-                        <input type="text" />
-                        <br />
-                        <button id="AddProduct-btn" type="submit" >Consultar</button>
+                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                    <h5>Nome do Produto</h5>
+                    <input type="text" />
+                    <br />
+                    <button id="searchButton">Consultar</button>
+                    <Table bordered hover responsive>
+                    <thead>
+                        <tr>
+                            <th>
+                                Produto
+                            </th>
+                            <th>
+                                Promoção
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+                            <th>
+                                Ações
+                            </th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        {console.log(products)}
+                        {
+                            products.map((product: IProduct) => (
+                                <tr >
+                                    <td key={product.name}>
+                                        {product.name}
+                                    </td>
+                                    <td>
+                                        {product.promotion}
+                                    </td>
+                                    <td>
+                                        {product.value}
+                                    </td>
+                                    <td>                                     
+                                        <Button id="addProductButton" variant="primary" size="sm" >
+                                            Incluir
+                                       </Button>
+                                        
+                                        <Button id="deleteProductButton" variant="primary" size="sm" >
+                                            Excluir
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </Table>
                     </AddProductSection>
                     <br />               
-                </FormBlock>
 
                 <Link to="/promotions">
-                    <button id="buttonCancel" type="reset">Cancelar</button>
+                    <button id="buttonCancel" type="reset">Voltar</button>
                 </Link>  
                 <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>Alterar</button>
+
             </Form>
 
 

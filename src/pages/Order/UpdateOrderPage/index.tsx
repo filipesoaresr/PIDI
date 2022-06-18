@@ -1,9 +1,9 @@
-import  { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
-import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection  } from './styles';
+import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill } from "react-icons/bs";
@@ -21,7 +21,7 @@ interface Product {
     gg: number;
     promotion: string;
     value: string;
-    }
+}
 
 export default function UpdateOrderPage() {
 
@@ -56,83 +56,112 @@ export default function UpdateOrderPage() {
         <Container>
 
             <Form>
-                <h2>Alterar Pedido</h2>
+                <h1>Order a</h1>
 
                 <AddProductSection>
-                    <BsCartFill style={{fontSize: "2.5rem"}}></BsCartFill>
+                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
-                    <input type="text"/>
+                    <input type="text" />
                     <br />
-                    <button>Consultar</button>
-                        <Table bordered hover responsive >
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Código
-                                    </th>
-                                    <th>
-                                        Produto
-                                    </th>
-                                    <th>
-                                        Tamanho/Qtd
-                                    </th>
-                                    <th>
-                                        Promoção
-                                    </th>
-                                    <th>
-                                        Valor
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        Ações
-                                    </th>
-                                </tr>
-                            </thead>
+                    <button id="searchButton">Consultar</button>
+                    <Table bordered hover responsive >
+                        <thead>
+                            <tr>
+                                <th>
+                                    Produto
+                                </th>
+                                <th>
+                                    Tamanho/Qtd
+                                </th>
+                                <th>
+                                    Promoção
+                                </th>
+                                <th>
+                                    Valor
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                <th>
+                                    Ações
+                                </th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                {console.log(products)}
-                                {
-                                    products.map((product: Product) => (
-                                        <tr key={product._id}>
-                                            <th scope="row">
-                                                {product._id}
-                                            </th>
-                                            <td>
-                                                {product.name}
-                                            </td>
-                                            <td>
-                                                Tamanho e quantidade
-                                            </td>
-                                            <td>
-                                                {product.promotion}
-                                            </td>
-                                            <td>
-                                                {product.value}
-                                            </td>
-                                            <td>
-                                                Total
-                                            </td>
-                                            <td>
-                                              <Button id="addProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                              <Button id="deleteProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </Table>
-                    </AddProductSection>
+                        <tbody>
+                            {console.log(products)}
+                            {
+                                products.map((product: Product) => (
+                                    <tr key={product.name}>
+                                        <td scope="row">
+                                            {product.name}
+                                        </td>
+                                        <td>
+                                            <label>
+                                                PP: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
 
-                    <FormBlock>
+                                            <label>
+                                                P: <input
+                                                    className='size-qtd'
+                                                    type="number" 
+                                                />
+                                            </label>
+
+                                            <label>
+                                                M: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
+
+                                            <label>
+                                                G: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                />
+                                            </label>
+
+                                            <label>
+                                                GG: <input
+                                                    className='size-qtd'
+                                                    type="number"
+                                                    
+                                                />
+                                            </label>
+
+                                        </td>
+                                        <td>
+                                            {product.promotion}
+                                        </td>
+                                        <td>
+                                            {product.value}
+                                        </td>
+                                        <td>
+                                            Total
+                                        </td>
+                                        <td>
+                                            <Button id="addProductButton" variant="primary" size="sm" >
+                                                Adicionar
+                                            </Button>
+                                            <Button id="deleteProductButton" variant="danger" size="sm" >
+                                                Excluir
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </Table>
+                </AddProductSection>
+
+                <FormBlock>
 
                     <MainSection>
-                    <p>Data do Pedido:</p>
+                        <p>Data do Pedido:</p>
                         <input
                             type="date"
                             placeholder="--/--/--"
@@ -166,12 +195,12 @@ export default function UpdateOrderPage() {
                             <option value="11x">11x</option>
                             <option value="12x">12x</option>
                         </select>
-                                              
+
                     </MainSection>
 
                     <SecondSection>
 
-                    <p>Nome atendente:</p>
+                        <p>Nome atendente:</p>
                         <input
                             type="text"
                             placeholder="Digite seu nome"
@@ -187,26 +216,21 @@ export default function UpdateOrderPage() {
                             onChange={event => setName(event.target.value)}
                         />
 
-                        
-                    <p>Total do Pedido:</p>
-                    <input
-                        type="text"
-                        placeholder=""
-                        value={name}
-                        onChange={event => setName(event.target.value)}
-                    />
 
-                    
+                        <p>Total do Pedido:</p>
+                        <input
+                            type="text"
+                            placeholder=""
+                            value={name}
+                            onChange={event => setName(event.target.value)}
+                        />
+
+
                     </SecondSection>
 
-                    </FormBlock>
+                </FormBlock>
 
-                <Link to="/order">
-                    <button id="buttonCancel" type="reset">Voltar</button>
-                </Link>
-                <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}>
-                    Cadastrar
-                </button>
+                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}> Cadastrar</button>
 
             </Form>
 

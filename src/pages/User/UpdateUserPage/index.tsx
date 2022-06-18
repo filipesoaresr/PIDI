@@ -1,11 +1,13 @@
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 
 import { Container, Form, FormBlock, MainSection, SecondSection } from './styles';
 
 export default function UpdateUserPage() {
+
+    const history = useHistory();
     
    const {
     id,
@@ -15,30 +17,37 @@ export default function UpdateUserPage() {
     setEmail,
     role,
     setRole,
-    login,
-    setLogin,
+    username,
+    setUsername,
     password,
     setPassword,
     confirmedPassword,
-    setconfirmedPassword
+    setconfirmedPassword,
+    getUsers
    } = useContext(UserContext)
 
 
 
-    function handleUpdate(id: string) {
-        
+    function handleUpdate(event: FormEvent, id: string) {
+
+        event.preventDefault();
+
+        console.log("=======ID========", id);
+
         const userUpdated = {
             phone,
             email,
             role,
-            login,
+            username,
             password,
             confirmedPassword
         };
         
 
         api.put(`/users/${id}`, userUpdated)
-        alert("Usuario atualizado com sucesso") 
+        alert("Usuario atualizado com sucesso")
+        getUsers();
+        history.push("/users") 
     }
 
 
@@ -58,11 +67,11 @@ export default function UpdateUserPage() {
                         onChange={event =>setPhone(event.target.value)}
                         />
 
-                        <p>Login: </p>
+                        <p>Username: </p>
                         <input 
                         type="text" 
-                        value={login} 
-                        onChange={event =>setLogin(event.target.value)}/>
+                        value={username} 
+                        onChange={event =>setUsername(event.target.value)}/>
 
                         <p>Senha: </p>
                         <input 
@@ -107,7 +116,7 @@ export default function UpdateUserPage() {
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link> 
-                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>
+                <button id="form-btn" type="submit" onClick={(event) => {handleUpdate(event, id)}}>
                     Alterar
                 </button>
 

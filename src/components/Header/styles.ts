@@ -11,7 +11,7 @@ export const Container = styled.header `
 
 
 export const Content = styled.div `
-    max-width: 1320px;
+    max-width: 1420px;
 
     //Sempre centralizado
     margin: 0 auto;

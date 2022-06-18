@@ -7,7 +7,7 @@ import { api } from '../../../services/api';
 import UpdateProductPage from '../UpdateProductPage';
 import { Container, ProductIntro, ProductTable } from './styles'
 
-interface Product {
+interface IProduct {
     id: string;
     productType: string;
     name: string;
@@ -40,6 +40,8 @@ export default function ProductsPage() {
         })
     }
 
+    const defaultProps:IProduct[] = [];
+
     async function handleDelete(id: string) {
         await api.delete(`/products/${id}`)
         updateProducts()
@@ -61,18 +63,18 @@ export default function ProductsPage() {
             </ProductIntro>
 
             <ProductTable>
-
+                <div id="divTable">
                 <Table bordered hover responsive >
                     <thead>
                         <tr>
                             <th>
-                                Código
+                                Tipo do Produto
                             </th>
                             <th>
                                 Produto
                             </th>
                             <th>
-                                Promoção
+                                Coleção
                             </th>
                             <th>
                                 Valor
@@ -85,11 +87,11 @@ export default function ProductsPage() {
                     <tbody>
                         {console.log(products)}
                         {
-                            products.map((product: Product) => (
+                            products.map((product: IProduct) => (
                                 <tr key={product.id}>
-                                    <th scope="row">
-                                        {product.id}
-                                    </th>
+                                    <td scope="row">
+                                        {product.productType}
+                                    </td>
                                     <td>
                                         {product.name}
                                     </td>
@@ -116,6 +118,7 @@ export default function ProductsPage() {
                         }
                     </tbody>
                 </Table>
+                </div>
             </ProductTable>
 
 
@@ -128,3 +131,4 @@ export default function ProductsPage() {
 
     )
 }
+

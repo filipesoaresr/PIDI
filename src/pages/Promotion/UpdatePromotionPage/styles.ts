@@ -9,10 +9,17 @@ export const Container = styled.div `
 `;
 
 export const FormBlock = styled.div `
+   
     display: flex;
     justify-content: center;
     align-items: center;
 
+`;
+
+export const SecondSection = styled.section `
+    margin-left: 2rem;
+    margin-top: 3rem;
+    
 `;
 
 export const Form = styled.form `
@@ -23,11 +30,13 @@ export const Form = styled.form `
     text-align: center;
 
     margin-top: 5rem;
+    margin-bottom: 2rem;
+
     background: #16425B;
     color: #fff;
 
-    width: 50rem;
-    height: 37rem;
+    width: 80%;
+   
 
     border-radius: 5px;
 
@@ -47,23 +56,26 @@ export const Form = styled.form `
     }
 
     select {
-        width: 100%;
+        width: 15rem;
         height: 1.5rem;
 
         border-radius: 5px;
 
     }
 
+
     button#form-btn{
 
         width: 20rem;
 
         margin-top: 5rem;
+        margin-bottom: 2rem;
+
         padding: 0.8rem 4rem;
         cursor: pointer;
 
         border-radius: 5px;
-        background: #F28118;
+        background: green;
         color: #fff;
         
     }
@@ -72,6 +84,8 @@ export const Form = styled.form `
         width: 20rem;
 
         margin-top: 5rem;
+        margin-bottom: 2rem;
+
         padding: 0.8rem 4rem;
         cursor: pointer;
 
@@ -85,29 +99,68 @@ export const Form = styled.form `
 export const MainSection = styled.section `
     margin-right: 2rem;
     margin-top: 3rem;
+    
+    p{
+        margin-right: 2rem;
+    }
+
 `;
 
 
 export const AddProductSection = styled.section `
     margin-left: 2rem;
-    
+    margin-right: 2rem;
+    margin-top: 2rem;
 
-    button#AddProduct-btn {
-        
-        cursor: pointer;
-        padding: 0.5rem;
+    background: #F28118;
 
+    padding: 2rem;
+    border-radius: 8px;    
+
+    input{
+        margin-top: 1rem;
+    }
+
+    h5{
+        margin-top: 1rem;
+        font-style: bold;
+    }
+
+    button{
+        margin-top: 1rem;
+        margin-left: 1rem;
+        width: 20%;
+        height: 20%;
         border-radius: 5px;
-        background: #F28118;
-        color: #fff;
-
-        height:1.6rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
     }
 
+    table {
+        color: #fff;
+        margin-top: 2rem;
+    }
+
+    th {
+        font-size: 20px;
+        padding: 1rem;
+    }
+
+    #searchButton{
+        width: 10%;
+        background: blue;
+        color: white;
+        margin-top: 2rem;
+    }
+
+    #addProductButton{
+        width: 30%;
+        background: green;
+    }
+
+    #deleteProductButton{
+        width: 30%;
+        background: red;
+    }
+
     
-`;
+    `;

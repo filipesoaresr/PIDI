@@ -41,7 +41,7 @@ export const Form = styled.form `
     border-radius: 5px;
 
 
-    h2 {
+    h1 {
         margin-top: 2rem;
     }
 
@@ -54,6 +54,14 @@ export const Form = styled.form `
         height: 1.5rem;
         border-radius: 5px;
     }
+
+    input.size-qtd {
+        width: 2.7rem;
+        height: 1.6rem;
+
+        
+    }
+
 
     select {
         width: 15rem;
@@ -70,13 +78,13 @@ export const Form = styled.form `
 
         margin-top: 5rem;
         margin-bottom: 2rem;
+        background: #0FB700;
+        color: #fff;
 
         padding: 0.8rem 4rem;
         cursor: pointer;
 
         border-radius: 5px;
-        background: #42EB32;
-        color: #fff;
         
     }
 
@@ -115,7 +123,7 @@ export const AddProductSection = styled.section `
     background: #F28118;
 
     padding: 2rem;
-    border-radius: 5px;  
+    border-radius: 8px;  
 
     h5{
         margin-top: 1rem;
@@ -124,11 +132,9 @@ export const AddProductSection = styled.section `
 
     button{
         margin-top: 1rem;
-        margin-left: 52rem;
-        width: 6rem;
-        height: 2.5rem;
-        background: #16425B;
-        color: #fff;
+        margin-left: 1rem;
+        width: 20%;
+        height: 20%;
         border-radius: 5px;
 
     }
@@ -136,11 +142,27 @@ export const AddProductSection = styled.section `
     table {
         color: #fff;
         margin-top: 2rem;
-        
+    }
 
-        button {
-            background: green;
-        }
-    } 
+    th {
+        font-size: 20px;
+        padding: 1rem;
+    }
     
+    #addProductButton{
+        width: 40%;
+        background: green;
+    }
+
+    #deleteProductButton{
+        width: 40%;
+        background: red;
+    }
+
+    #searchButton{
+        width: 10%;
+        background: blue;
+        color: white;
+        margin-top: 2rem;
+    }
     `;

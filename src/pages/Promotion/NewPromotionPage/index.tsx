@@ -7,10 +7,11 @@ import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSectio
 
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
+import { BsCartFill } from 'react-icons/bs';
 
 
 interface Product {
-    _id: string;
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -107,16 +108,14 @@ const { products } = useContext(ProductContext)
                     </FormBlock>
 
                     <AddProductSection>
-                    <h4>Nome do Produto</h4>
-                    <input type="text"/>
+                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                    <h5>Nome do Produto</h5>
+                    <input type="text" />
                     <br />
-                    <button>Consultar</button>
-                    <Table bordered hover responsive >
+                    <button id="searchButton">Consultar</button>
+                    <Table bordered hover responsive>
                     <thead>
                         <tr>
-                            <th>
-                                Código
-                            </th>
                             <th>
                                 Produto
                             </th>
@@ -136,11 +135,8 @@ const { products } = useContext(ProductContext)
                         {console.log(products)}
                         {
                             products.map((product: Product) => (
-                                <tr key={product._id}>
-                                    <th scope="row">
-                                        {product._id}
-                                    </th>
-                                    <td>
+                                <tr >
+                                    <td key={product.name}>
                                         {product.name}
                                     </td>
                                     <td>
@@ -149,12 +145,14 @@ const { products } = useContext(ProductContext)
                                     <td>
                                         {product.value}
                                     </td>
-                                    <td>
-                                        <Link to='/products/updateproduct' >
-                                            <Button id="updateButton" variant="primary" size="sm" >
-                                                Incluir
-                                            </Button>
-                                        </Link>
+                                    <td>                                     
+                                        <Button id="addProductButton" variant="primary" size="sm" >
+                                            Incluir
+                                       </Button>
+                                        
+                                        <Button id="deleteProductButton" variant="primary" size="sm" >
+                                            Excluir
+                                        </Button>
                                     </td>
                                 </tr>
                             ))
