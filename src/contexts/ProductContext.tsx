@@ -29,7 +29,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
 
     const [id, setId] = useState('');
 
-    const [product_type, setProductType] = useState('');
+    const [product_type, setProductType] = useState('Camisa');
     const [name, setName] = useState('');
     const [colection, setColection] = useState('');
     const [date, setDate] = useState('');

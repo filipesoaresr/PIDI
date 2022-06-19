@@ -18,7 +18,7 @@ export const PaymentContext = createContext<any>([]);
 
 export function PaymentProvider({ children }: PaymentProviderProps) {
 
-    const [payment, setPayment] = useState<Payment[]>([])
+    const [payments, setPayments] = useState<Payment[]>([])
 
     const [id, setId] = useState('');
 
@@ -29,7 +29,7 @@ export function PaymentProvider({ children }: PaymentProviderProps) {
 
     function getPaymentOptions() {
         api.get('/payment_options').then((response) => {
-            setPayment((response.data))
+            setPayments((response.data))
         })
     }
 
@@ -43,8 +43,8 @@ export function PaymentProvider({ children }: PaymentProviderProps) {
 
     return (
         <PaymentContext.Provider value={{
-            payment,
-            setPayment,
+            payments,
+            setPayments,
             id,
             setId,
             name,

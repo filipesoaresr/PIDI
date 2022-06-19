@@ -17,14 +17,14 @@ interface PaymentOption {
 
 export default function PaymentOption(){
 
-    const { payment, setId, setPayment } = useContext(PaymentContext)
+    const { payments, setId, setPayments } = useContext(PaymentContext)
 
 
     function updatePayment() {
         console.log("++++++++++++++++++++")
         api.get('/payment_options').then((response) => {
             console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
-            setPayment(response.data)
+            setPayments(response.data)
         })
     }
 
@@ -71,7 +71,7 @@ export default function PaymentOption(){
                         </tr>
                     </thead>
                     <tbody>
-                        {payment.map((payment: PaymentOption) => (
+                        {payments.map((payment: PaymentOption) => (
                             <tr key={payment.id}>
                                 <th scope="row">
                                     {payment.id}

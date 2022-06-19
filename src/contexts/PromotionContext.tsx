@@ -25,12 +25,17 @@ export function PromotionProvider({children}: PromotionProviderProps) {
     const [discount, setDiscount] = useState('');
 
     const [promotions, setPromotions] = useState<Promotion[]>([])
+    const [productsInPromo, setProductsInPromo] = useState('')
 
-    useEffect(() => {
+    function getPromotions() {
         api.get('/promotions').then((response) => {
             setPromotions(response.data);
             
         })
+    }
+
+    useEffect(() => {
+        getPromotions()
     }, [])
    
 
@@ -49,7 +54,8 @@ export function PromotionProvider({children}: PromotionProviderProps) {
             setEndDate,
             discount,
             setDiscount,
-
+            productsInPromo,
+            setProductsInPromo
         }}>
             {children}
         </PromotionContext.Provider>

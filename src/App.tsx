@@ -35,6 +35,7 @@ import { PaymentProvider } from './contexts/PaymentContext';
 import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { OrderProvider } from './contexts/OrderContext';
 
 
 export function App() {
@@ -47,6 +48,7 @@ export function App() {
         <PaymentProvider>
         <PromotionProvider>
         <ProductProvider >
+        <OrderProvider>
           <Header />
 
           <Switch>
@@ -74,6 +76,7 @@ export function App() {
           </Switch>
 
           <Footer />
+        </OrderProvider>
         </ProductProvider>
         </PromotionProvider>
         </PaymentProvider>

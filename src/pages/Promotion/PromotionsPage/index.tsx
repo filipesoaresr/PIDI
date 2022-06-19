@@ -6,11 +6,12 @@ import { api } from '../../../services/api';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 
 interface PromotionPage {
-    _id: string,
+    id: string,
     name: string,
-    startDate: Date,
+    //startDate: Date,
     endDate: Date,
     discount: string,
+    products: string[],
 }
 
 interface PromotionPageProps {
@@ -31,17 +32,16 @@ export default function PromotionsPage() {
                 <br/>
                 <button type='submit'>Consultar</button>
             </PromoIntro>
-            
+                {console.log("PROMOTIONS", promotions)}
             <PromoDisplay>
                 {
-                    
                     promotions.map((promotion: PromotionPage) => (
                         <Promotion
-                            _id={promotion._id}
+                            _id={promotion.id}
                             name={promotion.name}
-                            startDate={promotion.startDate}
                             endDate={promotion.endDate}
                             discount={promotion.discount}
+                            products={promotion.products}
                         />
                     ))
                 }

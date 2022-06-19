@@ -142,6 +142,10 @@ export const AddProductSection = styled.section `
     table {
         color: #fff;
         margin-top: 2rem;
+
+        .selectSizes {
+            width: 65%;
+        }
     }
 
     th {

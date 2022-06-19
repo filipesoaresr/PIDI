@@ -9,7 +9,7 @@ import { Container, ProductIntro, ProductTable } from './styles'
 
 interface IProduct {
     id: string;
-    productType: string;
+    product_type: string;
     name: string;
     collection: string;
     dateCreated: string;
@@ -90,7 +90,7 @@ export default function ProductsPage() {
                             products.map((product: IProduct) => (
                                 <tr key={product.id}>
                                     <td scope="row">
-                                        {product.productType}
+                                        {product.product_type}
                                     </td>
                                     <td>
                                         {product.name}
@@ -99,7 +99,7 @@ export default function ProductsPage() {
                                         {product.promotion}
                                     </td>
                                     <td>
-                                        {product.value}
+                                        R${product.value}
                                     </td>
                                     <td>
                                         <Link to='/products/updateproduct' >

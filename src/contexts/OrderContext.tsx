@@ -1,6 +1,18 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { api } from "../services/api";
 
+interface IProductInOrder {
+    pp?: number,
+    p?: number,
+    m?: number,
+    g?: number,
+    gg?:number,
+    order_product_value: number,
+    fk_id_product: string,
+    hasPromotion: false,
+
+}
+
 
 interface Order {
     id: string;
@@ -11,20 +23,8 @@ interface Order {
     isOpen: boolean;
     installment: string;
     totalValue: number;
-    productHasOrder: [{
-        fk_id_product: string,
-        fk_id_order: string,
-        hasPromotion: boolean,
-        name: string,
-        pp: number,
-        p: number,
-        m: number,
-        g: number,
-        gg: number,
-        promotion: string,
-        value: number
-    }
-]}
+    productHasOrder: IProductInOrder[]
+}
 
 interface OrderProviderProps {
     children: ReactNode;
@@ -44,7 +44,13 @@ export function OrderProvider({ children }: OrderProviderProps) {
     const [fk_id_user, setFk_id_user] = useState('');
     const [totalValue, setTotalValue] = useState(0);
     const [installment, setInstallment] = useState('A vista');
-    const [productHasOrder, setProductHasOrder] = useState([{}]);
+    const [productHasOrder, setProductHasOrder] = useState<IProductInOrder[]>([]);
+
+    const [pp, setPP] = useState(0);
+    const [p, setP] = useState(0);
+    const [m, setM] = useState(0);
+    const [g, setG] = useState(0);
+    const [gg, setGG] = useState(0);
     
 
 
@@ -85,7 +91,17 @@ export function OrderProvider({ children }: OrderProviderProps) {
             setInstallment,
             productHasOrder,
             setProductHasOrder,
-            getOrder
+            getOrder,
+            pp,
+            setPP,
+            p,
+            setP,
+            m,
+            setM,
+            g,
+            setG,
+            gg,
+            setGG,
         }}>
             {children}
         </OrderContext.Provider>
