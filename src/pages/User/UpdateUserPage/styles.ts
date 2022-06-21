@@ -1,10 +1,10 @@
 import  styled from 'styled-components';
 
 export const Container = styled.div `
-    
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #EBEBEB;
 
 `;
 
@@ -16,69 +16,70 @@ export const FormBlock = styled.div `
 `;
 
 export const Form = styled.form `
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
+    
+    text-align: center;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+    background: #001021;
+    color: #fff;
+
+    width: 60%;
+    height: 35rem;
 
     text-align: center;
 
-    margin-top: 5rem;
-    background: #16425B;
-    color: #fff;
+    border-radius: 10px;
 
-    width: 50rem;
-    height: 35rem;
+
+h1{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 3rem;
+        font-weight: bold;
+    }   
+
+p {
+    margin-top: 0.5rem;
+}
+
+input {
+    width: 15rem;
+    height: 1.5rem;
+    border-radius: 5px;
+}
+
+select {
+    width: 100%;
+    height: 1.5rem;
 
     border-radius: 5px;
 
+}
 
-    h3 {
-        margin-top: 2rem;
-    }
+#buttonUpdate{
 
-    p {
-        margin-top: 0.5rem;
-    }
+    width: 20rem;
+    height: 2.5rem;
+    margin-top: 3rem;
+    border-radius: 5px;
+    background: #118233;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
 
-    input {
-        width: 15rem;
-        height: 1.5rem;
-        border-radius: 5px;
-    }
+#buttonCancel{
+    width: 20rem;
+    height: 2.5rem;
+    margin-top: 3rem;
+    background: #C81D25;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff;
+}
 
-    select {
-        width: 100%;
-        height: 1.5rem;
-
-        border-radius: 5px;
-
-    }
-
-    button#form-btn{
-
-        width: 20rem;
-
-        margin-top: 5rem;
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
-        border-radius: 5px;
-        background: #42EB32;
-        color: #fff;
-        
-    }
-
-    #buttonCancel{
-        width: 20rem;
-
-        margin-top: 5rem;
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
-        border-radius: 5px;
-        background: #E8563A;
-        color: #fff;
-    }
 
 `;
 
@@ -91,22 +92,4 @@ export const MainSection = styled.section `
 export const SecondSection = styled.section `
     margin-left: 2rem;
     margin-top: 3rem;
-    
-
-    button#AddProduct-btn {
-        
-        cursor: pointer;
-        padding: 0.5rem;
-
-        border-radius: 5px;
-        background: #F28118;
-        color: #fff;
-
-        height:1.6rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
 `;

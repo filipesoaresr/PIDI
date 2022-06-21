@@ -5,6 +5,7 @@ export const Container = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #EBEBEB;
 
 `;
 
@@ -16,25 +17,28 @@ export const FormBlock = styled.div `
 `;
 
 export const Form = styled.form `
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
 
     text-align: center;
 
     margin-top: 5rem;
-    background: #16425B;
+    margin-bottom: 5rem;
+    background: #001021;
     color: #fff;
 
-    width: 50rem;
-    height: 47rem;
+    width: 60%;
+    height: 45rem;
 
-    border-radius: 5px;
+    text-align: center;
+
+    border-radius: 10px;
 
 
-    h3 {
-        margin-top: 2rem;
-    }
+    h1{
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 3rem;
+            font-weight: bold;
+        }   
 
     p {
         margin-top: 0.5rem;
@@ -54,29 +58,27 @@ export const Form = styled.form `
 
     }
 
-    button#form-btn{
+    #buttonRegister{
 
         width: 20rem;
-
-        margin-top: 5rem;
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
+        height: 2.5rem;
+        margin-top: 3rem;
         border-radius: 5px;
-        background: #42EB32;
+        background: #118233;
         color: #fff;
+        font-size: 20px;
+        font-weight: bold;
         
     }
 
     #buttonCancel{
         width: 20rem;
-
-        margin-top: 5rem;
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
+        height: 2.5rem;
+        margin-top: 3rem;
+        background: #C81D25;
+        font-size: 20px;
+        font-weight: bold;
         border-radius: 5px;
-        background: #E8563A;
         color: #fff;
     }
 
@@ -92,21 +94,4 @@ export const SecondSection = styled.section `
     margin-left: 2rem;
     margin-top: 3rem;
     
-
-    button#AddProduct-btn {
-        
-        cursor: pointer;
-        padding: 0.5rem;
-
-        border-radius: 5px;
-        background: #F28118;
-        color: #fff;
-
-        height:1.6rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
 `;

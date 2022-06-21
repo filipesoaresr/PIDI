@@ -25,11 +25,15 @@ export default function PromotionsPage() {
     return (
         <Container>
             <PromoIntro>
-                <h1>Promoções</h1>
+                <div className="container">
+                    <div className="child">
+                        <h1>Promoções</h1>
 
-                <input type='text' placeholder='Digite o Nome da Promoção' />
-                <br/>
-                <button type='submit'>Consultar</button>
+                        <input type='text' placeholder='Digite o Nome da Promoção' />
+                        <br/>
+                        <button type='submit'>Consultar</button>
+                    </div>
+                </div>
             </PromoIntro>
             
             <PromoDisplay>
@@ -49,7 +53,7 @@ export default function PromotionsPage() {
             </PromoDisplay>
             
             <Link to='/promotion/newpromotion'>
-                +<button type='submit' className ="register">+ Cadastrar</button>
+                <button type='submit' className ="register">+ Cadastrar</button>
             </ Link>
 
         </Container>

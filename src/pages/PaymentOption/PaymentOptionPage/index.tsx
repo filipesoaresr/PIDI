@@ -13,8 +13,6 @@ interface PaymentOption {
     installment: string;
 }
 
-
-
 export default function PaymentOption(){
 
     const { payment, setId, setPayment } = useContext(PaymentContext)
@@ -51,13 +49,14 @@ export default function PaymentOption(){
 
             <PaymentTable>
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
                                 Código
                             </th>
                             <th>
-                                Nome da Forma de Pagamento
+                                Nome Opção de Pagamento
                             </th>
                             <th>
                                 Bandeira
@@ -71,11 +70,12 @@ export default function PaymentOption(){
                         </tr>
                     </thead>
                     <tbody>
-                        {payment.map((payment: PaymentOption) => (
-                            <tr key={payment.id}>
-                                <th scope="row">
+                        {
+                            payment.map((payment: PaymentOption) =>(
+                                <tr key={payment.id}>
+                                <td scope="row">
                                     {payment.id}
-                                </th>
+                                </td>
                                 <td>
                                     {payment.name}
                                 </td>
@@ -85,15 +85,19 @@ export default function PaymentOption(){
                                 <td>
                                     {payment.installment}
                                 </td>
-                                <td>
+                                <td id="actionsColumn">
                                     <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(payment.id)}>Excluir</Button>
                                 </td>
                             </tr>
-                        ))}
-
+                            ))
+                        }
                     </tbody>
+                    </table>
                 </Table>
+
             </PaymentTable>
+
+                     
 
             <Link to='/paymentoption/newpaymentoption'>
                 <button type='button' className ="register">+ Cadastrar</button>

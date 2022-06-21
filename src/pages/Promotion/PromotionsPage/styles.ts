@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
 
-    //display: block;
-    //justify-content: center;
-    //align-items: center;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    background-color: #EBEBEB;
+
 
     button.register {
         position:fixed;
@@ -13,11 +19,13 @@ export const Container = styled.div `
 
         margin:0;
         padding:12px 20px;
+        font-size: 1.3rem;
+        font-weight: bold;
 
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #F28118;
+        background: #24AC15;
         transition: filter 0.2s;
 
         &:hover {
@@ -27,28 +35,29 @@ export const Container = styled.div `
     }
 `;
 
-export const PromoIntro = styled.div `
+export const PromoIntro = styled.div`
 
-    //display: block;
-    //margin-left: 38%;
-    //margin-right: 50%;
-    display: table;
-    margin: 0 auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  
     
 
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 
     h1{
-        margin-left: 7rem;
-        
+        margin-left: 4rem;
+        font-size: 3rem;
+        font-weight: bold;
     }
 
     input {
 
         width: 25rem;
-        height: 1.8rem;
-
+        height: 2.5rem;
         margin-top: 2rem;
 
         border-radius: 5px;
@@ -57,17 +66,20 @@ export const PromoIntro = styled.div `
 
     button {
         margin-top: 2rem;
-        //margin-left: 7.5rem;
+        //margin-left: 4rem;
 
-        width: 25rem;
-        height: 2rem;
+        width: 100%;
+        height: 3rem;
         color: #fff;
+
+        font-size: 1.3rem;
+        font-weight: bold;
 
         border-radius: 5px;
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #F28118;
+        background: #8190A4;
 
         transition: filter 0.2s;
 
@@ -76,9 +88,11 @@ export const PromoIntro = styled.div `
         cursor: pointer;
         }
     }
+
+
 `;
 
-export const PromoDisplay = styled.div `
+export const PromoDisplay = styled.div`
 
     width: 70%;
     //height: 100%;

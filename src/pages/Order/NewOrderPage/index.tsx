@@ -4,7 +4,7 @@ import { api } from '../../../services/api';
 import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
-import { BsCartFill } from "react-icons/bs";
+import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
 import { OrderContext } from '../../../contexts/OrderContext';
 import { ProductContext } from '../../../contexts/ProductContext';
 
@@ -98,12 +98,13 @@ export default function NewOrderPage() {
                 <h1>Novo Pedido</h1>
 
                 <AddProductSection>
-                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                    <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
                     <input type="text" />
                     <br />
                     <button id="searchButton">Consultar</button>
                     <Table bordered hover responsive >
+                        <table className="content-table">
                         <thead>
                             <tr>
                                 <th>
@@ -182,14 +183,17 @@ export default function NewOrderPage() {
                                         <td>
                                             Total
                                         </td>
-                                        <td>
-                                            <Button id="addProductButton" variant="primary" size="sm" >Incluir</Button> 
+                                        <td id="actionsColumn">
+                                            <Button id="addProductButton" variant="primary" size="sm" >Incluir</Button>
+                                            &nbsp;
+                                            &nbsp; 
                                             <Button id="deleteProductButton" variant="danger" size="sm" >Excluir</Button>
                                         </td>
                                     </tr>
                                 ))
                             }
                         </tbody>
+                        </table>
                     </Table>
                 </AddProductSection>
 
@@ -257,7 +261,7 @@ export default function NewOrderPage() {
 
                 </FormBlock>
 
-                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="form-btn" type="submit" onClick={handleCreateNewOrder}>Cadastrar
+                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>Cadastrar <BsFillPlusSquareFill />
                 </button>
 
             </Form>

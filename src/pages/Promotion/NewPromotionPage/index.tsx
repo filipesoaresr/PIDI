@@ -7,7 +7,7 @@ import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSectio
 
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
-import { BsCartFill } from 'react-icons/bs';
+import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
 
 
 interface Product {
@@ -61,7 +61,7 @@ const { products } = useContext(ProductContext)
         <Container>
 
             <Form>
-                <h3>Nova Promoção</h3>
+            <h1>Nova Promoção</h1>
                 <FormBlock>
                     <MainSection>
 
@@ -108,12 +108,13 @@ const { products } = useContext(ProductContext)
 
 
                 <AddProductSection>
-                <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
                 <h5>Nome do Produto</h5>
                 <input type="text" />
                 <br />
                 <button id="searchButton">Consultar</button>
                 <Table bordered hover responsive>
+                <table className="content-table">
                 <thead>
                     <tr>
                         <th>
@@ -145,27 +146,31 @@ const { products } = useContext(ProductContext)
                                 <td>
                                     {product.value}
                                 </td>
-                                <td>                                     
-                                    <Button id="addProductButton" variant="primary" size="sm" >
-                                        Incluir
+                                <td id="actionsColumn">                                     
+                                <Button id="addProductButton" variant="primary" size="sm" >
+                                    Incluir
                                 </Button>
-                                    
-                                    <Button id="deleteProductButton" variant="primary" size="sm" >
-                                        Excluir
-                                    </Button>
+                                &nbsp;
+                                &nbsp; 
+                                <Button id="deleteProductButton" variant="primary" size="sm" >
+                                    Excluir
+                                </Button>
                                 </td>
                             </tr>
                         ))
                     }
                 </tbody>
+                </table>
                 </Table>
                 </AddProductSection>
                 <br /> 
                 <Link to="/promotions">
-                    <button id="buttonCancel" type="reset">Voltar</button>
+                    <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link>
-                <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}>
-                    Cadastrar
+                &nbsp;
+                &nbsp;
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewPromotion}>
+                    Cadastrar <BsFillPlusSquareFill/>
                 </button>
         
 

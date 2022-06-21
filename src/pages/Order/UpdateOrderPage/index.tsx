@@ -6,7 +6,7 @@ import { api } from '../../../services/api';
 import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
-import { BsCartFill } from "react-icons/bs";
+import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
 
 interface Product {
     _id: string;
@@ -56,15 +56,16 @@ export default function UpdateOrderPage() {
         <Container>
 
             <Form>
-                <h1>Order a</h1>
+                <h1>Alterar Pedido</h1>
 
                 <AddProductSection>
-                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                    <BsCartFill style={{ fontSize: "2rem", color: "black" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
                     <input type="text" />
                     <br />
                     <button id="searchButton">Consultar</button>
                     <Table bordered hover responsive >
+                    <table className="content-table">
                         <thead>
                             <tr>
                                 <th>
@@ -129,7 +130,6 @@ export default function UpdateOrderPage() {
                                                 GG: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    
                                                 />
                                             </label>
 
@@ -143,10 +143,12 @@ export default function UpdateOrderPage() {
                                         <td>
                                             Total
                                         </td>
-                                        <td>
+                                        <td id="actionsColumn">
                                             <Button id="addProductButton" variant="primary" size="sm" >
                                                 Adicionar
                                             </Button>
+                                            &nbsp;
+                                            &nbsp; 
                                             <Button id="deleteProductButton" variant="danger" size="sm" >
                                                 Excluir
                                             </Button>
@@ -155,6 +157,7 @@ export default function UpdateOrderPage() {
                                 ))
                             }
                         </tbody>
+                        </table>
                     </Table>
                 </AddProductSection>
 
@@ -230,7 +233,7 @@ export default function UpdateOrderPage() {
 
                 </FormBlock>
 
-                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}> Cadastrar</button>
+                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="registerButton" type="submit" onClick={handleCreateNewPromotion}>Alterar</button>
 
             </Form>
 

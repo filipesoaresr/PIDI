@@ -3,10 +3,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div `
 
-    display: block; 
+display: flex; 
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    flex-direction: column;
+    
     width: 100%;
+    height: 100%;
+
+    background-color: #EBEBEB;
 
 
     button.register {
@@ -14,13 +19,15 @@ export const Container = styled.div `
         bottom:10%;
         right: 40px;
 
+        font-size: 1.3rem;
+        font-weight: bold;
         margin:0;
         padding:12px 20px;
 
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #F28118;
+        background: #24AC15;
         transition: filter 0.2s;
 
         &:hover {
@@ -36,19 +43,22 @@ export const UserIntro = styled.div `
     display: block;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 
-    margin-left: 50rem;
     margin-top: 5rem;
 
     h1{
-        margin-left: 7rem;
+        margin-left: 6.5rem;
+        font-size: 3rem;
+        font-weight: bold;
         
     }
 
     input {
 
         width: 25rem;
-        height: 1.8rem;
+        height: 2.5rem;
 
         margin-top: 2rem;
 
@@ -60,15 +70,17 @@ export const UserIntro = styled.div `
         margin-top: 2rem;
         //margin-left: 7.5rem;
 
-        width: 25rem;
-        height: 2rem;
+        width: 100%;
+        height: 3rem;
         color: #fff;
 
+        font-size: 1.3rem;
+        font-weight: bold;
         border-radius: 5px;
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #F28118;
+        background: #8190A4;;
 
         transition: filter 0.2s;
 
@@ -81,44 +93,82 @@ export const UserIntro = styled.div `
 
 export const UserTable = styled.div `
 
-    //display: flex;
-      
-    justify-content: center;
+justify-content: center;
     align-items: center;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 3%;
+    //margin-left: 12rem;
     
-       
-    table{
-      border: 2px solid;
-      width: 60%;
+   
+    
+    .content-table{
+      width: 100%;
+      
+      border-radius: 10px 10px 2px 2px;
+      overflow: hidden;
+      border-collapse: collapse;      
       align-items: center;
-      font-size: 18px;
       text-align: left;
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
       //margin-left: 10%;
     }
 
-    th, td {
-        padding: 22px;
+    .content-table thead tr{
+        background-color: #1F5976;
+        font-size: 24px;
+        text-align: center;
+        color: white;
+    }
+
+    .content-table th, 
+    .content-table td {
+        padding: 28px;
+        
+    }
+
+    .content-table tbody tr{
+        border-bottom: 1px solid #dddddd;
+    }
+
+     .content-table td{
+        font-size: 15px;
         text-align: left;
+        font-weight: bold;
     }
 
-    th {
-        background-color: #FF9947 ;
-        color: black;
+    .content-table th{
+        font-size: 22px;
+        text-align: center;
     }
 
-    tr:hover {background-color:  #F58C36;}
+    .content-table tbody tr.active-row {
+         font-weight: bold;
+         color: #009879;
+    }
+
+    tr:nth-of-type(even){
+        background-color: #f3f3f3;
+    }
+
+    tbody tr:last-of-type{
+        border-bottom: 2px solid #1F5976;
+    }
+
+    tr:hover {background-color:  #D5DFE5;}
+
+    #actionsColumn{
+        text-align: center;
+        vertical-align: middle;
+    }
+
 
   #updateButton{
-      background-color: blue;
-      margin-bottom: 0.7rem;
+      background-color: #0E14AC;
   }
 
   #deleteButton{
-      background-color: red;
+      background-color: #C81D25;
   }
-
 
    
 `;

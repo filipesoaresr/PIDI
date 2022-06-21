@@ -9,7 +9,7 @@ import { Container, ProductIntro, ProductTable } from './styles'
 
 interface IProduct {
     id: string;
-    productType: string;
+    product_type: string;
     name: string;
     collection: string;
     dateCreated: string;
@@ -63,8 +63,9 @@ export default function ProductsPage() {
             </ProductIntro>
 
             <ProductTable>
-                <div id="divTable">
+                
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
@@ -90,18 +91,18 @@ export default function ProductsPage() {
                             products.map((product: IProduct) => (
                                 <tr key={product.id}>
                                     <td scope="row">
-                                        {product.productType}
+                                        {product.product_type}
                                     </td>
                                     <td>
                                         {product.name}
                                     </td>
                                     <td>
-                                        {product.promotion}
+                                        {product.collection}
                                     </td>
                                     <td>
                                         {product.value}
                                     </td>
-                                    <td>
+                                    <td id="actionsColumn">
                                         <Link to='/products/updateproduct' >
                                             <Button id="updateButton" variant="primary" size="sm" onClick={() => { idTransfer(product.id) }}>
                                                 Alterar
@@ -117,8 +118,8 @@ export default function ProductsPage() {
                             ))
                         }
                     </tbody>
+                    </table>
                 </Table>
-                </div>
             </ProductTable>
 
 

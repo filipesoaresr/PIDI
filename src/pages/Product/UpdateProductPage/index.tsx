@@ -79,10 +79,26 @@ export default function UpdateProductPage() {
     return (
         <Container>
             <Form>
-                <h3>Alterar Produto</h3>
+                <h1>Alterar Produto</h1>
 
                 <FormProductBlock>
                     <MainSection>
+                    <p>Tipo de Produto:</p>
+                        <input>
+                        </input>
+
+                        <p>Nome do Produto:</p>
+                        <input/>
+
+                        <p>Coleção:</p>
+                        <input
+                            type="text"
+                        />
+
+                        <p>Data do Cadastro: </p>
+                        <input
+                            type="date"
+                        />
 
                         <p>Quantidade/Tamanho</p>
                         <label>
@@ -141,20 +157,16 @@ export default function UpdateProductPage() {
                     </MainSection>
 
                     <ImageSection>
-                        <p>Imagem:</p>
-                        <input id="image-input" type="image" alt="Imagem do Produto"/>
-                        
+                        <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
                     </ImageSection>
 
                 </FormProductBlock>
                 <br/>
-                <Link to="/products">
-                    <button id="buttonCancel" type="reset">Cancelar</button>
-                </Link> 
-               
-                    <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>
-                        Alterar
-                    </button>
+                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link> 
+                &nbsp;
+                <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>
+                    Alterar
+                </button>
 
             </Form>
         </Container>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const Container = styled.header `
-    background: #16425B;
+    background: #001021;
 
     margin: 0;
 
@@ -30,7 +30,7 @@ export const Content = styled.div `
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #F28118;
+        background: #022DC9;
 
         font-size: 15px;
     }
@@ -67,6 +67,14 @@ export const Content = styled.div `
     
     a.Login {
         margin-left: 4rem;
+    }
+
+    #entrarButton{
+        background-color: #062FC1;
+    }
+
+    #sairButton{
+        background-color: #C20808;
     }
 
 

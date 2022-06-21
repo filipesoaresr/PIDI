@@ -21,6 +21,7 @@ export default function OrderPage() {
             <OrderTable>
                 
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
@@ -33,7 +34,7 @@ export default function OrderPage() {
                                 Status
                             </th>
                             <th>
-                                Valor
+                                Valor Pedido
                             </th>
                             <th>
                                 Ações
@@ -54,26 +55,28 @@ export default function OrderPage() {
                             <td>
                                 168
                             </td>
-                            <td>
+                            <td id="actionsColumn">
                                 <Link to='/order/showorder' >
                                     <Button id="showButton" variant="primary" size="sm">
                                         Exibir
                                     </Button>
                                 </Link>
-
+                                &nbsp;
+                                &nbsp;
                                 <Link to='/order/updateorder' >
                                     <Button id="updateButton" variant="primary" size="sm">
                                         Alterar
                                     </Button>
                                 </Link>
-                                
+                                &nbsp;
+                                        &nbsp;
                                 <Button id="deleteButton" variant="danger" size="sm">
                                     Excluir
                                 </Button>
                             </td>
                         </tr>
-
                     </tbody>
+                    </table>
                 </Table>
             </OrderTable>
 

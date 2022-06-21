@@ -1,4 +1,5 @@
 import React, { FormEvent, useContext, useState } from 'react'
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
@@ -75,7 +76,7 @@ export default function NewUserPage() {
         <Container>
 
             <Form onSubmit={handleCreateNewUser}>
-                <h3>Novo Usuário</h3>
+                <h1>Novo Usuário</h1>
                 <FormBlock>
                     <MainSection>
                     <p>Nome Completo:</p>
@@ -162,9 +163,11 @@ export default function NewUserPage() {
                 <br /> */}
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
-                </Link> 
-                <button id="form-btn" type="submit" onClick={handleCreateNewUser} >
-                    Cadastrar
+                </Link>
+                &nbsp;
+                &nbsp; 
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewUser} >
+                    Cadastrar  <BsFillPlusSquareFill/>
                 </button>
 
             </Form>
