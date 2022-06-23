@@ -56,7 +56,7 @@ export default function UpdateUserPage() {
         <Container>
 
             <Form>
-                <h3>Alterar Usuário</h3>
+                <h1>Alterar Usuário</h1>
                 <FormBlock>
                     <MainSection>
 
@@ -110,16 +110,18 @@ export default function UpdateUserPage() {
                     </SecondSection>
                     <br /> 
                   
-              
                 </FormBlock>
                 
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
-                </Link> 
-                <button id="form-btn" type="submit" onClick={(event) => {handleUpdate(event, id)}}>
+                </Link>
+                &nbsp;
+                &nbsp;
+                <Link to='/users'>  
+                <button id="buttonUpdate" type="submit" onClick={(event) => {handleUpdate(event, id)}}>
                     Alterar
                 </button>
-
+                </Link>
             </Form>
         </Container>
     )

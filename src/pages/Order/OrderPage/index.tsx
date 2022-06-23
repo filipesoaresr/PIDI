@@ -50,6 +50,7 @@ export default function OrderPage() {
             <OrderTable>
                 
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
@@ -62,7 +63,7 @@ export default function OrderPage() {
                                 Status
                             </th>
                             <th>
-                                Valor
+                                Valor Pedido
                             </th>
                             <th>
                                 Ações
@@ -108,8 +109,8 @@ export default function OrderPage() {
                             </tr>
                             ))
                         }
-
                     </tbody>
+                    </table>
                 </Table>
             </OrderTable>
 

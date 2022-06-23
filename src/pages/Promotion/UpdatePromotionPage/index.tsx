@@ -59,7 +59,7 @@ export default function UpdatePromotionPage() {
         <Container>
 
             <Form>
-                <h3>Alterar Promoção</h3>
+                <h1>Alterar Promoção</h1>
                 <FormBlock>
                     <MainSection>
 
@@ -106,12 +106,13 @@ export default function UpdatePromotionPage() {
                     </FormBlock>
 
                     <AddProductSection>
-                    <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                    <BsCartFill style={{  fontSize: "3rem", color: "black" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
                     <input type="text" />
                     <br />
                     <button id="searchButton">Consultar</button>
                     <Table bordered hover responsive>
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
@@ -144,27 +145,32 @@ export default function UpdatePromotionPage() {
                                         {product.value}
                                     </td>
                                     <td>                                     
-                                        <Button id="addProductButton" variant="primary" size="sm" >
-                                            Incluir
-                                       </Button>
-                                        
-                                        <Button id="deleteProductButton" variant="primary" size="sm" >
+                                    <Button id="addProductButton" variant="primary" size="sm" >
+                                        Incluir
+                                    </Button>
+                                       &nbsp;
+                                       &nbsp; 
+                                    <Button id="deleteProductButton" variant="primary" size="sm" >
                                             Excluir
-                                        </Button>
+                                    </Button>
                                     </td>
                                 </tr>
                             ))
                         }
                     </tbody>
+                    </table>
                 </Table>
                     </AddProductSection>
                     <br />               
 
                 <Link to="/promotions">
                     <button id="buttonCancel" type="reset">Voltar</button>
-                </Link>  
+                </Link>
+                &nbsp;
+                &nbsp;
+                <Link to="/promotions">   
                 <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>Alterar</button>
-
+                </Link>
             </Form>
 
 

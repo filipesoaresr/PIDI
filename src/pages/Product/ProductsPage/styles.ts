@@ -9,7 +9,9 @@ export const Container = styled.div `
     flex-direction: column;
     
     width: 100%;
-    margin-bottom: 5rem;
+    height: 100%;
+
+    background-color: #EBEBEB;
     
 
     button.register {
@@ -17,17 +19,20 @@ export const Container = styled.div `
         bottom:10%;
         right: 40px;
 
+        font-size: 1.3rem;
+        font-weight: bold;
+
         margin:0;
         padding:12px 20px;
 
-        border-style: none;
         border-radius: 5px;
+        border-style: none;
         color: #FFFF;
-        background: #F28118;
+        background: #24AC15;
         transition: filter 0.2s;
 
         &:hover {
-        filter: brightness(0.8);
+        filter: brightness(0.9);
         cursor: pointer;
         }
     }
@@ -43,17 +48,19 @@ export const ProductIntro = styled.div `
     margin-right: auto;
 
     //margin-left: 10%;
-    margin-top: 5%;
+    margin-top: 5rem;
 
     h1{
-        margin-left: 7rem;
+        margin-left: 6rem;
+        font-size: 3rem;
+        font-weight: bold;
         
     }
 
     input {
 
         width: 25rem;
-        height: 1.8rem;
+        height: 2.5rem;
 
         margin-top: 2rem;
 
@@ -63,17 +70,19 @@ export const ProductIntro = styled.div `
 
     button {
         margin-top: 2rem;
-        margin-left: 3rem;
-        margin-right: auto;
-
-        width: 80%;
+      
+        width: 100%;
+        height: 3rem;
         color: #fff;
 
+        font-size: 1.3rem;
+        font-weight: bold;
+
         border-radius: 5px;
-        border-style: solid 1.5px;
+        border-style: none;
 
         //padding: 1rem 10rem;
-        background: #F28118;
+        background: #8190A4;
 
         transition: filter 0.2s;
 
@@ -94,44 +103,75 @@ export const ProductTable = styled.div `
     
    
     
-  table{
-      border: 1.5px solid;
+    .content-table{
       width: 100%;
+      
+      border-radius: 10px 10px 2px 2px;
+      overflow: hidden;
+      border-collapse: collapse;      
       align-items: center;
       text-align: left;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
       //margin-left: 10%;
     }
 
-    th, td {
-        padding: 22px;
-        text-align: left;
-    }
-
-    td{
-        font-size: 18px;
-    }
-
-    th {
-        background-color: #FF9947;
+    .content-table thead tr{
+        background-color: #1F5976;
         font-size: 24px;
-        color: black;
+        text-align: center;
+        color: white;
     }
 
-    tr:hover {background-color:  #F58C36;}
+    .content-table th, 
+    .content-table td {
+        padding: 28px;
+        
+    }
+
+    .content-table tbody tr{
+        border-bottom: 1px solid #dddddd;
+    }
+
+     .content-table td{
+        font-size: 15px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .content-table th{
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .content-table tbody tr.active-row {
+         font-weight: bold;
+         color: #009879;
+    }
+
+    tr:nth-of-type(even){
+        background-color: #f3f3f3;
+    }
+
+    tbody tr:last-of-type{
+        border-bottom: 2px solid #1F5976;
+    }
+
+    tr:hover {background-color:  #D5DFE5;}
+
+    #actionsColumn{
+        text-align: center;
+        vertical-align: middle;
+    }
+
 
   #updateButton{
-      background-color: blue;
+      background-color: #0E14AC;
   }
 
   #deleteButton{
-      background-color: red;
+      background-color: #C81D25;
   }
-
-  #divTable{
-    overflow-x:auto;
-}
    
 
 `;

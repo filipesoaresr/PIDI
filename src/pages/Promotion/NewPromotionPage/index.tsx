@@ -7,7 +7,7 @@ import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSectio
 
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
-import { BsCartFill } from 'react-icons/bs';
+import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
 
 
 interface Product {
@@ -76,7 +76,7 @@ export default function NewPromotionPage() {
         <Container>
 
             <Form>
-                <h3>Nova Promoção</h3>
+            <h1>Nova Promoção</h1>
                 <FormBlock>
                     <MainSection>
 
@@ -113,12 +113,13 @@ export default function NewPromotionPage() {
 
 
                 <AddProductSection>
-                <BsCartFill style={{ fontSize: "2rem" }}></BsCartFill>
+                <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
                 <h5>Nome do Produto</h5>
                 <input type="text" />
                 <br />
                 <button id="searchButton">Consultar</button>
                 <Table bordered hover responsive>
+                <table className="content-table">
                 <thead>
                     <tr>
                         <th>
@@ -150,6 +151,7 @@ export default function NewPromotionPage() {
                                 <td>
                                     {product.value}
                                 </td>
+<<<<<<< HEAD
                                 <td>                                     
                                     <Button id="addProductButton" variant="primary" size="sm" 
                                     onClick={() => addProductsInPromo(product.id)}>
@@ -159,19 +161,33 @@ export default function NewPromotionPage() {
                                     <Button id="deleteProductButton" variant="primary" size="sm" >
                                         Excluir
                                     </Button>
+=======
+                                <td id="actionsColumn">                                     
+                                <Button id="addProductButton" variant="primary" size="sm" >
+                                    Incluir
+                                </Button>
+                                &nbsp;
+                                &nbsp; 
+                                <Button id="deleteProductButton" variant="primary" size="sm" >
+                                    Excluir
+                                </Button>
+>>>>>>> c168524e6d6ea71b9a97c466c12f032ed57dbde2
                                 </td>
                             </tr>
                         ))
                     }
                 </tbody>
+                </table>
                 </Table>
                 </AddProductSection>
                 <br /> 
                 <Link to="/promotions">
-                    <button id="buttonCancel" type="reset">Voltar</button>
+                    <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link>
-                <button id="form-btn" type="submit" onClick={handleCreateNewPromotion}>
-                    Cadastrar
+                &nbsp;
+                &nbsp;
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewPromotion}>
+                    Cadastrar <BsFillPlusSquareFill/>
                 </button>
         
 

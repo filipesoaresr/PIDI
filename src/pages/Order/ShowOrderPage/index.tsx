@@ -56,15 +56,14 @@ export default function ShowOrderPage() {
         <Container>
 
             <Form>
-                <h2>Pedido</h2>
+                <h1>Pedido</h1>
 
                 <AddProductSection>
-                    <BsCartFill style={{fontSize: "2.5rem"}}></BsCartFill>
-                    <h5>Nome do Produto</h5>
-                    <input type="text"/>
+                    <BsCartFill style={{fontSize: "2.5rem", color: "black"}}></BsCartFill>
+                    <h5>Produtos do Pedido</h5>
                     <br />
-                    <button>Consultar</button>
                         <Table bordered hover responsive >
+                            <table className="content-table">
                             <thead>
                                 <tr>
                                     <th>
@@ -85,9 +84,6 @@ export default function ShowOrderPage() {
                                     <th>
                                         Total
                                     </th>
-                                    <th>
-                                        Ações
-                                    </th>
                                 </tr>
                             </thead>
 
@@ -96,9 +92,9 @@ export default function ShowOrderPage() {
                                 {
                                     products.map((product: Product) => (
                                         <tr key={product._id}>
-                                            <th scope="row">
+                                            <td scope="row">
                                                 {product._id}
-                                            </th>
+                                            </td>
                                             <td>
                                                 {product.name}
                                             </td>
@@ -114,18 +110,11 @@ export default function ShowOrderPage() {
                                             <td>
                                                 Total
                                             </td>
-                                            <td>
-                                              <Button id="addProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                              <Button id="deleteProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                            </td>
                                         </tr>
                                     ))
                                 }
                             </tbody>
+                            </table>
                         </Table>
                     </AddProductSection>
 
@@ -204,7 +193,9 @@ export default function ShowOrderPage() {
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>
                 </Link>
-                <button id="form-btn" type="submit">
+                &nbsp;
+                &nbsp;
+                <button id="registerSaleButton" type="submit">
                     Confirmar Venda
                 </button>
 

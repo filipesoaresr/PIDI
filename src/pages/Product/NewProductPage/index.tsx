@@ -167,7 +167,10 @@ export default function NewProductPage() {
 
                 </FormProductBlock>
                 <br />
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>  <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill /></button>
+                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>
+                &nbsp;
+                &nbsp;  
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill/></button>
             </Form>
         </Container>
     )

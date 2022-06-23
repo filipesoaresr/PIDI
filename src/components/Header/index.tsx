@@ -13,7 +13,7 @@ export function Header() {
     function handleLogOut() {
         localStorage.clear();
         history.push("/login")
-    }
+    } 
 
     return (
 
@@ -21,7 +21,7 @@ export function Header() {
             <Content>
 
                 <Link to='/'>
-                    <img src={LogoImg} alt="Logo imagem" />
+                    <img src={LogoImg} alt="Logo Image" />
                 </Link>
                 <div className="links">
                     <Link to="/products"><h6>Produtos</h6></Link>
@@ -39,10 +39,10 @@ export function Header() {
                     <Link to="/report"><h6>Relatório Inteligente</h6></Link>
 
                     <Link className="Login" to="/login">
-                        <button type='button' className="register">Entrar</button>
+                        <button type='button' id="entrarButton" className="register">Entrar</button>
                     </Link>
 
-                    <button id="sair" type="submit" onClick={() => handleLogOut()}>Sair</button>
+                    <button type="submit" id="sairButton" onClick={() => handleLogOut()}>Sair</button>
 
                 </div>
 

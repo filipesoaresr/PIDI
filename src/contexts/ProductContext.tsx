@@ -4,7 +4,7 @@ import { api } from "../services/api";
 
 interface Product {
     _id: string;
-    productType: string;
+    product_type: string;
     name: string;
     collection: string;
     dateCreated: string;

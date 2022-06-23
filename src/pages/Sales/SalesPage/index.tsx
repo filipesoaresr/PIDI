@@ -8,7 +8,6 @@ export default function SalesPage() {
     return (
         <Container>
             <Form>
-
                 <SalesIntro>
 
                     <h1>Listagem de Vendas</h1>
@@ -21,11 +20,10 @@ export default function SalesPage() {
 
                 </SalesIntro>
 
-                <Link to='/sales/salespage'>
-                    <button type='button' className="register">Gerar Listagem</button>
-                </Link>
-
             </Form>
+            <Link to='/sales/listsalespage'>
+                    <button type='button' className="register">Gerar Listagem</button>
+            </Link>
         </Container>
     )
 }

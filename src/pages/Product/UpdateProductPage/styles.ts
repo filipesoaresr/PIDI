@@ -5,6 +5,8 @@ export const Container = styled.div `
     justify-content: center;
     align-items: center;
 
+    background-color: #EBEBEB;
+    
     button {
 
         width: 20rem;
@@ -26,19 +28,19 @@ export const Container = styled.div `
 
 export const Form = styled.form `
 
-    h3{
+    h1{
             margin-top: -2rem;
             margin-bottom: 2rem;
-            font-size: 1.5rem;
+            font-size: 3rem;
+            font-weight: bold;
         }    
 
     text-align: center;
 
     width: 60%;
    
-    
 
-    background: #16425B;
+    background: #001021;
     color: #fff;
 
     border-radius: 10px;
@@ -48,11 +50,15 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #42EB32;
+        background: #118233;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     #buttonCancel{
-        background: #E8563A;
+        background: #C81D25;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     
@@ -78,6 +84,7 @@ export const MainSection = styled.div `
 
         border-radius: 5px;
     }
+
     select {
         margin-top: 0.5rem;
         width: 20rem;
@@ -103,20 +110,16 @@ export const MainSection = styled.div `
 `;
 
 export const ImageSection = styled.div `
-    margin-right: 2rem;
+     margin-right: 2rem;
     margin-top: 3rem;
 
-    width: 18rem;
+    width: 25rem;
     height: 25rem;
 
-    background: #F28118;
+    background: #FFFF;
     border-radius: 5px;
 
     p {
         margin-top: 1rem
-    }
-
-    input#image-input {
-        margin-top: 10rem;
     }
 `;

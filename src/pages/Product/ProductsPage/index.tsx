@@ -63,8 +63,9 @@ export default function ProductsPage() {
             </ProductIntro>
 
             <ProductTable>
-                <div id="divTable">
+                
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead>
                         <tr>
                             <th>
@@ -96,12 +97,12 @@ export default function ProductsPage() {
                                         {product.name}
                                     </td>
                                     <td>
-                                        {product.promotion}
+                                        {product.collection}
                                     </td>
                                     <td>
                                         R${product.value}
                                     </td>
-                                    <td>
+                                    <td id="actionsColumn">
                                         <Link to='/products/updateproduct' >
                                             <Button id="updateButton" variant="primary" size="sm" onClick={() => { idTransfer(product.id) }}>
                                                 Alterar
@@ -117,8 +118,8 @@ export default function ProductsPage() {
                             ))
                         }
                     </tbody>
+                    </table>
                 </Table>
-                </div>
             </ProductTable>
 
 

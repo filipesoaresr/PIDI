@@ -39,7 +39,7 @@ export default function UserPage() {
 
     async function handleDelete(id: string) {
 
-        api.delete(`users/${id}`)
+        await api.delete(`users/${id}`)
         getUsers()
     }
      
@@ -59,6 +59,7 @@ export default function UserPage() {
 
             <UserTable>
                 <Table bordered hover responsive >
+                    <table className="content-table">
                     <thead> 
                         <tr>
                             <th id="cpfColumn">
@@ -74,7 +75,7 @@ export default function UserPage() {
                                 Telefone
                             </th>
                             <th id="dateColumn">
-                                Role
+                                Cargo
                             </th>
                             <th id="actionsColumn">
                                 Ações
@@ -86,11 +87,9 @@ export default function UserPage() {
                         {users.map((user: User) => (
                             
                                 <tr key={user.id}>
-
-                                    <th scope="row">
-
+                                    <td scope="row">
                                         {user.cpf}
-                                    </th>
+                                    </td>
                                     <td>
                                         {user.name}
                                     </td>
@@ -104,7 +103,7 @@ export default function UserPage() {
                                     <td>
                                         {user.role}
                                     </td>
-                                    <td>
+                                    <td id="actionsColumn">
 
                                         <Link to='/users/updateuser'><Button id="updateButton" variant="primary" size="sm" onClick={() => {idTransfer(user.id);}}>Alterar</Button></Link>
                                         &nbsp;
@@ -114,6 +113,7 @@ export default function UserPage() {
                                 </tr>                       
                         ))}
                     </tbody>
+                    </table>
                 </Table>
             </UserTable>
 

@@ -2,7 +2,6 @@ import React from 'react';
 import {Header} from './components/Header';
 import { HomeBoard } from './pages/HomeBoard';
 import { GlobalStyle } from './styles/global';
-
 import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import ProductsPage from './pages/Product/ProductsPage';
 import NewProductPage from './pages/Product/NewProductPage';
@@ -24,15 +23,17 @@ import UpdateOrderPage from './pages/Order/UpdateOrderPage';
 import ShowOrderPage from './pages/Order/ShowOrderPage';
 import ErrorServerPage from './pages/ErrorPages/internal-server-error';
 import ErrorUnauthorizedPage from './pages/ErrorPages/unauthorized';
-import ErrorNotFoundPage from './pages/ErrorPages/not-found'
-import ErrorRequestPage from './pages/ErrorPages/bad-request'
-import ErrorForbiddenPage from './pages/ErrorPages/forbidden'
+import ErrorNotFoundPage from './pages/ErrorPages/not-found';
+import ErrorRequestPage from './pages/ErrorPages/bad-request';
+import ErrorForbiddenPage from './pages/ErrorPages/forbidden';
+import ListSalesPage from './pages/Sales/ListSalesPage';
+import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
 
 
 import { ProductProvider } from './contexts/ProductContext';
 import { UserProvider } from './contexts/UserContext';
 import { PaymentProvider } from './contexts/PaymentContext';
-import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
+import { OrderProvider } from './contexts/OrderContext';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { OrderProvider } from './contexts/OrderContext';
@@ -71,6 +72,7 @@ export function App() {
             <Route path="/sales" exact component={SalesPage} />
             <Route path="/order/updateorder" exact component={UpdateOrderPage} />
             <Route path="/order/showorder" exact component={ShowOrderPage} />
+            <Route path="/sales/listsalespage" exact component={ListSalesPage} />
             <Route path="/internal-server-error-500" exact component={ErrorServerPage} />
 
           </Switch>

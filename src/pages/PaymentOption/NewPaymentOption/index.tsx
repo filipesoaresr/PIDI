@@ -8,6 +8,7 @@ import {
     MainSection, 
     ImageSection, 
     FormPaymentBlock } from './styles';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 
 export default function NewPaymentOption() {
 
@@ -43,7 +44,7 @@ export default function NewPaymentOption() {
     return (
         <Container>
             <Form>
-                <h3>Nova Opção de Pagamento</h3>
+                <h1>Nova Opção de Pagamento</h1>
 
                 <FormPaymentBlock>
                     <MainSection>
@@ -101,7 +102,10 @@ export default function NewPaymentOption() {
 
                 </FormPaymentBlock>
                 <br/>
-                <Link to='/paymentoption'> <button id="buttonCancel" type="reset">Cancelar</button></Link> <button id="buttonRegister" type="submit" onClick={handleCreateNewPayment}>Cadastrar</button>
+                <Link to='/paymentoption'> <button id="buttonCancel" type="reset">Cancelar</button></Link> 
+                &nbsp;
+                &nbsp;
+                <button id="buttonRegister" type="submit" onClick={handleCreateNewPayment}>Cadastrar <BsFillPlusSquareFill/></button>
             </Form>
         </Container>
     )

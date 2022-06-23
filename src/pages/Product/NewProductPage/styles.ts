@@ -5,6 +5,8 @@ export const Container = styled.div `
     justify-content: center;
     align-items: center;
 
+    background-color: #EBEBEB;
+
     button {
 
         width: 20rem;
@@ -26,10 +28,11 @@ export const Container = styled.div `
 
 export const Form = styled.form `
 
-    h3{
+    h1{
             margin-top: -2rem;
             margin-bottom: 2rem;
-            font-size: 1.5rem;
+            font-size: 3rem;
+            font-weight: bold;
         }    
 
     text-align: center;
@@ -38,7 +41,7 @@ export const Form = styled.form `
    
     
 
-    background: #16425B;
+    background: #001021;
     color: #fff;
 
     border-radius: 10px;
@@ -48,11 +51,15 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #0FB700;
+        background: #118233;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     #buttonCancel{
-        background: #E00D09;
+        background: #C81D25;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     
