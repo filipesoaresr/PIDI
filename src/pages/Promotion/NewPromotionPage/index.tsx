@@ -11,7 +11,7 @@ import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
 
 
 interface Product {
-    _id: string;
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -33,24 +33,39 @@ export default function NewPromotionPage() {
    const {
     name,
     setName,
-    startDate,
-    setStartDate,
+    //startDate,
+    //setStartDate,
     endDate,
     setEndDate,
     discount,
     setDiscount,
+    productsInPromo,
+    setProductsInPromo
 } = useContext(PromotionContext)
 
-const { products } = useContext(ProductContext)
+    const { products } = useContext(ProductContext)
+    const recivedProducts: string[] = []
+
+
+    function addProductsInPromo(id: string) {
+        
+        //const recivedProducts: string[] = []
+        recivedProducts.push(id)
+
+        //setProductsInPromo(recivedProducts)
+        console.log("=====Added products=====", recivedProducts)
+    }
 
     function handleCreateNewPromotion(event: FormEvent) {
         event.preventDefault();
 
+        let products = recivedProducts;
+
         const data = {
            name,
-           startDate,
            endDate,
            discount,
+           products,
         };
 
         api.post('/promotions', data)
@@ -72,16 +87,6 @@ const { products } = useContext(ProductContext)
                             value={name}
                             onChange={event => setName(event.target.value)}
                         />
-
-                        <p>Inicio da Promoção:</p>
-                        <input
-                            type="date"
-                            value={startDate}
-                            onChange={event => setStartDate(event.target.value)}
-                        />
-
-
-
                     </MainSection>
 
                     <SecondSection>
@@ -104,7 +109,7 @@ const { products } = useContext(ProductContext)
                         />
 
                     </SecondSection>
-                    </FormBlock>
+                </FormBlock>
 
 
                 <AddProductSection>
@@ -147,14 +152,15 @@ const { products } = useContext(ProductContext)
                                     {product.value}
                                 </td>
                                 <td id="actionsColumn">                                     
-                                <Button id="addProductButton" variant="primary" size="sm" >
-                                    Incluir
-                                </Button>
-                                &nbsp;
-                                &nbsp; 
-                                <Button id="deleteProductButton" variant="primary" size="sm" >
-                                    Excluir
-                                </Button>
+                                    <Button id="addProductButton" variant="primary" size="sm" 
+                                    onClick={() => addProductsInPromo(product.id)}>
+                                        Incluir
+                                    </Button>
+                                    
+                                    <Button id="deleteProductButton" variant="primary" size="sm" >
+                                        Excluir
+                                    </Button>
+
                                 </td>
                             </tr>
                         ))

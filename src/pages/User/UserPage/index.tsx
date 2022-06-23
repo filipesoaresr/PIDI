@@ -52,8 +52,6 @@ export default function UserPage() {
 
                 <input type='text' placeholder='Digite o Nome do Usuário' />
                 <br/>
-                <input type='text' placeholder='Digite o Login do Usuário' />
-                <br />
                 <button type='submit'>Consultar</button>
             </UserIntro>
 

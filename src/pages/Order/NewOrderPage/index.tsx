@@ -7,6 +7,8 @@ import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
 import { OrderContext } from '../../../contexts/OrderContext';
 import { ProductContext } from '../../../contexts/ProductContext';
+import { PaymentContext } from '../../../contexts/PaymentContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 interface IProduct {
     id: string;
@@ -23,29 +25,21 @@ interface IProduct {
     value: number;
 }
 
-interface IProductHasOrder {
-    id: string;
-    name: string;
-    collection: string;
-    pp: number;
-    p: number;
-    m: number;
-    g: number;
-    gg: number;
-    promotion: string;
-    value: string;
+interface IProductInOrder {
+    product_name?: string;
+    pp?: number,
+    p?: number,
+    m?: number,
+    g?: number,
+    gg?:number,
+    order_product_value: number,
+    fk_id_product?: string,
+    hasPromotion?: false,
 }
 
-interface  IOrder{
-    id: string;
-    dateCreated: Date;
-    fk_id_payment_options: string
-    fk_id_user: string;
-    dateSubmitted: Date;
-    totalValue: number;
-    isOpen: boolean;
-    installment: string;
-    productHasOrder: [{}];
+interface IPaymentInOrder {
+    id: string,
+    name: string
 }
 
 export default function NewOrderPage() {
@@ -53,50 +47,125 @@ export default function NewOrderPage() {
     const history = useHistory();
 
     const {
-       id,
-       dateCreated,
        fk_id_payment_options,
+       setFk_id_payment_options,
        fk_id_user,
+       setFk_id_user,
        dateSubmitted,
        totalValue,
-       isOpen,
-       installment,
-       productHasOrder,
-       getOrder      
+       setTotalValue,
+       pp,
+       setPP,
+       p,
+       setP,
+       m,
+       setM,
+       g,
+       setG,
+       gg,
+       setGG,
+       //productHasOrder,
+       getOrders      
     } = useContext(OrderContext)
 
-    const { orders } = useContext(OrderContext)
-
+    const { payments } = useContext(PaymentContext)
+    const { users } = useContext(UserContext)
     const { products } = useContext(ProductContext)
+
+    //REfatorar: usar o do contexto
+    const [productsInOrderList, setProductsInOrderList] = useState<IProductInOrder[]>([]);
+    const [ orderProductValue, setOrderProductValue] = useState<number[]>([]);
+
+
+
+   function handleIncludeProductsInOrder(product: IProduct,) {
+        let productAmount = pp + p + m + g + gg;
+
+        let productValueInOrder = product.value * productAmount;
+        
+        const productsOrder: IProductInOrder = {
+            product_name: product.name,
+            pp: pp,
+            p: p,
+            m: m,
+            g: g,
+            gg: gg,
+            order_product_value: productValueInOrder,
+            fk_id_product: product.id,
+            hasPromotion: false,
+        }
+        
+        productsInOrderList.push(productsOrder);
+        //var oldList = productsInOrderList; 
+        console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
+        console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
+       
+        setTimeout(() => {
+            setPP(0)
+            setP(0)
+            setM(0)
+            setG(0)
+            setGG(0)
+
+        }, 500)
+   }
+
+   function getTotalValue(event: FormEvent) {
+
+    event.preventDefault();
+
+    if(productsInOrderList.length != orderProductValue.length) {
+
+        productsInOrderList.map((product) => {
+            orderProductValue.push(product.order_product_value) 
+        })
+    
+        var soma = 0;
+    
+        for(var i = 0; i < orderProductValue.length; i++) {
+            soma += orderProductValue[i];
+        }
+    
+        setTotalValue(soma);
+    }
+    else {
+        console.log("VALOR JA CALCULADO")
+    }
+
+
+   }
 
     function handleCreateNewOrder(event: FormEvent) {
         event.preventDefault();
 
         const data = {
-            id,
-            dateCreated,
-            fk_id_payment_options,
-            fk_id_user,
-            dateSubmitted,
-            totalValue,
-            installment,
-            isOpen,
-            productHasOrder 
+            //id,
+            //dateCreated,
+            fk_id_payment_options: fk_id_payment_options,
+            fk_id_user: fk_id_user,
+            //dateSubmitted,
+            total_value: totalValue,
+            //isOpen,
+            product_has_order: productsInOrderList
         };
 
-
+        console.log("DATA", data)
         api.post('/orders', data)
         alert("Cadastro Realizado com Sucesso!")
-        getOrder();
-        history.push("/orders")
+        getOrders();
+        history.push("/order")
     }
+
+
+
+    
 
     return (
         <Container>
 
             <Form>
                 <h1>Novo Pedido</h1>
-
+                
                 <AddProductSection>
                     <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
@@ -129,25 +198,28 @@ export default function NewOrderPage() {
                         </thead>
 
                         <tbody>
-                            {console.log(products)}
                             {
                                 products.map((product: IProduct) => (
-                                    <tr key={product.name}>
+
+                                    <tr key={product.id}>
                                         <td scope="row">
                                             {product.name}
                                         </td>
                                         <td>
                                             <label>
-                                                PP: <input
+                                                PP:<input
                                                     className='size-qtd'
                                                     type="number"
+                                                    onChange={event => setPP(Number(event.target.value))} 
                                                 />
                                             </label>
 
                                             <label>
                                                 P: <input
                                                     className='size-qtd'
-                                                    type="number" 
+                                                    type="number"
+                                                    
+                                                    onChange={event => setP(Number(event.target.value))} 
                                                 />
                                             </label>
 
@@ -155,6 +227,8 @@ export default function NewOrderPage() {
                                                 M: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    
+                                                    onChange={event => setM(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -162,6 +236,8 @@ export default function NewOrderPage() {
                                                 G: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    
+                                                    onChange={event => setG(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -169,7 +245,8 @@ export default function NewOrderPage() {
                                                 GG: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    
+                            
+                                                    onChange={event => setGG(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -183,11 +260,13 @@ export default function NewOrderPage() {
                                         <td>
                                             Total
                                         </td>
+
                                         <td id="actionsColumn">
-                                            <Button id="addProductButton" variant="primary" size="sm" >Incluir</Button>
+                                            <Button id="addProductButton" variant="primary" size="sm" onClick={() => handleIncludeProductsInOrder(product)}>Incluir</Button>
                                             &nbsp;
                                             &nbsp; 
                                             <Button id="deleteProductButton" variant="danger" size="sm" >Excluir</Button>
+
                                         </td>
                                     </tr>
                                 ))
@@ -207,18 +286,19 @@ export default function NewOrderPage() {
                         />
 
                         <p>Opçao de Pagamento</p>
-                        <select>
-                            <option value="dinheiro">Dinheiro</option>
-                            <option value="credito">Cartão Crédito</option>
-                            <option value="debito">Cartão Débito</option>
-                            <option value="pix">PIX</option>
-                            <option value="picpay">Pic pay</option>
-                            <option value="paypal">PayPal</option>
+                        {console.log(payments)}
+                        <select value={fk_id_payment_options} onChange={event => setFk_id_payment_options(event.target.value)}>
+                            {
+                                payments.map((payment: IPaymentInOrder) => (
+                                    <option value={payment.id}>{payment.name}</option>
+                                ))
+                            }
+                           
                         </select>
 
 
                         <p>Parcelamento</p>
-                        <select>
+                        <select> 
                             <option value="vista">A vista</option>
                             <option value="2x">2x</option>
                             <option value="3x">3x</option>
@@ -238,10 +318,14 @@ export default function NewOrderPage() {
                     <SecondSection>
 
                         <p>Nome atendente:</p>
-                        <input
-                            type="text"
-                            placeholder="Digite seu nome"
-                        />
+                        <select value={fk_id_user} onChange={event => setFk_id_user(event.target.value)}>
+                            {
+                                users.map((user: IPaymentInOrder) => (
+                                    <option value={user.id}>{user.name}</option>
+                                ))
+                            }
+                        </select>
+
 
                         <p>Número do Pedido:</p>
                         <input
@@ -251,20 +335,25 @@ export default function NewOrderPage() {
 
 
                         <p>Total do Pedido:</p>
-                        <input
-                            type="text"
-                            placeholder=""
-                        />
+                        <button onClick={(event) => getTotalValue(event)}>Ver Total</button>
+                        <p>R${totalValue}</p>
 
 
                     </SecondSection>
 
                 </FormBlock>
 
-                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link>
+
+                <Link to="/order">
+                    <button id="buttonCancel" type="reset">Voltar</button>
+                </Link>
                 &nbsp;
                 &nbsp;
-                <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>Cadastrar <BsFillPlusSquareFill /></button>
+                <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>
+                    Cadastrar 
+                    <BsFillPlusSquareFill />
+                </button>
+
 
             </Form>
 

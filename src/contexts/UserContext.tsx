@@ -53,7 +53,15 @@ export function UserProvider({children}: UserProviderProps) {
     }
 
     useEffect(() => {
-        getUsers()
+        let isMounted = true;
+        if(isMounted) {
+            getUsers()  
+        }
+
+        return () => {
+            isMounted = false;
+        };
+        
         
     }, [])
 

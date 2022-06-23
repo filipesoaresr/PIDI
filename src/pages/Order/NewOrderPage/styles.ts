@@ -165,6 +165,7 @@ export const AddProductSection = styled.section `
         
     }
 
+
     .content-table tbody tr{
         border-bottom: 1px solid #dddddd;
     }

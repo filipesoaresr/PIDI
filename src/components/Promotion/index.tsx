@@ -8,12 +8,14 @@ import { PromotionContext } from '../../contexts/PromotionContext';
 interface Promotion {
     _id: string,
     name: string,
-    startDate: Date,
+    //startDate: Date,
     endDate: Date,
     discount: string,
+    products: string[],
 }
 
-export default function Promotion({ _id, name, startDate, endDate, discount }: Promotion) {
+
+export default function Promotion({ _id, name, endDate, discount, products }: Promotion) {
     const deleteIcon = { color: "#C81D25", fontSize: "1.5em", marginLeft:"" }
     const editIcon = { color: "white", fontSize: "1.5em", marginLeft:"" }
     const showIcon = { color: "#bba901", fontSize: "1.5em", marginLeft:"" }
@@ -35,9 +37,10 @@ export default function Promotion({ _id, name, startDate, endDate, discount }: P
 
         <Container>
             <h4>{name}</h4>
-            <p>{startDate}</p>
             <p>{endDate}</p>
             <p className="discount">{discount}%OFF</p>
+            <p>{products}</p>
+            {console.log(products)}
             
             <Link to="/promotion/updatepromotions">
                 <TiPencil style={editIcon} onClick={() =>{idTransfer(_id)}}/>

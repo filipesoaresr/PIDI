@@ -1,6 +1,18 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { api } from "../services/api";
 
+interface IProductInOrder {
+    pp?: number,
+    p?: number,
+    m?: number,
+    g?: number,
+    gg?:number,
+    order_product_value: number,
+    fk_id_product: string,
+    hasPromotion: false,
+
+}
+
 
 interface Order {
     id: string;
@@ -11,20 +23,8 @@ interface Order {
     isOpen: boolean;
     installment: string;
     totalValue: number;
-    productHasOrder: [{
-        fk_id_product: string,
-        fk_id_order: string,
-        hasPromotion: boolean,
-        name: string,
-        pp: number,
-        p: number,
-        m: number,
-        g: number,
-        gg: number,
-        promotion: string,
-        value: number
-    }
-]}
+    productHasOrder: IProductInOrder[]
+}
 
 interface OrderProviderProps {
     children: ReactNode;
@@ -36,7 +36,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
 
     const [orders, setOrders] = useState<Order[]>([])
 
-    const [id, setId] = useState('');
+    const [id, setId] = useState();
     const [dateCreated, setDateCreated] = useState('');
     const [dateSubmitted, setDateSubmitted] = useState('');
     const [isOpen, setIsOpen] = useState(true);
@@ -44,22 +44,48 @@ export function OrderProvider({ children }: OrderProviderProps) {
     const [fk_id_user, setFk_id_user] = useState('');
     const [totalValue, setTotalValue] = useState(0);
     const [installment, setInstallment] = useState('A vista');
-    const [productHasOrder, setProductHasOrder] = useState([{}]);
+    const [productHasOrder, setProductHasOrder] = useState<IProductInOrder[]>([]);
+
+    const [oneOrder, setOneOrder] = useState<Order>();
+
+    const [pp, setPP] = useState(0);
+    const [p, setP] = useState(0);
+    const [m, setM] = useState(0);
+    const [g, setG] = useState(0);
+    const [gg, setGG] = useState(0);
+    
+
+    async function getOneOrder(id: string) {
+        api.get(`/orders/${id}`).then((response) => {
+          
+           setOneOrder(response.data)
+           console.log("ID", id)
+           console.log("RESPONSE DATA", response.data)
+           console.log("ONE ORDER", oneOrder)
+       }).catch((error) => {
+           console.log("ERROR", error)
+       })   
+   }
 
 
-    function getOrder() {
+    function getOrders() {
         api.get('/orders').then((response) => {
-            console.log("++++++++++POS-REQUISIÇÃO++++++++++=", response.data)
             setOrders(response.data)
         })
     }
 
-
     useEffect(() => {
-        //console.log("=========TOKEN=======", token)
-        getOrder()
-    }, [])
+        let isMounted = true;
+        if(isMounted) {
+            getOrders()
+            //getOneOrder()  
+        }
 
+        return () => {
+            isMounted = false;
+        };
+         
+    }, [])
 
     return (
         <OrderContext.Provider value={{
@@ -83,7 +109,20 @@ export function OrderProvider({ children }: OrderProviderProps) {
             setInstallment,
             productHasOrder,
             setProductHasOrder,
-            getOrder
+            getOrders,
+            getOneOrder,
+            pp,
+            setPP,
+            p,
+            setP,
+            m,
+            setM,
+            g,
+            setG,
+            gg,
+            setGG,
+            oneOrder,
+            setOneOrder
         }}>
             {children}
         </OrderContext.Provider>

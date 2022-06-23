@@ -38,6 +38,7 @@ import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
 
 
+
 export function App() {
   return (
    
@@ -48,6 +49,7 @@ export function App() {
         <PaymentProvider>
         <PromotionProvider>
         <ProductProvider >
+        <OrderProvider>
           <Header />
 
           <Switch>
@@ -76,6 +78,7 @@ export function App() {
           </Switch>
 
           <Footer />
+        </OrderProvider>
         </ProductProvider>
         </PromotionProvider>
         </PaymentProvider>

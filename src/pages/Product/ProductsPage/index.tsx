@@ -100,7 +100,7 @@ export default function ProductsPage() {
                                         {product.collection}
                                     </td>
                                     <td>
-                                        {product.value}
+                                        R${product.value}
                                     </td>
                                     <td id="actionsColumn">
                                         <Link to='/products/updateproduct' >
