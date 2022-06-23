@@ -51,8 +51,6 @@ export default function NewPromotionPage() {
         
         //const recivedProducts: string[] = []
         recivedProducts.push(id)
-
-        //setProductsInPromo(recivedProducts)
         console.log("=====Added products=====", recivedProducts)
     }
 

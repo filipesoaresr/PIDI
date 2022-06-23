@@ -1,4 +1,4 @@
-import  { FormEvent, useContext, useState } from 'react'
+import  { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
@@ -7,9 +7,31 @@ import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSecti
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill } from "react-icons/bs";
+import { OrderContext } from '../../../contexts/OrderContext';
+import { UserContext } from '../../../contexts/UserContext';
+import { PaymentContext } from '../../../contexts/PaymentContext';
 
+interface IProductInOrder {
+    product_name: string;
+    pp?: number,
+    p?: number,
+    m?: number,
+    g?: number,
+    gg?:number,
+    order_product_value: number,
+    fk_id_product: string,
+    hasPromotion: false,
+
+}
+
+interface Payment {
+    id: string;
+    name: string;
+    flag?: string;
+    installment: string;
+}
 interface Product {
-    _id: string;
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -20,8 +42,8 @@ interface Product {
     g: number;
     gg: number;
     promotion: string;
-    value: string;
-    }
+    value: number;
+}
 
 export default function ShowOrderPage() {
 
@@ -35,22 +57,41 @@ export default function ShowOrderPage() {
         discount,
         setDiscount,
     } = useContext(PromotionContext)
+    const { payments } = useContext(PaymentContext)
+    const {getOneOrder, oneOrder, id, } = useContext(OrderContext)
 
+    const [userName, setUserName] = useState('');
+    const [orderPayment, setOrderPayment] = useState('');
+    const [orderInstallment, setOrderInstallment] = useState('');
+
+
+
+    const { users } = useContext(UserContext)
     const { products } = useContext(ProductContext)
 
-    function handleCreateNewPromotion(event: FormEvent) {
-        event.preventDefault();
+   function handleUserName(){
+        users.map((user: Product) => {
+            if(user.id == oneOrder.fk_id_user){
+                setUserName(user.name);
+            }
+        })
+    
+   }
 
-        const data = {
-            name,
-            startDate,
-            endDate,
-            discount,
-        };
+   function handlePaymentOption(){
+    payments.map((payment: Payment) => {
+        if(payment.id == oneOrder.fk_id_payment_options){
+            setOrderPayment(payment.name);
+            setOrderInstallment(payment.installment)
+        }
+    })
+    return console.log(orderPayment)
+}
 
-        api.post('/promotions', data)
-        alert("Cadastro Realizado com Sucesso!")
-    }
+   useEffect(() => {
+    handleUserName()
+    handlePaymentOption()
+   }, [])
 
     return (
         <Container>
@@ -92,34 +133,34 @@ export default function ShowOrderPage() {
                             </thead>
 
                             <tbody>
-                                {console.log(products)}
+                                {console.log("ID DO ESTADO NA PAGINA SHOW ORDER", id)}
+                                {console.log("====ONE ORDER=====", oneOrder)}
                                 {
-                                    products.map((product: Product) => (
-                                        <tr key={product._id}>
+                                    oneOrder.product_has_order.map((product: IProductInOrder) => (
+                                        <tr key={product.fk_id_product}>
                                             <th scope="row">
-                                                {product._id}
+                                                {product.fk_id_product}
                                             </th>
                                             <td>
-                                                {product.name}
+                                                {product.product_name}
                                             </td>
                                             <td>
-                                                Tamanho e quantidade
+                                               <p>PP : {product.pp}</p>
+                                               <p>P : {product.p}</p>
+                                               <p>M : {product.m}</p>
+                                               <p>G : {product.g}</p>
+                                               <p>GG : {product.gg}</p>
                                             </td>
                                             <td>
-                                                {product.promotion}
+                                                {product.hasPromotion}
                                             </td>
                                             <td>
-                                                {product.value}
-                                            </td>
-                                            <td>
-                                                Total
+                                                <p>Total</p>
+                                                {product.order_product_value}
                                             </td>
                                             <td>
                                               <Button id="addProductButton" variant="primary" size="sm" >
-                                                Adicionar
-                                              </Button>
-                                              <Button id="deleteProductButton" variant="primary" size="sm" >
-                                                Adicionar
+                                                Excluir
                                               </Button>
                                             </td>
                                         </tr>
@@ -132,69 +173,29 @@ export default function ShowOrderPage() {
                     <FormBlock>
 
                     <MainSection>
-                    <p>Data do Pedido:</p>
-                        <input
-                            type="date"
-                            placeholder="--/--/--"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
+                        <p>Data do Pedido:</p>
+                        <p>{oneOrder.date_created}</p>
 
                         <p>Opçao de Pagamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
-                            <option value="dinheiro">Dinheiro</option>
-                            <option value="credito">Cartão Crédito</option>
-                            <option value="debito">Cartão Débito</option>
-                            <option value="pix">PIX</option>
-                            <option value="picpay">Pic pay</option>
-                            <option value="paypal">PayPal</option>
-                        </select>
+                        <p>{orderPayment}</p>
 
 
                         <p>Parcelamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
-                            <option value="vista">A vista</option>
-                            <option value="2x">2x</option>
-                            <option value="3x">3x</option>
-                            <option value="4x">4x</option>
-                            <option value="5x">5x</option>
-                            <option value="6x">6x</option>
-                            <option value="7x">7x</option>
-                            <option value="8x">8x</option>
-                            <option value="9x">9x</option>
-                            <option value="10x">10x</option>
-                            <option value="11x">11x</option>
-                            <option value="12x">12x</option>
-                        </select>
+                        <p>{orderInstallment}</p>
                                               
                     </MainSection>
 
                     <SecondSection>
 
                     <p>Nome atendente:</p>
-                        <input
-                            type="text"
-                            placeholder="Digite seu nome"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
+                    <p>{userName}</p>
 
-                        <p>Número do Pedido:</p>
-                        <input
-                            type="text"
-                            placeholder=""
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
+                    <p>Número do Pedido:</p>
+                    <p>{oneOrder.id}</p>    
 
                         
                     <p>Total do Pedido:</p>
-                    <input
-                        type="text"
-                        placeholder=""
-                        value={name}
-                        onChange={event => setName(event.target.value)}
-                    />
+                    <p>{oneOrder.total_value}</p>
 
                     
                     </SecondSection>

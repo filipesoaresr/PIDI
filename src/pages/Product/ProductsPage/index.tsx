@@ -26,7 +26,7 @@ interface IProduct {
 export default function ProductsPage() {
 
 
-    const { products, setId, setProducts } = useContext(ProductContext)
+    const { products, setId, setProducts, getProducts } = useContext(ProductContext)
 
     function idTransfer(id: string) {
         setId(id)
@@ -47,7 +47,6 @@ export default function ProductsPage() {
         updateProducts()
 
     }
-
 
 
     return (
