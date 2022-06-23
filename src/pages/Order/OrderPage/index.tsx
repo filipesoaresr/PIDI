@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { OrderContext } from '../../../contexts/OrderContext';
@@ -33,7 +33,25 @@ interface IProductInOrder {
 
 export default function OrderPage() {
 
-    const { orders, isOpen } = useContext(OrderContext);
+    const history = useHistory();
+
+    const { orders, isOpen, getOrders, setOneOrder, setId, id, getOneOrder } = useContext(OrderContext);
+
+    async function handleOrderID(idOrder: string) {
+        console.log("ID A SER TRANSFERIDA", idOrder)
+        setId(idOrder)
+        console.log("ID DO ESTADO NA FUNCTION SETID", id)
+        getOneOrder(idOrder)
+        setTimeout(() =>{
+            history.push("/order/showorder")     
+        }, 500)
+    }
+
+    async function handleDelete(id: string) {
+        await api.delete(`/orders/${id}`)
+        getOrders()
+        console.log("TENTANDO DELETAR", orders)
+    }
 
 
     return (
@@ -90,11 +108,10 @@ export default function OrderPage() {
                                     {order.total_value}
                                 </td>
                                 <td>
-                                    <Link to='/order/showorder' >
-                                        <Button id="showButton" variant="primary" size="sm">
-                                            Exibir
-                                        </Button>
-                                    </Link>
+                                    
+                                    <Button id="showButton" variant="primary" size="sm" onClick={() => handleOrderID(order.id)}>
+                                        Exibir
+                                    </Button>
 
                                     <Link to='/order/updateorder' >
                                         <Button id="updateButton" variant="primary" size="sm">
@@ -102,7 +119,7 @@ export default function OrderPage() {
                                         </Button>
                                     </Link>
                                     
-                                    <Button id="deleteButton" variant="danger" size="sm">
+                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>
                                         Excluir
                                     </Button>
                                 </td>

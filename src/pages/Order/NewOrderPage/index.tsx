@@ -41,22 +41,12 @@ interface IPaymentInOrder {
     id: string,
     name: string
 }
-interface  IOrder{
-    fk_id_payment_options: string
-    fk_id_user: string;
-    dateSubmitted: Date;
-    total_value: number;
-    isOpen: boolean;
-    productHasOrder: IProductInOrder[];
-}
 
 export default function NewOrderPage() {
 
     const history = useHistory();
 
     const {
-       id,
-       dateCreated,
        fk_id_payment_options,
        setFk_id_payment_options,
        fk_id_user,
@@ -64,11 +54,6 @@ export default function NewOrderPage() {
        dateSubmitted,
        totalValue,
        setTotalValue,
-       isOpen,
-       installment,
-       setInstallment,
-       productHasOrder,
-       setProductHasOrder,
        pp,
        setPP,
        p,
@@ -79,7 +64,8 @@ export default function NewOrderPage() {
        setG,
        gg,
        setGG,
-       getOrder      
+       //productHasOrder,
+       getOrders      
     } = useContext(OrderContext)
 
     const { payments } = useContext(PaymentContext)
@@ -90,7 +76,6 @@ export default function NewOrderPage() {
     const [productsInOrderList, setProductsInOrderList] = useState<IProductInOrder[]>([]);
     const [ orderProductValue, setOrderProductValue] = useState<number[]>([]);
 
-    let isIncluded = false
 
 
    function handleIncludeProductsInOrder(product: IProduct,) {
@@ -111,21 +96,18 @@ export default function NewOrderPage() {
         }
         
         productsInOrderList.push(productsOrder);
-        var oldList = productsInOrderList;
-        
-       
+        //var oldList = productsInOrderList; 
         console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
-
+        console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
        
+        setTimeout(() => {
+            setPP(0)
+            setP(0)
+            setM(0)
+            setG(0)
+            setGG(0)
 
-        //console.log("TESTE VALORES JUNTOS",orderProductValue);
-        //console.log("PRODUCT AMAUNT IN ORDER",productAmount)
-        console.log("PRODUCT VALUE IN ORDER",productValueInOrder)
-        setPP(0)
-        setP(0)
-        setM(0)
-        setG(0)
-        setGG(0)
+        }, 500)
    }
 
    function getTotalValue(event: FormEvent) {
@@ -170,9 +152,10 @@ export default function NewOrderPage() {
         console.log("DATA", data)
         api.post('/orders', data)
         alert("Cadastro Realizado com Sucesso!")
-        getOrder();
+        getOrders();
         history.push("/order")
     }
+
 
 
     

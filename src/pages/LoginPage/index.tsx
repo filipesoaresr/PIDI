@@ -20,6 +20,7 @@ export default function LoginPage() {
             }
 
             await signIn(data);
+            location.reload()
         }
         catch (error) {
             console.log(error)

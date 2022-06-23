@@ -4,7 +4,7 @@ import { api } from "../services/api";
 
 interface Product {
     _id: string;
-    product_type: string;
+    productType: string;
     name: string;
     collection: string;
     dateCreated: string;
@@ -43,16 +43,21 @@ export function ProductProvider({ children }: ProductProviderProps) {
 
     function getProducts() {
         api.get('/products').then((response) => {
-            console.log("++++++++++GET PRODUCTS++++++++++=", response.data)
+            console.log("++++++++++GET PRODUCTS++++++++++=", response.data);
             setProducts(response.data)
         })
     }
 
-
     useEffect(() => {
+        let isMounted = true;
+        if(isMounted) {
+            getProducts()   
+        }
 
-        //console.log("=========TOKEN=======", token)
-        getProducts()
+        return () => {
+            isMounted = false;
+        };
+        
     }, [])
 
 
