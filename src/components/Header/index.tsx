@@ -15,7 +15,7 @@ export function Header() {
     function handleLogOut() {
         localStorage.clear();
         history.push("/login")
-        location.reload()
+        window.location.reload()
     } 
 
     return (
