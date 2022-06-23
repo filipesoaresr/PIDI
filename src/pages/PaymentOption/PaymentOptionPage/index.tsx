@@ -70,16 +70,9 @@ export default function PaymentOption(){
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
                         {payments.map((payment: PaymentOption) => (
                             <tr key={payment.id}>
-                                <th scope="row">
-=======
-                        {
-                            payment.map((payment: PaymentOption) =>(
-                                <tr key={payment.id}>
                                 <td scope="row">
->>>>>>> c168524e6d6ea71b9a97c466c12f032ed57dbde2
                                     {payment.id}
                                 </td>
                                 <td>

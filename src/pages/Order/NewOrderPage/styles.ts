@@ -165,18 +165,9 @@ export const AddProductSection = styled.section `
         
     }
 
-<<<<<<< HEAD
-    table {
-        color: #fff;
-        margin-top: 2rem;
 
-        .selectSizes {
-            width: 65%;
-        }
-=======
     .content-table tbody tr{
         border-bottom: 1px solid #dddddd;
->>>>>>> c168524e6d6ea71b9a97c466c12f032ed57dbde2
     }
 
      .content-table td{

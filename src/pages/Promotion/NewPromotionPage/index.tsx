@@ -151,8 +151,7 @@ export default function NewPromotionPage() {
                                 <td>
                                     {product.value}
                                 </td>
-<<<<<<< HEAD
-                                <td>                                     
+                                <td id="actionsColumn">                                     
                                     <Button id="addProductButton" variant="primary" size="sm" 
                                     onClick={() => addProductsInPromo(product.id)}>
                                         Incluir
@@ -161,17 +160,7 @@ export default function NewPromotionPage() {
                                     <Button id="deleteProductButton" variant="primary" size="sm" >
                                         Excluir
                                     </Button>
-=======
-                                <td id="actionsColumn">                                     
-                                <Button id="addProductButton" variant="primary" size="sm" >
-                                    Incluir
-                                </Button>
-                                &nbsp;
-                                &nbsp; 
-                                <Button id="deleteProductButton" variant="primary" size="sm" >
-                                    Excluir
-                                </Button>
->>>>>>> c168524e6d6ea71b9a97c466c12f032ed57dbde2
+
                                 </td>
                             </tr>
                         ))

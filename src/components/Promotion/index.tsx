@@ -14,13 +14,9 @@ interface Promotion {
     products: string[],
 }
 
-<<<<<<< HEAD
+
 export default function Promotion({ _id, name, endDate, discount, products }: Promotion) {
-    const deleteIcon = { color: "red", fontSize: "1.5em", marginLeft:"" }
-=======
-export default function Promotion({ _id, name, startDate, endDate, discount }: Promotion) {
     const deleteIcon = { color: "#C81D25", fontSize: "1.5em", marginLeft:"" }
->>>>>>> c168524e6d6ea71b9a97c466c12f032ed57dbde2
     const editIcon = { color: "white", fontSize: "1.5em", marginLeft:"" }
     const showIcon = { color: "#bba901", fontSize: "1.5em", marginLeft:"" }
 

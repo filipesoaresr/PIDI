@@ -36,7 +36,7 @@ import { PaymentProvider } from './contexts/PaymentContext';
 import { OrderProvider } from './contexts/OrderContext';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
-import { OrderProvider } from './contexts/OrderContext';
+
 
 
 export function App() {
