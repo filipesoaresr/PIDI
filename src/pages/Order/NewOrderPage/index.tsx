@@ -21,7 +21,10 @@ interface IProduct {
     m: number;
     g: number;
     gg: number;
-    promotion: string;
+    promotion: {
+        discount: number;
+        name: string;
+    };
     value: number;
 }
 
@@ -77,12 +80,45 @@ export default function NewOrderPage() {
     const [ orderProductValue, setOrderProductValue] = useState<number[]>([]);
 
 
+    function calculateTotalInsideProduct(value :number,id:string,discount:number){
+
+
+        let pp = document.getElementById("pp"+id) as HTMLInputElement || {value:0}
+        let p = document.getElementById("p"+id) as HTMLInputElement || {value:0}
+        let g = document.getElementById("g"+id) as HTMLInputElement || {value:0}
+        let gg = document.getElementById("gg"+id) as HTMLInputElement || {value:0}
+        let m = document.getElementById("m"+id) as HTMLInputElement || {value:0}
+
+        let total = Number(p.value)+Number(m.value)+Number(pp.value)+Number(g.value)+Number(gg.value)
+        console.log("discount")
+        console.log(discount)
+
+        if(total >0){
+            let total_value = total * value
+            let totalValue_discont = total_value * (1-discount/100)
+            console.log(1-discount/100)
+            if(totalValue_discont >=0 ){
+                console.log("totalValue_discont")
+
+
+                console.log(totalValue_discont)
+
+        return`${total_value} -> ${totalValue_discont}` ||  null 
+            }
+            else{
+                return `${total_value}`  || null 
+            }
+        }
+
+        return 0
+    }
 
    function handleIncludeProductsInOrder(product: IProduct,) {
         let productAmount = pp + p + m + g + gg;
+        let discount = product.promotion?.discount;
 
-        let productValueInOrder = product.value * productAmount;
-        
+        let productValueInOrder = (product.value * (1 - discount/100)) * productAmount;
+
         const productsOrder: IProductInOrder = {
             product_name: product.name,
             pp: pp,
@@ -210,6 +246,7 @@ export default function NewOrderPage() {
                                                 PP:<input
                                                     className='size-qtd'
                                                     type="number"
+                                                    id = {"pp"+product.id}
                                                     onChange={event => setPP(Number(event.target.value))} 
                                                 />
                                             </label>
@@ -218,7 +255,7 @@ export default function NewOrderPage() {
                                                 P: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    
+                                                    id = {"p"+product.id}
                                                     onChange={event => setP(Number(event.target.value))} 
                                                 />
                                             </label>
@@ -227,7 +264,7 @@ export default function NewOrderPage() {
                                                 M: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    
+                                                    id = {"m"+product.id}
                                                     onChange={event => setM(Number(event.target.value))}
                                                 />
                                             </label>
@@ -236,7 +273,7 @@ export default function NewOrderPage() {
                                                 G: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    
+                                                    id = {"g"+product.id}
                                                     onChange={event => setG(Number(event.target.value))}
                                                 />
                                             </label>
@@ -245,20 +282,20 @@ export default function NewOrderPage() {
                                                 GG: <input
                                                     className='size-qtd'
                                                     type="number"
-                            
+                                                    id = {"gg"+product.id}
                                                     onChange={event => setGG(Number(event.target.value))}
                                                 />
                                             </label>
 
                                         </td>
                                         <td>
-                                            {product.promotion}
+                                            {product.promotion?.name}
                                         </td>
                                         <td>
-                                            {product.value}
+                                        {String(product.value) + (product.promotion?.discount ? "->"+Number(product.value) * (1- (Number(product.promotion?.discount)/100)):"")}
                                         </td>
                                         <td>
-                                            Total
+                                        {calculateTotalInsideProduct(product.value,product.id,Number(product.promotion?.discount))}
                                         </td>
 
                                         <td id="actionsColumn">

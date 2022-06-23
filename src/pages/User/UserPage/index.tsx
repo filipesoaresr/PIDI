@@ -21,10 +21,8 @@ interface User {
 
 export default function UserPage() {
 
-
    const {users, setId, getUsers, setUsers} = useContext(UserContext)
     
-
     function idTransfer(id: string) {
         setId(id)
     }

@@ -1,5 +1,5 @@
-import  { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import  { FormEvent, useContext, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection  } from './styles';
@@ -9,6 +9,7 @@ import { BsCartFill } from "react-icons/bs";
 import { OrderContext } from '../../../contexts/OrderContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { PaymentContext } from '../../../contexts/PaymentContext';
+import { api } from '../../../services/api';
 
 interface IProductInOrder {
     product_name: string;
@@ -46,6 +47,8 @@ interface Product {
 
 export default function ShowOrderPage() {
 
+    const history = useHistory();
+
     const {
         name,
         setName,
@@ -57,7 +60,7 @@ export default function ShowOrderPage() {
         setDiscount,
     } = useContext(PromotionContext)
     const { payments } = useContext(PaymentContext)
-    const {getOneOrder, oneOrder, id, } = useContext(OrderContext)
+    const { oneOrder, id, isOpen, setIsOpen, getOrders } = useContext(OrderContext)
 
     const [userName, setUserName] = useState('');
     const [orderPayment, setOrderPayment] = useState('');
@@ -85,6 +88,22 @@ export default function ShowOrderPage() {
         }
     })
     return console.log(orderPayment)
+}
+
+async function handleUpdate(event: FormEvent, id: string) {
+
+    event.preventDefault();
+
+   const dataUpdated = {
+       is_open: false,
+       date_submitted: new Date().toISOString(),
+   }
+
+    console.log(dataUpdated)
+    await api.put(`/sales/${id}`, dataUpdated)
+    await getOrders()
+    history.push("/order")
+    
 }
 
    useEffect(() => {
@@ -129,6 +148,7 @@ export default function ShowOrderPage() {
                             <tbody>
                                 {console.log("ID DO ESTADO NA PAGINA SHOW ORDER", id)}
                                 {console.log("====ONE ORDER=====", oneOrder)}
+                                {console.log("====ONE ORDER IS OPEN=====", oneOrder.is_open)}
                                 {
                                     oneOrder.product_has_order.map((product: IProductInOrder) => (
                                         <tr key={product.fk_id_product}>
@@ -194,7 +214,7 @@ export default function ShowOrderPage() {
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>
                 </Link>
-                <button id="registerSaleButton" type="submit">
+                <button id="registerSaleButton" type="submit" onClick={(event) => handleUpdate(event, id)}>
                     Confirmar Venda
                 </button>
 

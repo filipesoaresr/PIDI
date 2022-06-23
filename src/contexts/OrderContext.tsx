@@ -54,6 +54,9 @@ export function OrderProvider({ children }: OrderProviderProps) {
     const [g, setG] = useState(0);
     const [gg, setGG] = useState(0);
     
+    const [sales, setSales] = useState<Order[]>([])
+    const [startDate, setStartDate] = useState<Date>()
+    const [endDate, setEndDate] = useState<Date>()
 
     async function getOneOrder(id: string) {
         api.get(`/orders/${id}`).then((response) => {
@@ -122,7 +125,13 @@ export function OrderProvider({ children }: OrderProviderProps) {
             gg,
             setGG,
             oneOrder,
-            setOneOrder
+            setOneOrder,
+            sales,
+            setSales,
+            startDate,
+            setStartDate,
+            endDate,
+            setEndDate
         }}>
             {children}
         </OrderContext.Provider>

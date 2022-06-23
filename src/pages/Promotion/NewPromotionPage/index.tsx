@@ -21,7 +21,9 @@ interface Product {
     m: number;
     g: number;
     gg: number;
-    promotion: string;
+    promotion: {
+        name: string;
+    };
     value: string;
 }
 
@@ -44,13 +46,12 @@ export default function NewPromotionPage() {
 } = useContext(PromotionContext)
 
     const { products } = useContext(ProductContext)
-    const recivedProducts: string[] = []
+    const recivedProducts: Array<any> = []
 
-
-    function addProductsInPromo(id: string) {
+    function addProductsInPromo(product: any) {
         
         //const recivedProducts: string[] = []
-        recivedProducts.push(id)
+        recivedProducts.push(product.id)
 
         //setProductsInPromo(recivedProducts)
         console.log("=====Added products=====", recivedProducts)
@@ -59,15 +60,16 @@ export default function NewPromotionPage() {
     function handleCreateNewPromotion(event: FormEvent) {
         event.preventDefault();
 
-        let products = recivedProducts;
+        
 
         const data = {
            name,
            endDate,
            discount,
-           products,
+           products: recivedProducts,
         };
 
+        console.log("PRomo nova", data)
         api.post('/promotions', data)
         alert("Cadastro Realizado com Sucesso!")
     }
@@ -146,14 +148,14 @@ export default function NewPromotionPage() {
                                     {product.name}
                                 </td>
                                 <td>
-                                    {product.promotion}
+                                    {product.promotion?.name}
                                 </td>
                                 <td>
                                     {product.value}
                                 </td>
                                 <td id="actionsColumn">                                     
                                     <Button id="addProductButton" variant="primary" size="sm" 
-                                    onClick={() => addProductsInPromo(product.id)}>
+                                    onClick={() => addProductsInPromo(product)}>
                                         Incluir
                                     </Button>
                                     

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext, useState } from 'react'
 import { Container, SalesTable, MainSection, FormBlock, InitialDateSection, EndDateSection} from './styles'
 import { Link, useHistory } from 'react-router-dom'
@@ -6,6 +6,8 @@ import { Button, Table } from 'reactstrap';
 import { BsFillCalendarRangeFill } from 'react-icons/bs';
 import { OrderContext } from '../../../contexts/OrderContext';
 import { ProductContext } from '../../../contexts/ProductContext';
+import { api } from '../../../services/api';
+import { UserContext } from '../../../contexts/UserContext';
 
 interface IProduct {
     id: string;
@@ -47,13 +49,30 @@ interface IOrder {
     productHasOrder: [{}];
 }
 
+
 export default function ListSalesPage() {
-
+    
     const history = useHistory();
-
+    
     const { orders } = useContext(OrderContext)
-
     const { products } = useContext(ProductContext)
+    
+    const {sales, startDate, endDate} = useContext(OrderContext)
+
+    const { users } = useContext(UserContext)
+    const [userName, setUserName] = useState('')
+    
+
+    function handleUserName(sale: any){ 
+         users.map((user: any) => {
+             if(user.id == sale.fk_id_user){
+                setUserName(user.name)
+             }
+             else {
+                setUserName("Sem atendente")
+             }
+         })
+    }
 
 
     return (
@@ -71,7 +90,7 @@ export default function ListSalesPage() {
                     <div id="initialDate">
                     <label id="initialDateLabel">Data Inicial: </label>
                     <br />
-                    <input id="dateInput" name="initialDate" type="date"></input>
+                    <p>{startDate.toString()}</p>
                     </div>
                     </InitialDateSection>
 
@@ -79,7 +98,7 @@ export default function ListSalesPage() {
                     <div id="endDate">
                     <label id="endDateLabel">Data Final: </label>
                     <br />
-                    <input id="dateInput" name="finalDate" type="date"></input>
+                    <p>{endDate.toString()}</p>
                     </div>
                     </EndDateSection>
                     
@@ -104,20 +123,27 @@ export default function ListSalesPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">
-                                        24/11/2020
-                                    </td>
-                                    <td>
-                                        Camisa do Star Wars
-                                    </td>
-                                    <td>
-                                        Filipe Soares Rocha
-                                    </td>
-                                    <td>
-                                        R$ 60,00
-                                    </td>
-                                </tr>
+                                {
+                                sales.map((sale: any) => (
+                                    <tr key={sale.id}>
+                                        <td scope="row">
+                                            {sale.date_submitted}
+                                        </td>
+                                        <td>
+                                            {sale.product_has_order.map((product: any) => (
+                                                <p>{product.product_name}</p>
+                                            ))}
+                                        </td>
+                                        <td>
+                                            {sale.user.name}
+                                        </td>
+                                        <td>
+                                            R${sale.total_value}
+                                        </td>
+                                    </tr>
+                                ))
+                                }
+                                
                             </tbody>
                         </table>
                     </Table>

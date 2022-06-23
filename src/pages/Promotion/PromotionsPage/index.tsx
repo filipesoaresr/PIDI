@@ -11,7 +11,8 @@ interface PromotionPage {
     //startDate: Date,
     endDate: Date,
     discount: string,
-    products: string[],
+    products: [],
+    //PromotionHasProduct: []
 }
 
 interface PromotionPageProps {
