@@ -261,8 +261,10 @@ export default function NewOrderPage() {
 
                 </FormBlock>
 
-                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>Cadastrar <BsFillPlusSquareFill />
-                </button>
+                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link>
+                &nbsp;
+                &nbsp;
+                <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>Cadastrar <BsFillPlusSquareFill /></button>
 
             </Form>
 

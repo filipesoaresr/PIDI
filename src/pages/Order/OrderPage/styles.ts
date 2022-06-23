@@ -163,14 +163,20 @@ export const OrderTable = styled.div `
 
   #updateButton{
       background-color: #0E14AC;
+      font-size: 15px;
+      font-weight: 300;
   }
 
   #deleteButton{
       background-color: #C81D25;
+      font-size: 15px;
+      font-weight: 300;
   }
 
   #showButton{
-    background-color: #3B9AB6;
+    background-color: #bba901;
+    font-size: 15px;
+    font-weight: 300;
   }
 
 

@@ -110,7 +110,6 @@ export default function UpdateUserPage() {
                     </SecondSection>
                     <br /> 
                   
-              
                 </FormBlock>
                 
                 <Link to='/users'>

@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div `
 
-    display: block; 
+    display: flex; 
     justify-content: center;
-    align-items: center; 
-    width: 100%;
-    margin-bottom: 5rem;
+    align-items: center;
     
+    width: 100%;
+    height: 100%;
+
+    background-color: #EBEBEB;
     
 
     button.register {
@@ -15,13 +17,15 @@ export const Container = styled.div `
         bottom:10%;
         right: 40px;
 
+        font-size: 1.3rem;
+        font-weight: bold;
         margin:0;
         padding:12px 20px;
 
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #F28118;
+        background: #24AC15;
         transition: filter 0.2s;
 
         &:hover {
@@ -34,19 +38,14 @@ export const Container = styled.div `
 
 export const Form = styled.form `
 
-
-   width: 40rem;
-   height: 20rem;
+   margin-top: 12rem;
+   width: 35%;
+   height: 25rem;
    border-radius: 10px;
-   margin-left: 42rem;
-   margin-top: 10rem;
-   margin-right: 7rem;
-   
-   
-    
-
-    background: #16425B;
-    color: #fff;
+   justify-content: center;
+   align-items: center;
+   background: #001021;
+   color: #fff;
 
 
 `;
@@ -54,54 +53,38 @@ export const Form = styled.form `
 
 export const SalesIntro = styled.div `
 
-    display: block;
+    display: grid;
     justify-content: center;
     align-items: center;
 
-    margin-left: 5rem;
-    margin-top: 5rem; 
-    padding-top: 2rem;
+    margin-top: 4rem;
+
+    
 
     h1{
-        
-        margin-bottom: 4rem;
-        margin-left: 2rem;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: bold;
     }
 
     input {
 
-        width: 20rem;
-        height: 1.8rem;
+        display: block;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 2rem;
         border-radius: 5px;
-        margin-left: 5rem;
+
     }
 
     p{
         margin-top: 1rem;
-        margin-bottom: -0.3rem;
-        margin-left: 5rem;
-    }
-
-    button {
-        margin-top: 2rem;
-        //margin-left: 7.5rem;
-
-        width: 25rem;
-        height: 2rem;
-        color: #fff;
-
-        border-radius: 5px;
-        border-style: none;
-
-        //padding: 1rem 10rem;
-        background: #F28118;
-
-        transition: filter 0.2s;
-
-        &:hover {
-        filter: brightness(0.8);
-        cursor: pointer;
-        }
+        
+        
     }
 `;
 

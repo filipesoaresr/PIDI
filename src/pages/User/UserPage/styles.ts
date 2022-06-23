@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div `
 
-display: flex; 
+    display: flex; 
     justify-content: center;
     align-items: center;
     flex-direction: column;
     
     width: 100%;
     height: 100%;
+
 
     background-color: #EBEBEB;
 
@@ -49,10 +50,9 @@ export const UserIntro = styled.div `
     margin-top: 5rem;
 
     h1{
-        margin-left: 6.5rem;
         font-size: 3rem;
         font-weight: bold;
-        
+        text-align: center;
     }
 
     input {

@@ -45,8 +45,6 @@ export function OrderProvider({ children }: OrderProviderProps) {
     const [totalValue, setTotalValue] = useState(0);
     const [installment, setInstallment] = useState('A vista');
     const [productHasOrder, setProductHasOrder] = useState([{}]);
-    
-
 
 
     function getOrder() {

@@ -49,13 +49,13 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonCancel{
-        background: #118233;
+        background: #C81D25;
         font-size: 20px;
         font-weight: bold;
     }
 
     #buttonRegister{
-        background: #C81D25;
+        background: #118233;
         font-size: 20px;
         font-weight: bold;
     }

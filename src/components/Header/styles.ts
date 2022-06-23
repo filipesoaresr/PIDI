@@ -21,6 +21,11 @@ export const Content = styled.div `
     align-items: center;
     justify-content: space-between;
 
+    h6{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
     button{
         width: 5rem;
         height: 3rem;

@@ -75,7 +75,7 @@ export default function UserPage() {
                                 Telefone
                             </th>
                             <th id="dateColumn">
-                                Role
+                                Cargo
                             </th>
                             <th id="actionsColumn">
                                 Ações

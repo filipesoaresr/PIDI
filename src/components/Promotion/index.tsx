@@ -14,9 +14,9 @@ interface Promotion {
 }
 
 export default function Promotion({ _id, name, startDate, endDate, discount }: Promotion) {
-    const deleteIcon = { color: "red", fontSize: "1.5em", marginLeft:"" }
+    const deleteIcon = { color: "#C81D25", fontSize: "1.5em", marginLeft:"" }
     const editIcon = { color: "white", fontSize: "1.5em", marginLeft:"" }
-    const showIcon = { color: "yellow", fontSize: "1.5em", marginLeft:"" }
+    const showIcon = { color: "#bba901", fontSize: "1.5em", marginLeft:"" }
 
     const {setId} = useContext(PromotionContext)
 

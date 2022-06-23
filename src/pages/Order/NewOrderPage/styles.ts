@@ -9,6 +9,7 @@ export const Container = styled.div `
     width: 100%;
     height: 100%;
 
+    
 `;
 
 export const FormBlock = styled.div `
@@ -39,7 +40,6 @@ export const Form = styled.form `
     color: #fff;
 
     width: 80%;
-   
 
     border-radius: 5px;
 
@@ -78,33 +78,46 @@ export const Form = styled.form `
     #registerButton{
 
         width: 20rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding:12px 40px;
 
-        margin-top: 5rem;
-        margin-bottom: 2rem;
-        background: #118233;
-        color: #fff;
-
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
+        border-style: none;
         border-radius: 5px;
+        color: #FFFF;
+        transition: filter 0.2s;
+
+        background: #118233;
+        font-size: 20px;
+        font-weight: bold;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
         
     }
 
     #buttonCancel{
         width: 20rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding:12px 40px;
 
-        margin-top: 5rem;
-        margin-bottom: 2rem;
-
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
+        border-style: none;
         border-radius: 5px;
-        background: #C81D25;
-        color: #fff;
-    }
+        color: #FFFF;
+        transition: filter 0.2s;
 
+        background: #C81D25;
+        font-size: 20px;
+        font-weight: bold;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
+    }
 `;
 
 export const MainSection = styled.section `

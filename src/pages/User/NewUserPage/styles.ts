@@ -5,7 +5,26 @@ export const Container = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+
     background-color: #EBEBEB;
+
+    button {
+
+        width: 20rem;
+        margin-top: 2rem;
+        padding:12px 40px;
+
+        border-style: none;
+        border-radius: 5px;
+        color: #FFFF;
+        background: #F28118;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
+    }
 
 `;
 
@@ -59,27 +78,16 @@ export const Form = styled.form `
     }
 
     #buttonRegister{
-
-        width: 20rem;
-        height: 2.5rem;
-        margin-top: 3rem;
-        border-radius: 5px;
         background: #118233;
-        color: #fff;
         font-size: 20px;
         font-weight: bold;
         
     }
 
     #buttonCancel{
-        width: 20rem;
-        height: 2.5rem;
-        margin-top: 3rem;
         background: #C81D25;
         font-size: 20px;
         font-weight: bold;
-        border-radius: 5px;
-        color: #fff;
     }
 
 `;

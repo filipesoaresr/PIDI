@@ -6,6 +6,7 @@ export const Container = styled.div `
     align-items: center;
 
     background-color: #EBEBEB;
+    
     button {
 
         width: 20rem;
@@ -50,10 +51,14 @@ export const Form = styled.form `
 
     #buttonRegister{
         background: #118233;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     #buttonCancel{
         background: #C81D25;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     

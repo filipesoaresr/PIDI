@@ -21,7 +21,7 @@ export default function ReportPage() {
             </ReportIntro>
 
             <Link to='/sales/salespage'>
-                <button type='button' className="register">Gerar Listagem</button>
+                <button type='button' className="register">Gerar Relatório</button>
             </Link>
 
         </Form>

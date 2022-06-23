@@ -50,6 +50,7 @@ export const PaymentIntro = styled.div `
         margin-left: -5rem;
         font-size: 3rem;
         font-weight: bold;
+        text-align: center;
     }
 
     input {
