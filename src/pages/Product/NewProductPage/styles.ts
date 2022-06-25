@@ -81,14 +81,14 @@ export const MainSection = styled.div `
     input {
         margin-top: 0.3rem;
         width: 20rem;
-        height: 1.8rem;
+        height: 2rem;
 
         border-radius: 5px;
     }
     select {
         margin-top: 0.5rem;
         width: 20rem;
-        height: 1.8rem;
+        height: 2rem;
 
         border-radius: 5px;
     }
@@ -96,6 +96,7 @@ export const MainSection = styled.div `
     p {
         margin-top: 1rem;
         margin-left: 0;
+        font-size: 1.2rem;
         
     }
 

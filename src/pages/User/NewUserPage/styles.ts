@@ -45,7 +45,7 @@ export const Form = styled.form `
     color: #fff;
 
     width: 60%;
-    height: 45rem;
+    height: 50rem;
 
     text-align: center;
 
@@ -60,18 +60,19 @@ export const Form = styled.form `
         }   
 
     p {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
+        font-size: 1.2rem;
     }
 
     input {
         width: 15rem;
-        height: 1.5rem;
+        height: 2rem;
         border-radius: 5px;
     }
 
     select {
         width: 100%;
-        height: 1.5rem;
+        height: 2rem;
 
         border-radius: 5px;
 

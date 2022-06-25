@@ -13,21 +13,24 @@ export const Container = styled.div `
 
 `;
 
-export const FormBlock = styled.div `
+export const GraphBlock = styled.div `
    
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFF3B0;
 
-`;
-
-export const SecondSection = styled.section `
     margin-left: 2rem;
-    margin-top: 3rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+
+    border-radius: 5px;
+
     
 `;
 
-export const Form = styled.form `
+
+export const Report = styled.form `
     //display: flex;
     //justify-content: center;
     //align-items: center;
@@ -52,30 +55,18 @@ export const Form = styled.form `
         font-weight: bold;
     }
 
-    p {
-        margin-top: 0.5rem;
-    }
-
-    input {
-        width: 15rem;
-        height: 2rem;
-        border-radius: 5px;
-    }
-
-    select {
-        width: 15rem;
-        height: 1.5rem;
-
-        border-radius: 5px;
-
+    h2 {
+        margin-top: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        color: black;
     }
 
 
-    #buttonRegister{
-
+    #buttonCancel{
         width: 20rem;
 
-        margin-top: 5rem;
+        margin-top: 3rem;
         margin-bottom: 2rem;
 
         padding: 0.8rem 4rem;
@@ -86,41 +77,15 @@ export const Form = styled.form `
         color: #fff;
         font-size: 20px;
         font-weight: bold;
-        
-    }
-
-    #buttonCancel{
-        width: 20rem;
-
-        margin-top: 5rem;
-        margin-bottom: 2rem;
-
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
-        border-radius: 5px;
-        background: #C81D25;
-        color: #fff;
-        font-size: 20px;
-        font-weight: bold;
     }
 
 
 
 `;
 
-export const MainSection = styled.section `
-    margin-right: 2rem;
-    margin-top: 3rem;
-    
-    p{
-        margin-right: 2rem;
-    }
-
-`;
 
 
-export const AddProductSection = styled.section `
+export const TableSection = styled.section `
     margin-left: 2rem;
     margin-right: 2rem;
     margin-top: 2rem;
@@ -150,7 +115,7 @@ export const AddProductSection = styled.section `
 
     .content-table th, 
     .content-table td {
-        padding: 20px;
+        padding: 15px;
         
     }
 
@@ -165,7 +130,7 @@ export const AddProductSection = styled.section `
     }
 
     .content-table th{
-        font-size: 22px;
+        font-size: 20px;
         text-align: center;
     }
 
@@ -184,34 +149,21 @@ export const AddProductSection = styled.section `
 
     tr:hover {background-color:  #D5DFE5;}
 
-    #actionsColumn{
-        text-align: center;
-        vertical-align: middle;
+
+    #rowTotal{
+
+        td{
+        background-color: #CDD7DA;
+        border-top: 8px black;
+        }
     }
 
-
-    #addProductButton{
-        background-color: #569B06;
-    }
-
-    #deleteProductButton{
-        background-color: #C81D25;
-    }
-    
-    #searchButton{
-        width: 10%;
-        background: #2738A9;
-        color: white;
-        margin-top: 2rem;
-        border-radius: 5px;
-    }
 
     h5{
         margin-top: 1rem;
-        margin-bottom: 1rem;
         color: black;
         font-Size: 2rem;
-        font-style: bold;
+        font-weight: bold;
     }
     
 

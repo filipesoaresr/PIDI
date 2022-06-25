@@ -51,12 +51,13 @@ export const Form = styled.form `
     }
 
     p {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
+        font-size: 1.2rem;
     }
 
     input {
         width: 15rem;
-        height: 1.5rem;
+        height: 2rem;
         border-radius: 5px;
     }
 
@@ -68,7 +69,7 @@ export const Form = styled.form `
 
     select {
         width: 15rem;
-        height: 1.5rem;
+        height: 2rem;
 
         border-radius: 5px;
 

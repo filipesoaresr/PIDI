@@ -64,6 +64,18 @@ export default function NewProductPage() {
         history.push("/products")
     }
 
+    function handlResetFields() {
+        setProductType("")
+        setName(""),
+        setColection(""),
+        setDate(""),
+        setValue(0),
+        setPP(0),
+        setP(0),
+        setM(0), 
+        setG(0),
+        setGG(0)
+    }
 
     return (
         <Container>
@@ -167,7 +179,7 @@ export default function NewProductPage() {
 
                 </FormProductBlock>
                 <br />
-                <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link>
+                <Link to="/products"><button id="buttonCancel" type="reset" onClick={() => handlResetFields()}>Cancelar</button></Link>
                 &nbsp;
                 &nbsp;  
                 <button id="buttonRegister" type="submit" onClick={handleCreateNewProduct}> Cadastrar <BsFillPlusSquareFill/></button>

@@ -73,7 +73,7 @@ export default function ProductsPage() {
             <ProductIntro>
                 <h1>Produtos</h1>
 
-                <input type='text' placeholder='Digite o Nome do Produto' onChange={(event) => setProductName(event.target.value)}/>
+                <input type='text' placeholder='Digite o Nome do Produto' onChange={(event) => setProductName(event.target.value)}/> 
                 <br />
                 <button type='submit' onClick={() => handleSearch(productName)}>Consultar</button>
 

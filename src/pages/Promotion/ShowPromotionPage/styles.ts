@@ -22,9 +22,15 @@ export const FormBlock = styled.div `
 `;
 
 export const SecondSection = styled.section `
-    margin-left: 2rem;
+    margin-left: 3rem;
     margin-top: 3rem;
     
+    text-align: left;
+
+    input{
+        float: right;
+        margin-left: 0.5rem;
+    }
 `;
 
 export const Form = styled.form `
@@ -64,7 +70,7 @@ export const Form = styled.form `
 
     select {
         width: 15rem;
-        height: 1.5rem;
+        height: 2rem;
 
         border-radius: 5px;
 
@@ -99,7 +105,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #C81D25;
+        background: #118233;
         color: #fff;
         font-size: 20px;
         font-weight: bold;
@@ -110,11 +116,13 @@ export const Form = styled.form `
 `;
 
 export const MainSection = styled.section `
-    margin-right: 2rem;
-    margin-top: 3rem;
     
-    p{
-        margin-right: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+
+    input{
+        float: right;
+        margin-left: 0.5rem;
     }
 
 `;
@@ -167,6 +175,7 @@ export const AddProductSection = styled.section `
     .content-table th{
         font-size: 22px;
         text-align: center;
+        width: 10%;
     }
 
     .content-table tbody tr.active-row {
@@ -184,27 +193,7 @@ export const AddProductSection = styled.section `
 
     tr:hover {background-color:  #D5DFE5;}
 
-    #actionsColumn{
-        text-align: center;
-        vertical-align: middle;
-    }
-
-
-    #addProductButton{
-        background-color: #569B06;
-    }
-
-    #deleteProductButton{
-        background-color: #C81D25;
-    }
     
-    #searchButton{
-        width: 10%;
-        background: #2738A9;
-        color: white;
-        margin-top: 2rem;
-        border-radius: 5px;
-    }
 
     h5{
         margin-top: 1rem;
@@ -213,7 +202,5 @@ export const AddProductSection = styled.section `
         font-Size: 2rem;
         font-style: bold;
     }
-    
-
     
     `;

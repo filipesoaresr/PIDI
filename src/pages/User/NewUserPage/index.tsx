@@ -79,7 +79,7 @@ export default function NewUserPage() {
                 <h1>Novo Usuário</h1>
                 <FormBlock>
                     <MainSection>
-                    <p>Nome Completo:</p>
+                    <p>Nome:</p>
                         <input 
                         type="text"  
                         value={name}

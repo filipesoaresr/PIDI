@@ -28,6 +28,7 @@ import ErrorRequestPage from './pages/ErrorPages/bad-request';
 import ErrorForbiddenPage from './pages/ErrorPages/forbidden';
 import ListSalesPage from './pages/Sales/ListSalesPage';
 import UpdatePromotionPage from './pages/Promotion/UpdatePromotionPage';
+import ShowPromotionPage from './pages/Promotion/ShowPromotionPage';
 
 
 import { ProductProvider } from './contexts/ProductContext';
@@ -36,6 +37,7 @@ import { PaymentProvider } from './contexts/PaymentContext';
 import { OrderProvider } from './contexts/OrderContext';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
+import ShowReportPage from './pages/ReportPage/ShowReportPage';
 
 
 
@@ -43,15 +45,17 @@ export function App() {
   return (
    
    <Router>
-      <div className="App">
+       
         <AuthProvider>
         <UserProvider>
         <PaymentProvider>
         <PromotionProvider>
         <ProductProvider >
         <OrderProvider>
-          <Header />
+        <Header />
 
+        <div className="App">
+      
           <Switch>
             <Route path="/" exact component={HomeBoard} />
             <Route path="/login" component={LoginPage} />
@@ -64,11 +68,13 @@ export function App() {
             <Route path="/promotions" component={PromotionsPage} />
             <Route path="/promotion/newpromotion" component={NewPromotionPage} />
             <Route path="/promotion/updatepromotions" component={UpdatePromotionPage} />
+            <Route path="/promotion/showpromotion" component={ShowPromotionPage} />
             <Route path="/paymentoption" exact component={PaymentOption} />
             <Route path="/paymentoption/newpaymentoption" component={NewPaymentOption} />
             <Route path="/order" exact component={OrderPage} />
             <Route path="/order/neworder" component={NewOrderPage} />
-            <Route path="/report" component={ReportPage} />
+            <Route path="/report" exact component={ReportPage} />
+            <Route path="/report/showreport" component={ShowReportPage} />
             <Route path="/sales" exact component={SalesPage} />
             <Route path="/order/updateorder" exact component={UpdateOrderPage} />
             <Route path="/order/showorder" exact component={ShowOrderPage} />
@@ -78,14 +84,16 @@ export function App() {
           </Switch>
 
           <Footer />
+        
+        </div>
         </OrderProvider>
         </ProductProvider>
         </PromotionProvider>
         </PaymentProvider>
         </UserProvider>
         </AuthProvider>
+        
         <GlobalStyle />
-      </div>
    </Router>
   
   );

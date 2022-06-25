@@ -90,8 +90,8 @@ export default function NewOrderPage() {
         let m = document.getElementById("m"+id) as HTMLInputElement || {value:0}
 
         let total = Number(p.value)+Number(m.value)+Number(pp.value)+Number(g.value)+Number(gg.value)
-        console.log("discount")
-        console.log(discount)
+        //console.log("discount", discount)
+        
 
         if(total >0){
             let total_value = total * value
@@ -99,11 +99,9 @@ export default function NewOrderPage() {
             console.log(1-discount/100)
             if(totalValue_discont >=0 ){
                 console.log("totalValue_discont")
-
-
                 console.log(totalValue_discont)
 
-        return`${total_value} -> ${totalValue_discont}` ||  null 
+            return`${total_value} -> ${totalValue_discont}` ||  null 
             }
             else{
                 return `${total_value}`  || null 
@@ -114,10 +112,17 @@ export default function NewOrderPage() {
     }
 
    function handleIncludeProductsInOrder(product: IProduct,) {
+
+        
+
         let productAmount = pp + p + m + g + gg;
         let discount = product.promotion?.discount;
+        let productValueInOrder = 0
 
-        let productValueInOrder = (product.value * (1 - discount/100)) * productAmount;
+        product.promotion ? 
+        productValueInOrder = (product.value * (1 - discount/100)) * productAmount :
+        productValueInOrder = product.value * productAmount
+       
 
         const productsOrder: IProductInOrder = {
             product_name: product.name,
@@ -173,7 +178,17 @@ export default function NewOrderPage() {
 
     function handleCreateNewOrder(event: FormEvent) {
         event.preventDefault();
+        if(fk_id_user == "") {
+            
+            return alert("Insira um vendedor")
+        }
 
+        if(totalValue == 0) {
+            
+            return alert("Error: Pedido sem Produtos")
+        }
+
+        console.log("TOTAL VALUE+++++++", totalValue)
         const data = {
             //id,
             //dateCreated,
@@ -190,6 +205,12 @@ export default function NewOrderPage() {
         alert("Cadastro Realizado com Sucesso!")
         getOrders();
         history.push("/order")
+
+        setTimeout(() => {
+            setFk_id_payment_options(""),
+            setFk_id_user(""),
+            setTotalValue(0)
+        }, 1000)
     }
 
 
@@ -316,15 +337,11 @@ export default function NewOrderPage() {
                 <FormBlock>
 
                     <MainSection>
-                        <p>Data do Pedido:</p>
-                        <input
-                            type="date"
-                            placeholder="--/--/--"
-                        />
 
                         <p>Opçao de Pagamento</p>
                         {console.log(payments)}
-                        <select value={fk_id_payment_options} onChange={event => setFk_id_payment_options(event.target.value)}>
+                        <select value={fk_id_payment_options} onChange={event => setFk_id_payment_options(event.target.value)} placeholder="Pagamento" required>
+                            <option></option>
                             {
                                 payments.map((payment: IPaymentInOrder) => (
                                     <option value={payment.id}>{payment.name}</option>
@@ -355,7 +372,8 @@ export default function NewOrderPage() {
                     <SecondSection>
 
                         <p>Nome atendente:</p>
-                        <select value={fk_id_user} onChange={event => setFk_id_user(event.target.value)}>
+                        <select  onChange={event => setFk_id_user(event.target.value)} placeholder="Atendente" required>
+                            <option></option>
                             {
                                 users.map((user: IPaymentInOrder) => (
                                     <option value={user.id}>{user.name}</option>
@@ -386,10 +404,7 @@ export default function NewOrderPage() {
                 </Link>
                 &nbsp;
                 &nbsp;
-                <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>
-                    Cadastrar 
-                    <BsFillPlusSquareFill />
-                </button>
+                <button id="registerButton" type="submit" onClick={handleCreateNewOrder}>Cadastrar <BsFillPlusSquareFill /></button>
 
 
             </Form>

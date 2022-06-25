@@ -11,6 +11,14 @@ import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
 import { GiTShirt } from 'react-icons/gi';
 
 
+interface IProductInPromotion {
+    product_name: string;
+    order_product_value: number,
+    fk_id_product: string,
+    hasPromotion: false,
+
+}
+
 interface Product {
     id: string;
     productType: string;
@@ -22,7 +30,7 @@ interface Product {
     m: number;
     g: number;
     gg: number;
-    promotion: {
+    promotion: {    
         name: string;
     };
     value: string;
@@ -30,7 +38,7 @@ interface Product {
 
 
 
-export default function NewPromotionPage() {
+export default function ShowPromotionPage() {
 
 
    const {
@@ -44,7 +52,7 @@ export default function NewPromotionPage() {
     setDiscount,
     productsInPromo,
     setProductsInPromo
-} = useContext(PromotionContext)
+    } = useContext(PromotionContext)
 
     const { products } = useContext(ProductContext)
     const recivedProducts: Array<any> = []
@@ -79,48 +87,40 @@ export default function NewPromotionPage() {
         <Container>
 
             <Form>
-            <h1>Nova Promoção</h1>
+            <h1>Promoção</h1>
                 <FormBlock>
                     <MainSection>
 
-                        <p>Nome da Promoção:</p>
-                        <input
-                            type="text"
-                            placeholder="Nome da Promoção"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
+
+                        Codigo da Promoção: <input placeholder="Codigo" disabled={true}/>
+                        <br/>
+                        <br/>
+                        Nome da Promoção: <input placeholder="Nome da Promoção" disabled={true} value={name}/>
+                        <br/>
+                        <br/>
+                        Vendas: <input placeholder="Nome da Promoção" disabled={true} value={name}/>
+
                     </MainSection>
 
                     <SecondSection>
 
-                        <p>Desconto</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
-                            <option value="70">70% OFF</option>
-                            <option value="60">60% OFF</option>
-                            <option value="50">50% OFF</option>
-                            <option value="30">30% OFF</option>
-                            <option value="20">20% OFF</option>
-                            <option value="10">10% OFF</option>
-                        </select>
-
-                        <p>Fim da Promoção</p>
-                        <input
-                            type="date"
-                            value={endDate}
-                            onChange={event => setEndDate(event.target.value)}
-                        />
+                        Inicio da Promoção: <input disabled={true}/>
+                        <br/>
+                        <br/>
+                        Fim da Promoção: <input value={endDate} disabled={true}/>
+                        <br/>
+                        <br/>
+                        Desconto: <input value={discount} disabled={true}/>
 
                     </SecondSection>
                 </FormBlock>
+                
 
 
                 <AddProductSection>
                 <GiTShirt style={{ fontSize: "3rem", color: "black" }}></GiTShirt>
-                <h5>Nome do Produto</h5>
-                <input type="text" />
+                <h5>Produtos</h5>
                 <br />
-                <button id="searchButton">Consultar</button>
                 <Table bordered hover responsive>
                 <table className="content-table">
                 <thead>
@@ -135,7 +135,7 @@ export default function NewPromotionPage() {
                             Valor
                         </th>
                         <th>
-                            Ações
+                            Valor com desconto
                         </th>
                     </tr>
                 </thead>
@@ -154,15 +154,8 @@ export default function NewPromotionPage() {
                                 <td>
                                     {product.value}
                                 </td>
-                                <td id="actionsColumn">                                     
-                                    <Button id="addProductButton" variant="primary" size="sm" 
-                                    onClick={() => addProductsInPromo(product)}>
-                                        Incluir
-                                    </Button>
-                                    
-                                    <Button id="deleteProductButton" variant="primary" size="sm" >
-                                        Excluir
-                                    </Button>
+                                <td>                                     
+                            
 
                                 </td>
                             </tr>
@@ -174,15 +167,8 @@ export default function NewPromotionPage() {
                 </AddProductSection>
                 <br /> 
                 <Link to="/promotions">
-                    <button id="buttonCancel" type="reset">Cancelar</button>
+                    <button id="buttonCancel" type="reset">Voltar</button>
                 </Link>
-                &nbsp;
-                &nbsp;
-                <button id="buttonRegister" type="submit" onClick={handleCreateNewPromotion}>
-                    Cadastrar <BsFillPlusSquareFill/>
-                </button>
-        
-
             </Form>
 
 
