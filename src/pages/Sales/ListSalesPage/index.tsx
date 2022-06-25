@@ -61,7 +61,10 @@ export default function ListSalesPage() {
 
     const { users } = useContext(UserContext)
     const [userName, setUserName] = useState('')
-    
+    const [totalValue, setTotalValue] = useState(0)
+
+
+    const List: Array<any> = [];
 
     function handleUserName(sale: any){ 
          users.map((user: any) => {
@@ -74,6 +77,23 @@ export default function ListSalesPage() {
          })
     }
 
+    function handleGenerateTotal() {
+        sales.map((sale: any) => {
+            List.push(sale.total_value)
+        })
+        var soma = 0;
+    
+        for(var i = 0; i < List.length; i++) {
+            soma += List[i];
+        }
+        setTotalValue(soma)
+        console.log("SOMA", soma)
+        console.log("VALOR NO ESTADO", totalValue)
+    }
+
+    useEffect(() => {
+        handleGenerateTotal()
+    }, [])
 
     return (
         <Container>
@@ -151,7 +171,7 @@ export default function ListSalesPage() {
                     
                     <label> Total do Período </label>
                     <br />
-                    <input id="periodTotalInput" name="periodTotal" type="text"></input>
+                    <p id="totalValue">R${totalValue}</p>
                     
                 </SalesTable>
 

@@ -50,8 +50,6 @@ export default function SalesPage() {
             List.push(data)
            })
            setSales([...List])
-            //sales.push(response.data)
-            console.log("TESTE SALES response data", response.data)
         }).catch((error) => {
             console.log("ERROR", error)
         })   
@@ -59,8 +57,6 @@ export default function SalesPage() {
             console.log("====SALES====", sales)
             history.push('/sales/listsalespage')
         }, 500)
-        console.log("TESTE STARTDATE", start_date)
-        console.log("TESTE ENDDATE", end_date)
     }
 
     return (

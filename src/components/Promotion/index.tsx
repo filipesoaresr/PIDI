@@ -39,7 +39,7 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
             <h4>{name}</h4>
             <p>{endDate}</p>
             <p className="discount">{discount}%OFF</p>
-            {products.map((product: any) => (
+            {products?.map((product: any) => (
                 <p>{product.name}</p>
             ))}
             {console.log("PRODUCTS NO COMP PROMOTION", products)}

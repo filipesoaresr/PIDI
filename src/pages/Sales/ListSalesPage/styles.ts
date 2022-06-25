@@ -93,6 +93,12 @@ export const SalesTable  = styled.section `
             
         }
 
+    p#totalValue {
+        color: black;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
 
     .content-table{
       width: 100%;

@@ -11,6 +11,28 @@ export const Container = styled.div`
     height: 100%;
     background-color: #EBEBEB;
 
+    button.getBack {
+        position:fixed;
+        bottom:10%;
+        left: 40px;
+
+        font-size: 1.3rem;
+        font-weight: bold;
+
+        margin:0;
+        padding:12px 20px;
+
+        border-radius: 5px;
+        border-style: none;
+        color: #FFFF;
+        background: #A63446;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.9);
+        cursor: pointer;
+        }
+    }
 
     button.register {
         position:fixed;
@@ -32,6 +54,26 @@ export const Container = styled.div`
         filter: brightness(0.8);
         cursor: pointer;
         }
+    }
+
+    div#warningNotFound{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 2.5%;
+        margin-bottom: 25%;
+        background-color: #F4FFFD;
+        border-radius: 10px;
+        
+        padding:1.5rem 3rem;
+        
+        p {
+            margin-right: 1rem;
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+
     }
 `;
 

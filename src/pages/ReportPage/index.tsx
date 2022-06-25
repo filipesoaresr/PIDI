@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container, ReportIntro, Form } from './styles'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Button } from 'reactstrap';
+import { OrderContext } from '../../contexts/OrderContext';
+import { api } from '../../services/api';
+
+interface IProductInOrder {
+    pp?: number,
+    p?: number,
+    m?: number,
+    g?: number,
+    gg?:number,
+    order_product_value: number,
+    fk_id_product: string,
+    hasPromotion: false,
+
+}
+interface Order {
+    id: string;
+    dateCreated: Date;
+    fk_id_payment_options: string;
+    fk_id_user: string;
+    dateSubmitted: Date;
+    isOpen: boolean;
+    installment?: string;
+    totalValue: number;
+    productHasOrder: IProductInOrder[]
+}
 
 export default function ReportPage() {
+
+
+    const {sales, startDate, setStartDate, endDate, setEndDate, setSales} = useContext(OrderContext)
+    const history = useHistory();
+    let List: Array<any> = []
+
+    function getSales(startDate: any, endDate: any) {
+
+        //.toISOString()
+        const start_dateNonFormatted= startDate
+        const end_dateNonFormatted= endDate
+
+        const start_date= start_dateNonFormatted.toISOString()
+        const end_date= end_dateNonFormatted.toISOString()
+         
+        
+        api.get('/sales/' + start_date + '/' + end_date).then((response) => {
+           response.data.map((data: Order) => {
+            List.push(data)
+           })
+           setSales([...List])
+            //sales.push(response.data)
+            console.log("TESTE SALES response data", response.data)
+        }).catch((error) => {
+            console.log("ERROR", error)
+        })   
+        setTimeout(() => {
+            console.log("====SALES====", sales)
+            //history.push('/sales/listsalespage')
+        }, 500)
+        console.log("TESTE STARTDATE", start_date)
+        console.log("TESTE ENDDATE", end_date)
+    }
+
+
+    function handleGenerateReport() {
+        
+    }
+
     return (
         <Container>
         <Form>
@@ -13,16 +77,16 @@ export default function ReportPage() {
                 <h1>Relatório Inteligente</h1>
 
                 <p>Data Inicial:</p>
-                <input type='date' />
+                <input type='date' onChange={event => setStartDate(new Date(event.target.value))}/>
 
                 <p>Data Final:</p>
-                <input type='date' />
+                <input type='date' onChange={event => setEndDate(new Date(event.target.value))}/>
 
             </ReportIntro>
 
-            <Link to='/sales/salespage'>
-                <button type='button' className="register">Gerar Relatório</button>
-            </Link>
+           
+            <button type='button' className="register" onClick={() => getSales(startDate, endDate)}>Gerar Relatório</button>
+            
 
         </Form>
     </Container>
