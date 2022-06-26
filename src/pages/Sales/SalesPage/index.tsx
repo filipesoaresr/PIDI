@@ -66,9 +66,9 @@ export default function SalesPage() {
 
                     <h1>Listagem de Vendas</h1>
 
-                    Data Inicial: <input type='date'  onChange={event => setStartDate(new Date(event.target.value))}/>
+                    <p>Data Inicial:</p> <input type='date'  onChange={event => setStartDate(new Date(event.target.value))}/>
 
-                    Data Final: <input type='date'  onChange={event => setEndDate(new Date(event.target.value))}/>
+                    <p>Data Final:</p> <input type='date'  onChange={event => setEndDate(new Date(event.target.value))}/>
 
                 </SalesIntro>
 

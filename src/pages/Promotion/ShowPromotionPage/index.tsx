@@ -41,48 +41,7 @@ interface Product {
 export default function ShowPromotionPage() {
 
 
-   const {
-    name,
-    setName,
-    //startDate,
-    //setStartDate,
-    endDate,
-    setEndDate,
-    discount,
-    setDiscount,
-    productsInPromo,
-    setProductsInPromo
-    } = useContext(PromotionContext)
-
-    const { products } = useContext(ProductContext)
-    const recivedProducts: Array<any> = []
-
-    function addProductsInPromo(product: any) {
-        
-        //const recivedProducts: string[] = []
-        recivedProducts.push(product.id)
-
-        //setProductsInPromo(recivedProducts)
-        console.log("=====Added products=====", recivedProducts)
-    }
-
-    function handleCreateNewPromotion(event: FormEvent) {
-        event.preventDefault();
-
-        
-
-        const data = {
-           name,
-           endDate,
-           discount,
-           products: recivedProducts,
-        };
-
-        console.log("PRomo nova", data)
-        api.post('/promotions', data)
-        alert("Cadastro Realizado com Sucesso!")
-    }
-
+  
     return (
         <Container>
 
@@ -95,10 +54,10 @@ export default function ShowPromotionPage() {
                         Codigo da Promoção: <input placeholder="Codigo" disabled={true}/>
                         <br/>
                         <br/>
-                        Nome da Promoção: <input placeholder="Nome da Promoção" disabled={true} value={name}/>
+                        Nome da Promoção: <input placeholder="Nome da Promoção" disabled={true} />
                         <br/>
                         <br/>
-                        Vendas: <input placeholder="Nome da Promoção" disabled={true} value={name}/>
+                        Vendas: <input placeholder="Nome da Promoção" disabled={true} />
 
                     </MainSection>
 
@@ -107,10 +66,10 @@ export default function ShowPromotionPage() {
                         Inicio da Promoção: <input disabled={true}/>
                         <br/>
                         <br/>
-                        Fim da Promoção: <input value={endDate} disabled={true}/>
+                        Fim da Promoção: <input  disabled={true}/>
                         <br/>
                         <br/>
-                        Desconto: <input value={discount} disabled={true}/>
+                        Desconto: <input disabled={true}/>
 
                     </SecondSection>
                 </FormBlock>
@@ -141,26 +100,23 @@ export default function ShowPromotionPage() {
                 </thead>
 
                 <tbody>
-                    {console.log(products)}
-                    {
-                        products.map((product: Product) => (
+                    
                             <tr >
-                                <td key={product.name}>
-                                    {product.name}
+                                <td >
+                                    
                                 </td>
                                 <td>
-                                    {product.promotion?.name}
+                                   
                                 </td>
                                 <td>
-                                    {product.value}
+                                  
                                 </td>
                                 <td>                                     
                             
 
                                 </td>
                             </tr>
-                        ))
-                    }
+                      
                 </tbody>
                 </table>
                 </Table>

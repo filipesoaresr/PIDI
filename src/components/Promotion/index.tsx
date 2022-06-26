@@ -22,6 +22,13 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
 
     const {setId} = useContext(PromotionContext)
 
+    const objTeste = {
+
+        id: '555555222222222225505050505',
+        name: 'Black friday'
+
+    }
+
     async function handleDelete(id: string) {
         api.delete(`/promotions/${id}`)
 
@@ -32,6 +39,16 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
         setId(id)
     }
 
+    /* async function handlePromotionID(idPromotion: string) {
+        console.log("ID A SER TRANSFERIDA", idPromotion)
+        setId(idPromotion)
+        console.log("ID DO ESTADO NA FUNCTION SETID", id)
+        getOneOrder(idPromotion)
+        setTimeout(() =>{
+            history.push("/order/showorder")     
+        }, 500)
+    }
+ */
     return (
 
 

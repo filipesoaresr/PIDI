@@ -24,6 +24,8 @@ export function PromotionProvider({children}: PromotionProviderProps) {
     const [endDate, setEndDate] = useState('');
     const [discount, setDiscount] = useState('');
 
+    const [onePromotion, setOnePromotion] = useState<Promotion>();
+
     const [promotions, setPromotions] = useState<Promotion[]>([])
     const [productsInPromo, setProductsInPromo] = useState('')
 
@@ -33,6 +35,18 @@ export function PromotionProvider({children}: PromotionProviderProps) {
             
         })
     }
+
+    async function getOnePromotion(id: string) {
+        api.get(`/promotions/${id}`).then((response) => {
+          
+           setOnePromotion(response.data)
+           console.log("ID", id)
+           console.log("RESPONSE DATA", response.data)
+           console.log("ONE Promotion", onePromotion)
+       }).catch((error) => {
+           console.log("ERROR", error)
+       })   
+   }
 
     useEffect(() => {
         getPromotions()

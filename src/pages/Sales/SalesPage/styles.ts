@@ -83,8 +83,6 @@ export const SalesIntro = styled.div `
 
     p{
         margin-top: 1rem;
-        
-        
     }
 `;
 

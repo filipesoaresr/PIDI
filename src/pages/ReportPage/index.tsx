@@ -37,8 +37,8 @@ export default function ReportPage() {
     let List: Array<any> = []
     let productsList: Array<any> = []
     let valueList: Array<any> = []
-    let totalValue: Number = 0
-
+    let totalValue: number = 0
+    let saleProductsInPeriod: Array<any>= [];
 
     
 
@@ -95,6 +95,7 @@ export default function ReportPage() {
         
         console.log("TOTAL VALUE ", totalValue)
         removeDuplicates(productsList)
+        handlePercentage()
         
     }
 
@@ -124,9 +125,9 @@ export default function ReportPage() {
       }
 
       function removeDuplicates(lista: Array<any>) {
-        let totals: Array<any>= [];
+       
         lista.forEach(product => {
-          let obj = totals.find(productTotals => productTotals.product_name === product.product_name);
+          let obj = saleProductsInPeriod.find(productTotals => productTotals.product_name === product.product_name);
           if (obj) {
             obj.order_product_value = obj.order_product_value + product.order_product_value
             obj.p = obj.p + product.p
@@ -135,12 +136,36 @@ export default function ReportPage() {
             obj.g = obj.g + product.g
             obj.gg = obj.gg + product.gg
           } else {
-            totals.push(product);
+            saleProductsInPeriod.push(product);
           }
         });
         
-        console.log(totals);
+        console.log("LISTA RESUMIDA", saleProductsInPeriod);
        
+      }
+
+      function handlePercentage() {
+        let totalProductValue: Array<any>= []
+        let productsValueList: Array<any>= []
+        let percentageList = 0;
+
+            saleProductsInPeriod.map((product) => {
+
+                productsValueList.push(product.order_product_value);
+
+                productsValueList.map((value: any) => {
+                    percentageList = (value / totalValue) * 100
+                })
+                
+
+                totalProductValue.push(
+                    {
+                        nome: product.product_name,
+                        percent: percentageList
+                    }
+                )
+            })
+        console.log("LISTA DE PORCENTAGEM", totalProductValue)
       }
 
 
