@@ -211,7 +211,7 @@ export const AddProductSection = styled.section `
         margin-bottom: 1rem;
         color: black;
         font-Size: 2rem;
-        font-style: bold;
+        font-weight: bold;
     }
     
 

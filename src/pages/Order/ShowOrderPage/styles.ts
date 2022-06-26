@@ -129,58 +129,59 @@ export const AddProductSection = styled.section `
     border-radius: 8px;  
 
     .content-table{
-      width: 100%;
-      border-radius: 10px 10px 2px 2px;
-      overflow: hidden;
-      border-collapse: collapse;      
-      align-items: center;
-      text-align: left;
-      margin: 2rem 0;
-      //margin-left: 10%;
-    }
-
-    .content-table thead tr{
-        background-color: #1F5976;
-        font-size: 24px;
-        text-align: center;
-        color: white;
-    }
-
-    .content-table th, 
-    .content-table td {
-        padding: 20px;
-        
-    }
-
-    .content-table tbody tr{
-        border-bottom: 1px solid #dddddd;
-    }
-
-     .content-table td{
-        font-size: 15px;
+        width: 100%;
+        border-radius: 10px 10px 2px 2px;
+        overflow: hidden;
+        border-collapse: collapse;      
+        align-items: center;
         text-align: left;
-        font-weight: bold;
-    }
-
-    .content-table th{
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .content-table tbody tr.active-row {
-         font-weight: bold;
-         color: #009879;
-    }
-
-    tr:nth-of-type(even){
-        background-color: #f3f3f3;
-    }
-
-    tbody tr:last-of-type{
-        border-bottom: 2px solid #1F5976;
-    }
-
-    tr:hover {background-color:  #D5DFE5;}
+        margin: 2rem 0;
+        //margin-left: 10%;
+      }
+  
+      .content-table thead tr{
+          background-color: #1F5976;
+          font-size: 24px;
+          text-align: center;
+          color: white;
+      }
+  
+      .content-table th, 
+      .content-table td {
+          padding: 20px;
+          
+      }
+  
+  
+      .content-table tbody tr{
+          border-bottom: 1px solid #dddddd;
+      }
+  
+       .content-table td{
+          font-size: 15px;
+          text-align: left;
+          font-weight: bold;
+      }
+  
+      .content-table th{
+          font-size: 22px;
+          text-align: center;
+      }
+  
+      .content-table tbody tr.active-row {
+           font-weight: bold;
+           color: #009879;
+      }
+  
+      tr:nth-of-type(even){
+          background-color: #f3f3f3;
+      }
+  
+      tbody tr:last-of-type{
+          border-bottom: 2px solid #1F5976;
+      }
+  
+      tr:hover {background-color:  #D5DFE5;}
 
     #actionsColumn{
         text-align: center;

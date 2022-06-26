@@ -122,6 +122,7 @@ async function handleUpdate(event: FormEvent, id: string) {
                     <h5>Produtos do Pedido</h5>
                    
                         <Table bordered hover responsive >
+                        <table className="content-table">
                             <thead>
                                 <tr>
                                     <th>
@@ -176,6 +177,7 @@ async function handleUpdate(event: FormEvent, id: string) {
                                     ))
                                 }
                             </tbody>
+                            </table>
                         </Table>
                     </AddProductSection>
 

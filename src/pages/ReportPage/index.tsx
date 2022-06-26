@@ -31,7 +31,8 @@ interface Order {
 export default function ReportPage() {
 
 
-    const {sales, startDate, setStartDate, endDate, setEndDate, setSales} = useContext(OrderContext)
+    const {sales, startDate, setStartDate, endDate, setEndDate,
+         setSales, setProductsPercentage, productsPercentage, setGroupedProductListInPeriod} = useContext(OrderContext)
     //const [totalValue, setTotalValue ] = useState(0)
     const history = useHistory();
     let List: Array<any> = []
@@ -39,6 +40,9 @@ export default function ReportPage() {
     let valueList: Array<any> = []
     let totalValue: number = 0
     let saleProductsInPeriod: Array<any>= [];
+
+    //let chartLabels: Array<any> = []
+    //let chartData: Array<any> = []
 
     
 
@@ -96,6 +100,10 @@ export default function ReportPage() {
         console.log("TOTAL VALUE ", totalValue)
         removeDuplicates(productsList)
         handlePercentage()
+
+        setTimeout(() => {
+            history.push("/report/showreport")
+        }, 1000)
         
     }
 
@@ -141,7 +149,7 @@ export default function ReportPage() {
         });
         
         console.log("LISTA RESUMIDA", saleProductsInPeriod);
-       
+        setGroupedProductListInPeriod(saleProductsInPeriod)
       }
 
       function handlePercentage() {
@@ -165,7 +173,10 @@ export default function ReportPage() {
                     }
                 )
             })
-        console.log("LISTA DE PORCENTAGEM", totalProductValue)
+            setProductsPercentage(totalProductValue)
+
+           
+            console.log("LISTA DE PORCENTAGEM", totalProductValue)
       }
 
 

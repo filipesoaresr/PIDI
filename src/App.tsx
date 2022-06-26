@@ -39,7 +39,8 @@ import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
 import ShowReportPage from './pages/ReportPage/ShowReportPage';
 
-
+import { ArcElement } from "chart.js";
+import Chart from "chart.js/auto";
 
 export function App() {
   return (

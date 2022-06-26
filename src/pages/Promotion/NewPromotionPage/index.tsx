@@ -118,7 +118,7 @@ export default function NewPromotionPage() {
                 <AddProductSection>
                 <GiTShirt style={{ fontSize: "3rem", color: "black" }}></GiTShirt>
                 <h5>Nome do Produto</h5>
-                <input type="text" />
+                <input type="text" placeholder="Digite aqui"/>
                 <br />
                 <button id="searchButton">Consultar</button>
                 <Table bordered hover responsive>
@@ -144,8 +144,8 @@ export default function NewPromotionPage() {
                     {console.log(products)}
                     {
                         products.map((product: Product) => (
-                            <tr >
-                                <td key={product.name}>
+                            <tr key={product.name}>
+                                <td >
                                     {product.name}
                                 </td>
                                 <td>

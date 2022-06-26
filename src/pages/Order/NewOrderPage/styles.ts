@@ -26,6 +26,34 @@ export const SecondSection = styled.section `
     
 `;
 
+export const ThirdSection = styled.section `
+    margin-top: 4.5rem;
+
+    #totalPedidoText{
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    #totalPedidoButton{
+        width: 10%;
+        height: 2.5rem;
+        border-radius: 5px;
+
+        font-size: 1.3rem;
+        font-weight: bold;
+
+        background-color: #FFBC42;
+        color: #EBEBEB;
+    }
+
+    
+    #totalValueText{
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+`;
+
 export const Form = styled.form `
     //display: flex;
     //justify-content: center;
@@ -223,7 +251,7 @@ export const AddProductSection = styled.section `
         margin-top: 1rem;
         color: black;
         font-Size: 2rem;
-        font-style: bold;
+        font-weight: bold;
     }
     
 

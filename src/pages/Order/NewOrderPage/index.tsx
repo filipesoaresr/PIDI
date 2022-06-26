@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../../services/api';
-import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
+import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection, ThirdSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
@@ -226,7 +226,7 @@ export default function NewOrderPage() {
                 <AddProductSection>
                     <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
                     <h5>Nome do Produto</h5>
-                    <input type="text" />
+                    <input type="text" placeholder="Digite aqui" />
                     <br />
                     <button id="searchButton">Consultar</button>
                     <Table bordered hover responsive >
@@ -371,7 +371,7 @@ export default function NewOrderPage() {
 
                     <SecondSection>
 
-                        <p>Nome atendente:</p>
+                        <p>Nome atendente</p>
                         <select  onChange={event => setFk_id_user(event.target.value)} placeholder="Atendente" required>
                             <option></option>
                             {
@@ -382,22 +382,23 @@ export default function NewOrderPage() {
                         </select>
 
 
-                        <p>Número do Pedido:</p>
+                        <p>Número do Pedido</p>
                         <input
                             type="text"
                             placeholder=""
                         />
 
-
-                        <p>Total do Pedido:</p>
-                        <button onClick={(event) => getTotalValue(event)}>Ver Total</button>
-                        <p>R${totalValue}</p>
-
-
                     </SecondSection>
+
+                   
 
                 </FormBlock>
 
+                <ThirdSection>
+                        <p id="totalPedidoText">Total do Pedido</p>
+                        <button id="totalPedidoButton" onClick={(event) => getTotalValue(event)}>Ver Total</button>
+                        <p id="totalValueText">R${totalValue}</p>
+                </ThirdSection>
 
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>

@@ -18,7 +18,10 @@ export const GraphBlock = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFF3B0;
+    background-color: #FFF;
+
+    height: 20%;
+    width: 90%;
 
     margin-left: 2rem;
     margin-right: 2rem;

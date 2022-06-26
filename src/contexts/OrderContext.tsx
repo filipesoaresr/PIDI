@@ -48,6 +48,9 @@ export function OrderProvider({ children }: OrderProviderProps) {
 
     const [oneOrder, setOneOrder] = useState<Order>();
 
+    const [groupedProductListInPeriod, setGroupedProductListInPeriod] = useState([]);
+    const [productsPercentage, setProductsPercentage] = useState('');
+
     const [pp, setPP] = useState(0);
     const [p, setP] = useState(0);
     const [m, setM] = useState(0);
@@ -131,7 +134,11 @@ export function OrderProvider({ children }: OrderProviderProps) {
             startDate,
             setStartDate,
             endDate,
-            setEndDate
+            setEndDate,
+            productsPercentage,
+            setProductsPercentage,
+            groupedProductListInPeriod,
+            setGroupedProductListInPeriod
         }}>
             {children}
         </OrderContext.Provider>
