@@ -29,8 +29,9 @@ export default function PromotionsPage() {
     const [notFound, setNotFound] = useState(false)
 
 
-    function handleSearch(name: string){
-        api.get(`/products/search/${name}`).then(response => {
+    function handleSearch(promotion_name: string){
+        console.log(promotion_name)
+        api.get(`/promotions/search/${promotion_name}`).then(response => {
             console.log("DAta", response.data)
             setResult(response.data)
 
@@ -81,12 +82,6 @@ export default function PromotionsPage() {
                     ))
                 )}
 
-                { result.length != 0 && (
-                    <Button id="cleanSearchButton"  size="sm" onClick={() => {setResult([])}}>
-                        Limpar Busca
-                    </Button>  
-                )}
-
 
                 { result.length == 0 && !notFound && (
                     promotions.map((promotion: PromotionPage) => (
@@ -102,6 +97,12 @@ export default function PromotionsPage() {
                 }
                 
             </PromoDisplay>
+
+            { result.length != 0 && (
+                    <Button id="cleanSearchButton"  size="sm" onClick={() => {setResult([])}}>
+                        Limpar Busca
+                    </Button>  
+            )}
 
             { result.length == 0 && notFound && (
                  <button type='button' className="getBack" onClick={() => handleGetBack()}>

@@ -12,19 +12,16 @@ export function HomeBoard() {
             console.log(response.data)
         })
     }, [])
-
+    //<p>Sistem inteligente para administração de negocios de todos os tipos, Simples, Prático e Moderno</p>
     return (
         <Container>
             <HomeIntro>
                 <h5>
-                    Lorem ipsum dolor sit amet. Non nulla possimus et earum
-                     quidem hic quas reiciendis sit voluptate quas non quia 
-                     dolores sit atque molestiae
+                    Bem Vindo ao Finance!
                 </h5>
-
+                
                 <Link to='/login'>
-
-                <button type="button">Comece a usar</button>
+                    <button type="button">Comece a Usar</button>
                 </Link>
             
             </HomeIntro>

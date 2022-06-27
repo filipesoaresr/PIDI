@@ -42,7 +42,7 @@ interface NewTable {
 
 export default function ShowReportPage() {
 
-    const { productsPercentage, groupedProductListInPeriod, productsWithSaleDate } = useContext(OrderContext)
+    const { productsPercentage, groupedProductListInPeriod, productsWithSaleDate, setProductsWithSaleDate } = useContext(OrderContext)
     const [ productListTable, setProductListTable ] = useState<NewTable[]>([])
 
     const [ chartLabels, setChartLabels] = useState<String[]>([])
@@ -102,10 +102,8 @@ export default function ShowReportPage() {
     }
 
     function handleResetChartFields() {
-        setChartLabels([]),
-        setChartData([]),
-        setChartLabels2([]),
-        setChartData2([])
+        setProductsWithSaleDate([])
+        
     }
 
     useEffect(() => {

@@ -13,6 +13,7 @@ import { Container, OrderIntro, OrderTable } from './styles'
 
 interface  IOrder{
     id: string
+    date_created: string
     fk_id_payment_options: string
     fk_id_user: string;
     dateSubmitted: Date;
@@ -38,7 +39,8 @@ export default function OrderPage() {
     const history = useHistory();
 
     const { orders, isOpen, getOrders, setOneOrder, setId, id, getOneOrder } = useContext(OrderContext);
-    const [ date, setDate ] = useState<Date>()
+    const [ startDate, setStartDate ] = useState<Date>()
+    const [ endDate, setEndDate ] = useState<Date>()
     const [ result, setResult ] = useState([])
     const [notFound, setNotFound] = useState(false)
 
@@ -57,23 +59,22 @@ export default function OrderPage() {
     async function handleDelete(id: string) {
         await api.delete(`/orders/${id}`).then((response) => {
             console.log("RESPOSTA DELETE", response)
-            if(response.data.is_open ==  "Finalizado"){
-                return toast.error('Esta venda não pode ser excluída!');
-            }
-            else {
-                toast.success('Pedido excluído com sucesso!');
-            }
+           
+            toast.success('Pedido excluído com sucesso!');
+            
         })
         getOrders()
         console.log("TENTANDO DELETAR", orders)
     }
 
-    function handleSearch(date: any){
-        const dateISO = date.toISOString()
+    function handleSearch(start_date: any, end_date: any){
+        const start_dateISO = start_date.toISOString()
+        const end_dateISO = end_date.toISOString()
 
-        console.log("DAta", dateISO)
-        api.get(`/orders/search/${dateISO}`).then(response => {
-            console.log("DAta", response.data)
+        console.log("DAta", start_dateISO)
+        console.log("DAta", end_dateISO)
+        api.get(`/orders/search/${start_dateISO}/${end_dateISO}`).then(response => {
+            console.log("++++DATA+++++", response.data)
             setResult(response.data)
 
             if(response.data.length == 0) {
@@ -94,9 +95,10 @@ export default function OrderPage() {
             <OrderIntro>
                 <h1>Pedidos</h1>
 
-                <input type='date' placeholder='Busque Aqui...' onChange={(event) => setDate(new Date(event.target.value))}/>
+                <input type='date' placeholder='Data Inicial:' onChange={(event) => setStartDate(new Date(event.target.value))}/>
                 <br/>
-                <button type='submit' onClick={() => handleSearch(date)}>Consultar</button>
+                <input type='date' placeholder='Data Final:' onChange={(event) => setEndDate(new Date(event.target.value))}/>
+                <button type='submit' onClick={() => handleSearch(startDate, endDate)}>Consultar</button>
             </OrderIntro>
 
             { result.length == 0 && notFound && (
@@ -116,7 +118,7 @@ export default function OrderPage() {
                     <thead>
                         <tr>
                             <th>
-                                Nº do Pedido
+                                Data do Pedido
                             </th>
                             <th>
                                 Produto
@@ -137,7 +139,7 @@ export default function OrderPage() {
                         result.map((order: IOrder) => (
                             <tr key={order.id}>
                                 <td>
-                                    {order.id}
+                                    {order.date_created}
                                 </td>
                                 <td>
                                     {order.product_has_order.map((product) => (
@@ -158,11 +160,15 @@ export default function OrderPage() {
                                     </Button>
                                     &nbsp;
                                     &nbsp;
+                                   {
+                                    order.is_open ?
                                     <Link to='/order/updateorder' >
                                         <Button id="updateButton" variant="primary" size="sm">
                                             Alterar
                                         </Button>
-                                    </Link>
+                                    </Link> :
+                                    "" 
+                                   }
                                     &nbsp;
                                     &nbsp;
                                     <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>

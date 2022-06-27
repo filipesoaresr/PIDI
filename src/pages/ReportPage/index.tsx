@@ -227,7 +227,7 @@ export default function ReportPage() {
 
             <ReportIntro>
 
-                <h1>Relatório Inteligente</h1>
+                <h1>Relatório</h1>
 
                 <p>Data Inicial:</p>
                 <input type='date' onChange={event => setStartDate(new Date(event.target.value))}/>

@@ -64,7 +64,7 @@ export default function SalesPage() {
             <Form>
                 <SalesIntro>
 
-                    <h1>Listagem de Vendas</h1>
+                    <h1>Vendas</h1>
 
                     <p>Data Inicial:</p> <input type='date'  onChange={event => setStartDate(new Date(event.target.value))}/>
 

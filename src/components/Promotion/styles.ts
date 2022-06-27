@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div `
-    width: 15rem;
+    width: 18rem;
     height: 14rem;
 
     background:  #1F5976;
     color: #fff;
-    border-radius: 5px;
-    padding: 2rem;
+    border-radius: 25px;
+    padding: 15%;
 
     h4 {
         font-size: 1.3rem;
@@ -18,18 +18,30 @@ export const Container = styled.div `
     }
 
     p.discount{
-        font-size: 1.2rem;
+        font-size: 1.7rem;
         font-style: bold;
         color: #F28118;
 
         margin-top: 0.2rem;
     }
 
-    transition:  0.2s;
+    transition:  0.3s;
 
     &:hover {
     background: #4F759B;
     cursor: pointer;
+    }
+
+    #icons {
+
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 10%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
     }
 
     TiTrash{

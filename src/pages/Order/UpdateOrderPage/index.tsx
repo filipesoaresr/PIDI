@@ -9,7 +9,7 @@ import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
 
 interface Product {
-    _id: string;
+    id: string;
     productType: string;
     name: string;
     collection: string;
@@ -19,7 +19,10 @@ interface Product {
     m: number;
     g: number;
     gg: number;
-    promotion: string;
+    promotion: 
+        {
+            name: string;
+        };
     value: string;
 }
 
@@ -38,7 +41,7 @@ export default function UpdateOrderPage() {
 
     const { products } = useContext(ProductContext)
 
-    function handleCreateNewPromotion(event: FormEvent) {
+    function handleUpdatePromotion(event: FormEvent) {
         event.preventDefault();
 
         const data = {
@@ -92,8 +95,8 @@ export default function UpdateOrderPage() {
                         <tbody>
                             {console.log(products)}
                             {
-                                products.map((product: Product) => (
-                                    <tr key={product.name}>
+                                products?.map((product: Product) => (
+                                    <tr key={product.id}>
                                         <td scope="row">
                                             {product.name}
                                         </td>
@@ -102,13 +105,15 @@ export default function UpdateOrderPage() {
                                                 PP: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    placeholder={product.pp.toString()}
                                                 />
                                             </label>
 
                                             <label>
                                                 P: <input
                                                     className='size-qtd'
-                                                    type="number" 
+                                                    type="number"
+                                                    placeholder={product.p.toString()} 
                                                 />
                                             </label>
 
@@ -116,6 +121,7 @@ export default function UpdateOrderPage() {
                                                 M: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    placeholder={product.m.toString()}
                                                 />
                                             </label>
 
@@ -123,6 +129,7 @@ export default function UpdateOrderPage() {
                                                 G: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    placeholder={product.g.toString()}
                                                 />
                                             </label>
 
@@ -130,12 +137,13 @@ export default function UpdateOrderPage() {
                                                 GG: <input
                                                     className='size-qtd'
                                                     type="number"
+                                                    placeholder={product.gg.toString()}
                                                 />
                                             </label>
 
                                         </td>
                                         <td>
-                                            {product.promotion}
+                                            {product.promotion ? product.promotion.name : "Sem Promoção"}
                                         </td>
                                         <td>
                                             {product.value}
@@ -164,13 +172,6 @@ export default function UpdateOrderPage() {
                 <FormBlock>
 
                     <MainSection>
-                        <p>Data do Pedido:</p>
-                        <input
-                            type="date"
-                            placeholder="--/--/--"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
 
                         <p>Opçao de Pagamento</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
@@ -211,13 +212,6 @@ export default function UpdateOrderPage() {
                             onChange={event => setName(event.target.value)}
                         />
 
-                        <p>Número do Pedido:</p>
-                        <input
-                            type="text"
-                            placeholder=""
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
 
 
                         <p>Total do Pedido:</p>
@@ -233,7 +227,13 @@ export default function UpdateOrderPage() {
 
                 </FormBlock>
 
-                <Link to="/order"><button id="buttonCancel" type="reset">Voltar</button></Link> <button id="registerButton" type="submit" onClick={handleCreateNewPromotion}>Alterar</button>
+                <Link to="/order">
+                    <button id="buttonCancel" type="reset">Voltar</button>
+                </Link> 
+
+                <button id="registerButton" type="submit" onClick={(event) => handleUpdatePromotion(event)}>
+                    Alterar
+                </button>
 
             </Form>
 

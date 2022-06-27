@@ -26,23 +26,31 @@ export const HomeIntro = styled.div `
     display: grid;
     grid-template-columns: 1fr;
 
-    margin: 4rem;
+    margin: 5rem;
+
 
 
     h5 {
-        font-size: 2rem;
-
+        font-size: 4rem;
+        font-weight: bold;
         margin-bottom: 3rem;
 
     }
 
     button {
-
-        width: 15rem;
-        height:3rem;
-
         
-        background: #F28118;
+        text-align: center;
+        justify-content: center;
+        margin-left: 5remrem;
+        margin-top: 5rem;
+
+        width: 20rem;
+        height:3.5rem;
+
+        font-size: 1.5rem;
+        font-weight: bold;
+        
+        background: #24AC15;
         border-radius: 5px;
         color: #FFF;
         border: none;

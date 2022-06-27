@@ -1,5 +1,5 @@
 import { Container, Content } from "./styles";
-import LogoImg from '../../assets/piticas-logo-transparente.png';
+import LogoImg from '../../assets/favicon.png';
 import { Link } from 'react-router-dom';
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
@@ -39,7 +39,7 @@ export function Header() {
 
                     <Link to="/sales"><h6>Vendas</h6></Link>
 
-                    <Link to="/report"><h6>Relatório Inteligente</h6></Link>
+                    <Link to="/report"><h6>Relatório</h6></Link>
 
                     <Link className="Login" to="/login">
                         <button type='button' id="entrarButton" className="register">Entrar</button>
