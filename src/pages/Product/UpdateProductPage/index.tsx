@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { useHistory } from "react-router-dom";
-
+import { toast } from 'react-toastify'
 import { 
     Container,
     Form, 
@@ -69,6 +69,7 @@ export default function UpdateProductPage() {
 
         console.log(dataUpdated)
         await api.put(`/products/${id}`, dataUpdated)
+        toast.success('Produto alterado com sucesso!');
         getProducts()
         history.push("/products")
         
@@ -93,11 +94,6 @@ export default function UpdateProductPage() {
                         <p>Coleção:</p>
                         <input
                             type="text"
-                        />
-
-                        <p>Data do Cadastro: </p>
-                        <input
-                            type="date"
                         />
 
                         <p>Quantidade/Tamanho</p>

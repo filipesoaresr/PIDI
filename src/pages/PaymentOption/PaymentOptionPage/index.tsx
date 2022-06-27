@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 import { PaymentContext } from '../../../contexts/PaymentContext';
 import { api } from '../../../services/api';
 import { Container, PaymentIntro, PaymentTable} from './styles'
+import { toast } from 'react-toastify'
 
 interface PaymentOption {
     id: string;
@@ -31,7 +32,15 @@ export default function PaymentOption(){
 
     async function handleDelete(id: string) {
         console.log(id)
-        const delete_req = await api.delete(`/payment_options/${id}`)
+        const delete_req = await api.delete(`/payment_options/${id}`).then((response) => {
+            console.log("RESPOSTA DELETE", response)
+            if(!response.data.name){
+                return toast.error('Opção de pagamento vinculada a um Pedido ou Venda!');
+            }
+            else {
+                toast.success('Opção de pagamento excluída com sucesso!');
+            }
+        })
         console.log(`/payment_options/${id}`)
         console.log(delete_req)
         updatePayment()

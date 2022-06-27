@@ -38,6 +38,8 @@ import { OrderProvider } from './contexts/OrderContext';
 import { PromotionProvider } from './contexts/PromotionContext';
 import { AuthProvider } from './contexts/AuthContext';
 import ShowReportPage from './pages/ReportPage/ShowReportPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'
 
 import { ArcElement } from "chart.js";
 import Chart from "chart.js/auto";
@@ -93,7 +95,7 @@ export function App() {
         </PaymentProvider>
         </UserProvider>
         </AuthProvider>
-        
+        <ToastContainer />
         <GlobalStyle />
    </Router>
   

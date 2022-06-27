@@ -2,7 +2,7 @@ import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
-
+import { toast } from 'react-toastify'
 import { Container, Form, FormBlock, MainSection, SecondSection } from './styles';
 
 export default function UpdateUserPage() {
@@ -45,7 +45,7 @@ export default function UpdateUserPage() {
         };
         
         await api.put(`/users/${id}`, userUpdated)
-        alert("Usuario atualizado com sucesso")
+        toast.success('Usuário alterado com sucesso!');
         getUsers();
         history.push("/users") 
     }

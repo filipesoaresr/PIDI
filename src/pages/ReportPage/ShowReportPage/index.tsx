@@ -3,26 +3,55 @@ import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
-import { Container, Report, TableSection, GraphBlock, } from './styles'
-import { Doughnut } from 'react-chartjs-2';
+import { Container, Report, TableSection, GraphBlock, SalesGraphBlock, } from './styles'
+import { Doughnut, Line } from 'react-chartjs-2';
 
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { VscPackage } from 'react-icons/vsc';
 import { OrderContext } from '../../../contexts/OrderContext';
+//import faker from 'faker';
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,} from 'chart.js';
 //import { ArcElement } from "chart.js";
 //import Chart from "chart.js/auto";
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+    ArcElement, 
+    Tooltip, 
+    Legend, 
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title
+    );
 
+
+interface NewTable {
+    name: string;
+    amount: number,
+    value: number,
+    totalSold: number,
+    percent: number;
+}
 
 export default function ShowReportPage() {
 
-    const { productsPercentage, groupedProductListInPeriod } = useContext(OrderContext)
-    let chartLabels: Array<any> = []
-    let chartData: Array<any> = []
-    const productListTable: Array<any> = [];
+    const { productsPercentage, groupedProductListInPeriod, productsWithSaleDate } = useContext(OrderContext)
+    const [ productListTable, setProductListTable ] = useState<NewTable[]>([])
+
+    const [ chartLabels, setChartLabels] = useState<String[]>([])
+    const [ chartData, setChartData] = useState<Number[]>([])
+
+    const [ chartLabels2, setChartLabels2] = useState<String[]>([])
+    const [ chartData2, setChartData2] = useState<Number[]>([])
+
+    
 
     //Talvez mover para a Página de ReportPage para otimização
     function handleChartData() {
@@ -31,15 +60,20 @@ export default function ShowReportPage() {
             chartData.push(product.percent)
         })
 
-        //console.log("CHART DATA", chartData)
-        //console.log("CHART LABELS", chartLabels)
+        productsWithSaleDate.map((product: any) => {
+            chartLabels2.push(product.sale_date)
+            chartData2.push(product.sold_amount)
+        })
+        console.log("CHART DATA", chartData2)
+        console.log("CHART LABELS", chartLabels2)
     }
-
+    
     function handleTableData() {
 
         let soldAmount: number = 0;
         let newValue: number = 0
         let percent: number = 0
+        let List: Array<any> = []
 
         groupedProductListInPeriod.map((product: any) => {
             
@@ -54,16 +88,24 @@ export default function ShowReportPage() {
             newValue = (product.order_product_value / soldAmount);
 
             
-            productListTable.push({
+            List.push({
                 name: product.product_name,
                 amount: soldAmount,
                 value: newValue,
                 totalSold: product.order_product_value,
                 percent: percent
             })
+            List.sort((a, b) => (a.percent > b.percent ? -1 : 1));
         })
-        
+        setProductListTable(List)
         console.log("NEW TABLE", productListTable)
+    }
+
+    function handleResetChartFields() {
+        setChartLabels([]),
+        setChartData([]),
+        setChartLabels2([]),
+        setChartData2([])
     }
 
     useEffect(() => {
@@ -87,6 +129,10 @@ export default function ShowReportPage() {
               '#004777',
               '#6F58C9',
               '#2D7DD2',
+              '#B4E33D',
+              '#EB4511',
+              '#352D39',
+              '#FF6978'
             ],
             
             borderWidth: 1,
@@ -95,11 +141,31 @@ export default function ShowReportPage() {
       };
 
 
+    const labels2 = chartLabels2;
+    const data2 = {
+    labels: labels2,
+    datasets: [{
+        label: 'QUANTIDADE DE PRODUTOS VENDIDA',
+        data: chartData2,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+    }]
+    };
+
+
     return (
         <Container>
 
             <Report>
             <h1>Relatório Inteligente</h1>
+
+                <SalesGraphBlock>
+                    <Line 
+                    data={data2} 
+                    />
+                </SalesGraphBlock>
+
                 <GraphBlock>
                     <Doughnut 
                     data={data}
@@ -124,7 +190,7 @@ export default function ShowReportPage() {
                                             Quantidade Vendida
                                         </th>
                                         <th>
-                                            Valor Unitário
+                                            Valor Médio
                                         </th>
                                         <th>
                                             Valor Total
@@ -139,24 +205,25 @@ export default function ShowReportPage() {
                                 </thead>
 
                                 <tbody>
+                                    {console.log("TESTE NOVA TABELA", productListTable)}
                                     {
+                                        
                                         productListTable.map((product: any) => (
                                             <tr key={product.name}>
                                                 <td>
                                                     {product.name}
-                                                    llll
                                                 </td>
                                                 <td>
                                                     {product.amount}
                                                 </td>
                                                 <td>
-                                                    {product.value}
+                                                    R${product.value.toFixed(2)}
                                                 </td>
                                                 <td> 
-                                                    {product.totalSold}                                    
+                                                    R${product.totalSold.toFixed(2)}                                    
                                                 </td>
                                                 <td>
-                                                    {product.percent}
+                                                    {product.percent.toFixed(2)}%
                                                 </td>
                                                 <td>
                                                     
@@ -173,7 +240,7 @@ export default function ShowReportPage() {
                 </TableSection>
                 <br /> 
                 <Link to="/report">
-                    <button id="buttonCancel" type="reset">Voltar</button>
+                    <button id="buttonCancel" type="reset" onClick={() => handleResetChartFields()}>Voltar</button>
                 </Link>
 
             </Report>

@@ -7,6 +7,7 @@ import { api } from '../../../services/api';
 import UpdateProductPage from '../UpdateProductPage';
 import { Container, ProductIntro, ProductTable } from './styles'
 import { BiCaretLeft, BiError } from "react-icons/bi";
+import { toast } from 'react-toastify'
 interface IProduct {
     id: string;
     product_type: string;
@@ -46,8 +47,18 @@ export default function ProductsPage() {
     const defaultProps:IProduct[] = [];
 
     async function handleDelete(id: string) {
-        await api.delete(`/products/${id}`)
+
+        await api.delete(`/products/${id}`).then((response) => {
+            console.log("RESPOSTA DELETE", response)
+            if(!response.data.name){
+                return toast.error('Não é possível excluir produto vinculado a um Pedido ou Venda!');
+            }
+            else {
+                toast.success('Produto excluído com sucesso!');
+            }
+        })
         updateProducts()
+        
 
     }
 
@@ -82,7 +93,7 @@ export default function ProductsPage() {
 
             { result.length == 0 && notFound && (
                 <div id="warningNotFound">
-                    <p>PRODUTO NAO ENCONTRADO</p>
+                    <p>PRODUTO NÃO ENCONTRADO</p>
                     <BiError size="35" style={{color: "#F9DC5C", verticalAlign: 'middle', marginLeft: "1rem"}}/>
 
                 </div>

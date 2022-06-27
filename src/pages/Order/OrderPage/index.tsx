@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { BiCaretLeft, BiError } from 'react-icons/bi';
 import { Link, useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { OrderContext } from '../../../contexts/OrderContext';
@@ -54,7 +55,15 @@ export default function OrderPage() {
     }
 
     async function handleDelete(id: string) {
-        await api.delete(`/orders/${id}`)
+        await api.delete(`/orders/${id}`).then((response) => {
+            console.log("RESPOSTA DELETE", response)
+            if(response.data.is_open ==  "Finalizado"){
+                return toast.error('Esta venda não pode ser excluída!');
+            }
+            else {
+                toast.success('Pedido excluído com sucesso!');
+            }
+        })
         getOrders()
         console.log("TENTANDO DELETAR", orders)
     }
@@ -100,7 +109,7 @@ export default function OrderPage() {
             }
 
 
-{result.length != 0 && (
+                {result.length != 0 && (
                 <OrderTable>
                 <Table bordered hover responsive >
                     <table className="content-table">
@@ -147,13 +156,15 @@ export default function OrderPage() {
                                     <Button id="showButton" variant="primary" size="sm" onClick={() => handleOrderID(order.id)}>
                                         Exibir
                                     </Button>
-
+                                    &nbsp;
+                                    &nbsp;
                                     <Link to='/order/updateorder' >
                                         <Button id="updateButton" variant="primary" size="sm">
                                             Alterar
                                         </Button>
                                     </Link>
-                                    
+                                    &nbsp;
+                                    &nbsp;
                                     <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>
                                         Excluir
                                     </Button>

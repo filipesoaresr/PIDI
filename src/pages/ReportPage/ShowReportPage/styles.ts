@@ -18,10 +18,12 @@ export const GraphBlock = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFF;
+    background-color:  #EBEBEB;
 
-    height: 20%;
-    width: 90%;
+    padding: 1.5rem;
+
+    height: 500px;
+
 
     margin-left: 2rem;
     margin-right: 2rem;
@@ -31,6 +33,28 @@ export const GraphBlock = styled.div `
 
     
 `;
+
+export const SalesGraphBlock = styled.div `
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #EBEBEB;
+
+    padding: 1.5rem;
+
+    height: 650px;
+
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+
+    border-radius: 5px;
+
+    
+`;
+
 
 
 export const Report = styled.form `

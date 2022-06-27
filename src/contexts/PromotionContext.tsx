@@ -24,10 +24,10 @@ export function PromotionProvider({children}: PromotionProviderProps) {
     const [endDate, setEndDate] = useState('');
     const [discount, setDiscount] = useState('');
 
-    const [onePromotion, setOnePromotion] = useState<Promotion>();
-
     const [promotions, setPromotions] = useState<Promotion[]>([])
     const [productsInPromo, setProductsInPromo] = useState('')
+
+    const [ onePromotion, setOnePromotion] = useState<Promotion>()
 
     function getPromotions() {
         api.get('/promotions').then((response) => {
@@ -43,6 +43,7 @@ export function PromotionProvider({children}: PromotionProviderProps) {
            console.log("ID", id)
            console.log("RESPONSE DATA", response.data)
            console.log("ONE Promotion", onePromotion)
+        
        }).catch((error) => {
            console.log("ERROR", error)
        })   
@@ -69,7 +70,10 @@ export function PromotionProvider({children}: PromotionProviderProps) {
             discount,
             setDiscount,
             productsInPromo,
-            setProductsInPromo
+            setProductsInPromo,
+            getPromotions,
+            getOnePromotion,
+            onePromotion, setOnePromotion
         }}>
             {children}
         </PromotionContext.Provider>

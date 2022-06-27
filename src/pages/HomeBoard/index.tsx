@@ -29,7 +29,7 @@ export function HomeBoard() {
             
             </HomeIntro>
 
-            <img src={HomeImg} alt="Imagem Intro" />
+            <img src={HomeImg} alt="Imagem Intro"/>
         </Container>
     );
 }

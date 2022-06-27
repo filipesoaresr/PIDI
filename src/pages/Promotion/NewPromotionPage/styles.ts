@@ -64,9 +64,9 @@ export const Form = styled.form `
 
     select {
         width: 15rem;
-        height: 1.5rem;
-
+        height: 2rem;
         border-radius: 5px;
+        margin-bottom: 1rem;
 
     }
 

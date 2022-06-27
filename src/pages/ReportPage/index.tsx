@@ -32,8 +32,11 @@ export default function ReportPage() {
 
 
     const {sales, startDate, setStartDate, endDate, setEndDate,
-         setSales, setProductsPercentage, productsPercentage, setGroupedProductListInPeriod} = useContext(OrderContext)
+         setSales, setProductsPercentage, productsPercentage, setGroupedProductListInPeriod, productsWithSaleDate, setProductsWithSaleDate} = useContext(OrderContext)
     //const [totalValue, setTotalValue ] = useState(0)
+    
+    //const [ productsWithSaleDate, setProductsWithSaleDate ] = useState()
+
     const history = useHistory();
     let List: Array<any> = []
     let productsList: Array<any> = []
@@ -60,7 +63,8 @@ export default function ReportPage() {
            response.data.map((data: Order) => {
             List.push(data)
            })
-           setSales([...List])
+           //setSales([...List])
+           setSales(List)
             //sales.push(response.data)
             console.log("TESTE SALES response data", response.data)
             console.log("TESTE SALES LIST", List)
@@ -82,6 +86,7 @@ export default function ReportPage() {
         List.map((sale: any) => {
             
             sale.product_has_order.map((product: any) => {
+                product.date = sale.date_submitted
                 productsList.push(product)
                 valueList.push(product.order_product_value);
             })
@@ -91,7 +96,6 @@ export default function ReportPage() {
         getMaxOcurrences(productsList)
 
         var soma = 0;
-    
         for(var i = 0; i < valueList.length; i++) {
             soma += valueList[i];
         }
@@ -100,13 +104,50 @@ export default function ReportPage() {
         console.log("TOTAL VALUE ", totalValue)
         removeDuplicates(productsList)
         handlePercentage()
-
+        handleSalesChart()
         setTimeout(() => {
             history.push("/report/showreport")
         }, 1000)
         
     }
 
+     function handleSalesChart() {
+        //let productsWithSaleDate: Array<any> = []
+        
+        let newSalesList: Array<any> = []
+        let soldAmount: number = 0
+        let contador_teste = 0
+        let total_de_tamanhos = 0
+        //let testList: Array<any> = []
+       
+
+        productsList.map((product) => {
+            console.log("========================", product.pp + product.p + product.m + product.g + product.gg)
+            soldAmount = product.pp + product.p + product.m + product.g + product.gg;
+            total_de_tamanhos += soldAmount
+            
+            productsWithSaleDate.push({
+
+
+                name: product.product_name,
+                sold_amount: soldAmount,
+                sale_date: product.date.split('T')[0]
+            })
+        console.log("total de tamanhos", total_de_tamanhos)})
+        productsWithSaleDate.forEach((product: any) => {
+            contador_teste+=1
+            
+            let obj = newSalesList.find(productTotals => productTotals.sale_date === product.sale_date);
+            if (obj) {
+              obj.sold_amount = Number(obj.sold_amount) + Number(product.sold_amount)
+            } else {
+                newSalesList.push(product);
+            }
+          });
+        setProductsWithSaleDate(newSalesList)
+        console.log("++++TESTANDO+++", productsWithSaleDate)
+        console.log("CONTADOR TESTE",contador_teste)
+    }
 
     function getMaxOcurrences(arr: Array<any> = []) {
         let item = arr[0];

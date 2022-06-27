@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from './styles';
 import { TiTrash, TiPencil, TiDocumentText } from "react-icons/ti";
 import { api } from '../..//services/api';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { PromotionContext } from '../../contexts/PromotionContext';
+import { toast } from 'react-toastify';
+import { OrderContext } from '../../contexts/OrderContext';
 
 interface Promotion {
     _id: string,
@@ -20,18 +22,25 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
     const editIcon = { color: "white", fontSize: "1.5em", marginLeft:"" }
     const showIcon = { color: "#bba901", fontSize: "1.5em", marginLeft:"" }
 
-    const {setId} = useContext(PromotionContext)
+    const {setId, id,  getPromotions,
+        onePromotion, setOnePromotion, getOnePromotion, promotions} = useContext(PromotionContext)
+    
+    const {orders} = useContext(OrderContext)
 
-    const objTeste = {
-
-        id: '555555222222222225505050505',
-        name: 'Black friday'
-
-    }
+    const history = useHistory();
 
     async function handleDelete(id: string) {
-        api.delete(`/promotions/${id}`)
-
+        api.delete(`/promotions/${id}`).then((response) => {
+            console.log("RESPOSTA DELETE", response)
+            if(!response.data.name){
+                return toast.error('Promoção vinculada a um Pedido ou Venda!');
+            }
+            else {
+                
+                toast.success('Promoção excluída com sucesso!');
+            }
+        })
+        getPromotions()
         console.log(id)
     }
 
@@ -39,16 +48,29 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
         setId(id)
     }
 
-    /* async function handlePromotionID(idPromotion: string) {
+     async function handlePromotionID(idPromotion: string) {
+
+        let List
+
         console.log("ID A SER TRANSFERIDA", idPromotion)
         setId(idPromotion)
         console.log("ID DO ESTADO NA FUNCTION SETID", id)
-        getOneOrder(idPromotion)
+        getOnePromotion(idPromotion)
         setTimeout(() =>{
-            history.push("/order/showorder")     
+            console.log("SALES", orders)     
+            history.push("/promotion/showpromotion")
         }, 500)
+
+       orders.map((order: any) => {
+            if(order.product_has_order.product_name) {
+
+            }
+       })
+
     }
- */
+    
+    
+
     return (
 
 
@@ -63,8 +85,10 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
             
             <Link to="/promotion/updatepromotions">
                 <TiPencil style={editIcon} onClick={() =>{idTransfer(_id)}}/>
-            </Link> 
-            <TiDocumentText style={showIcon}/> 
+            </Link>
+            
+            <TiDocumentText style={showIcon} onClick={() => handlePromotionID(_id)}/>
+            
             <TiTrash onClick={() => handleDelete(_id)} style={deleteIcon}/> 
 
         </Container>

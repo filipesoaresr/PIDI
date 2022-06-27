@@ -104,3 +104,16 @@ export const SecondSection = styled.section `
     margin-top: 3rem;
     
 `;
+
+export const ThirdSection = styled.section `
+    margin-top: 3rem;
+
+    select {
+        width: 15rem;
+        height: 2rem;
+
+        border-radius: 5px;
+
+    }
+    
+`;

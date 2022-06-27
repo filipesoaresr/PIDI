@@ -12,7 +12,7 @@ export const LoginBlock = styled.form`
   margin-left: 2rem;
 
   padding: 3rem 6rem;
-  background: #16425b;
+  background: #001021;
 
   border-radius: 5px;
   color: #fff;
@@ -23,7 +23,7 @@ export const LoginBlock = styled.form`
     margin-bottom: 2rem;
 
     border-radius: 5px;
-    height: 1.6rem;
+    height: 2rem;
   }
 `;
 
@@ -39,11 +39,14 @@ export const ButtonsBlock = styled.div`
   button {
     margin-top: 1rem;
 
-    background: #f28118;
+    background: #24AC15;
     color: #fff;
 
+    font-weight: bold;
+    font-size: 1.3rem;
+
     border-radius: 5px;
-    margin-left: 20px;
+    margin-left: 2.7rem;
     padding: 0.5rem 0.5rem;
     width: 60%;
 

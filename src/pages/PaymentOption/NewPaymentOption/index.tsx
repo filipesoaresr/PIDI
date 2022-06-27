@@ -2,6 +2,7 @@ import React, { FormEvent, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../../services/api';
 import { PaymentContext } from '../../../contexts/PaymentContext';
+import { toast } from 'react-toastify'
 import { 
     Container,
     Form, 
@@ -27,6 +28,10 @@ export default function NewPaymentOption() {
     async function handleCreateNewPayment(event: FormEvent) {
         event.preventDefault();
 
+        if(!name || !flag || installment){
+            return  toast.error('Campos obrigatórios não preenchidos!');
+        }
+
         const data = {
             name,
             flag,
@@ -34,7 +39,7 @@ export default function NewPaymentOption() {
         };
 
         await api.post('/payment_options', data)
-        alert("Cadastro Realizado com Sucesso!")
+        toast.success('Opção de pagamento criada com sucesso!');
         getPaymentOptions()
         history.push("/paymentoption")
 

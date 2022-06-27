@@ -17,17 +17,13 @@ export const FormBlock = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
 `;
 
 export const SecondSection = styled.section `
     margin-left: 2rem;
-    margin-top: 3rem;
-    
-`;
-
-export const ThirdSection = styled.section `
-    margin-top: 4.5rem;
+    margin-top: 7.5rem;
 
     #totalPedidoText{
         font-size: 1.4rem;
@@ -35,7 +31,7 @@ export const ThirdSection = styled.section `
     }
 
     #totalPedidoButton{
-        width: 10%;
+        width: 50%;
         height: 2.5rem;
         border-radius: 5px;
 
@@ -51,8 +47,10 @@ export const ThirdSection = styled.section `
         font-size: 1.3rem;
         font-weight: bold;
     }
-
+    
 `;
+
+
 
 export const Form = styled.form `
     //display: flex;
@@ -153,9 +151,6 @@ export const MainSection = styled.section `
     margin-right: 2rem;
     margin-top: 3rem;
     
-    p{
-        margin-right: 2rem;
-    }
 
 `;
 

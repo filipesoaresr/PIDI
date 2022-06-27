@@ -4,7 +4,7 @@ import { Button, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
-
+import { toast } from 'react-toastify'
 import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection} from './styles'
 import { ProductContext } from '../../../contexts/ProductContext';
 
@@ -51,6 +51,7 @@ export default function UpdatePromotionPage() {
 
         console.log(dataUpdated)
         api.put(`/promotions/${id}`, dataUpdated)
+        toast.success('Promoção alterada com sucesso!');
 
     }
 

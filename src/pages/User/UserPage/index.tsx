@@ -6,6 +6,7 @@ import { Container, UserIntro, UserTable } from './styles'
 import { api } from '../../../services/api';
 import { UserContext } from '../../../contexts/UserContext';
 import { BiCaretLeft, BiError } from 'react-icons/bi';
+import { toast } from 'react-toastify';
 
 
 interface User {
@@ -43,7 +44,15 @@ export default function UserPage() {
 
     async function handleDelete(id: string) {
 
-        await api.delete(`users/${id}`)
+        await api.delete(`users/${id}`).then((response) => {
+            console.log("RESPOSTA DELETE", response)
+            if(!response.data){
+                return toast.error('Usuário vinculado a um Pedido ou Venda!');
+            }
+            else {
+                toast.success('Usuário excluído com sucesso!');
+            }
+        })
         getUsers()
     }
      

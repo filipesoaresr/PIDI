@@ -1,10 +1,10 @@
 import React, { FormEvent, useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { api } from '../../../services/api';
 import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles'
-
+import { toast } from 'react-toastify'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
@@ -31,7 +31,7 @@ interface Product {
 
 
 export default function NewPromotionPage() {
-
+    const history = useHistory();
 
    const {
     name,
@@ -43,25 +43,36 @@ export default function NewPromotionPage() {
     discount,
     setDiscount,
     productsInPromo,
-    setProductsInPromo
+    setProductsInPromo,
+    getPromotions
 } = useContext(PromotionContext)
 
+    
+
     const { products } = useContext(ProductContext)
-    const recivedProducts: Array<any> = []
+    const [recivedProducts, setRecivedProducts] = useState<Product[]>([])
+    //const recivedProducts: Array<any> = []
 
     function addProductsInPromo(product: any) {
-        
+       
         //const recivedProducts: string[] = []
         recivedProducts.push(product.id)
 
+       
         //setProductsInPromo(recivedProducts)
+        console.log("====LIST====")
         console.log("=====Added products=====", recivedProducts)
+        toast.success('Produto incluído com sucesso na promoção!');
+        getPromotions()
+
     }
 
     function handleCreateNewPromotion(event: FormEvent) {
         event.preventDefault();
 
-        
+        if(!name || !endDate || !discount){
+            return  toast.error('Campos obrigatórios não preenchidos!');
+        }
 
         const data = {
            name,
@@ -72,7 +83,10 @@ export default function NewPromotionPage() {
 
         console.log("PRomo nova", data)
         api.post('/promotions', data)
-        alert("Cadastro Realizado com Sucesso!")
+        toast.success('Promoção criada com sucesso!');
+        setTimeout(() => {
+            history.push("/promotions")
+        }, 300)
     }
 
     return (
@@ -144,7 +158,7 @@ export default function NewPromotionPage() {
                     {console.log(products)}
                     {
                         products.map((product: Product) => (
-                            <tr key={product.name}>
+                            <tr key={product.id}>
                                 <td >
                                     {product.name}
                                 </td>

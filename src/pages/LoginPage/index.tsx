@@ -36,7 +36,7 @@ export default function LoginPage() {
                 </UserImage>
                 <br />
                 <h5>Usuário:</h5>
-                <input type="text" value={username} onChange={event => setUsername(event.target.value)} placeholder="Digite seu login" />
+                <input type="text" value={username} onChange={event => setUsername(event.target.value)} placeholder="Digite seu username" />
                 <br />
                 <h5>Senha:</h5>
                 <input type="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="Digite sua senha" />

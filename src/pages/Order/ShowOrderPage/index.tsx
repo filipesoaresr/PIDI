@@ -10,6 +10,7 @@ import { OrderContext } from '../../../contexts/OrderContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { PaymentContext } from '../../../contexts/PaymentContext';
 import { api } from '../../../services/api';
+import { toast } from 'react-toastify';
 
 interface IProductInOrder {
     product_name: string;
@@ -102,6 +103,7 @@ async function handleUpdate(event: FormEvent, id: string) {
     console.log(dataUpdated)
     await api.put(`/sales/${id}`, dataUpdated)
     await getOrders()
+    toast.success('Venda do pedido realizada com sucesso!');
     history.push("/order")
     
 }

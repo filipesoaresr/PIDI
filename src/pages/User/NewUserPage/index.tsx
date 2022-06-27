@@ -3,13 +3,14 @@ import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
-
+import { toast } from 'react-toastify'
 import { 
     Container,
     Form, 
     MainSection, 
     FormBlock,
-    SecondSection } from './styles';
+    SecondSection,
+    ThirdSection } from './styles';
 
 export default function NewUserPage() {
 
@@ -49,6 +50,10 @@ export default function NewUserPage() {
     async function handleCreateNewUser(event: FormEvent) {
         event.preventDefault();
 
+        if(!name || !birthDate || !role || !cpf || !username || !password || !sex){
+            return  toast.error('Campos obrigatórios não preenchidos!');
+        }
+
         const data = {
             id,
             name,
@@ -65,8 +70,7 @@ export default function NewUserPage() {
 
         await api.post('/users', data);
         getUsers()
-        alert("Cadastro Realizado com Sucesso!")
-
+        toast.success('Usuário criado com sucesso!');
         history.push("/users")
     }
 
@@ -100,13 +104,6 @@ export default function NewUserPage() {
                         onChange={event =>setPhone(event.target.value)}
                         />
 
-                        <p>Email: </p>
-                        <input 
-                        type="text" 
-                        value={email}
-                        onChange={event =>setEmail(event.target.value)}
-                        />
-
                         <p>Username: </p>
                         <input 
                         type="text" 
@@ -130,18 +127,12 @@ export default function NewUserPage() {
                             <option value="Financeiro">Feminino</option>
                         </select>
 
-                        <p>Data de Cadastro: </p>
+                        <p>Email: </p>
                         <input 
-                        type="date" 
-                        value={dateCreated}
-                        onChange={event =>setDateCreated(event.target.value)}
+                        type="text" 
+                        value={email}
+                        onChange={event =>setEmail(event.target.value)}
                         />
-
-                        <p>Cargo:</p>
-                        <select value={role} onChange={event => setRole(event.target.value)}>
-                            <option value="Atendimento">Atendimento</option>
-                            <option value="Financeiro">Financeiro</option>
-                        </select>
                         
                         <p>Senha: </p>
                         <input 
@@ -150,17 +141,19 @@ export default function NewUserPage() {
                         onChange={event =>setPassword(event.target.value)}/>
 
                     </SecondSection>
-                    <br /> 
-                  
+
               
                 </FormBlock>
+
+                <ThirdSection>
+                        <p>Cargo:</p>
+                        <select value={role} onChange={event => setRole(event.target.value)}>
+                            <option value="Atendimento">Atendimento</option>
+                            <option value="Financeiro">Financeiro</option>
+                        </select>
+                </ThirdSection>
                 <br />
-                {/* <p>Confirmar Senha: </p>
-                        <input 
-                        type="text" 
-                        value={confirmedPassword} 
-                        onChange={event =>setconfirmedPassword(event.target.value)}/>
-                <br /> */}
+               
                 <Link to='/users'>
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link>

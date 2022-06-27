@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { api } from '../../../services/api';
-import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection, ThirdSection } from './styles';
+import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSection } from './styles';
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
@@ -9,6 +9,7 @@ import { OrderContext } from '../../../contexts/OrderContext';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PaymentContext } from '../../../contexts/PaymentContext';
 import { UserContext } from '../../../contexts/UserContext';
+import { toast } from 'react-toastify';
 
 interface IProduct {
     id: string;
@@ -149,6 +150,8 @@ export default function NewOrderPage() {
             setGG(0)
 
         }, 500)
+
+        toast.success('Produto incluído com sucesso no pedido!');
    }
 
    function getTotalValue(event: FormEvent) {
@@ -178,6 +181,11 @@ export default function NewOrderPage() {
 
     function handleCreateNewOrder(event: FormEvent) {
         event.preventDefault();
+
+        if(!fk_id_user || !totalValue || !fk_id_payment_options){
+            return  toast.error('Campos obrigatórios não preenchidos!');
+        }
+
         if(fk_id_user == "") {
             
             return alert("Insira um vendedor")
@@ -202,7 +210,7 @@ export default function NewOrderPage() {
 
         console.log("DATA", data)
         api.post('/orders', data)
-        alert("Cadastro Realizado com Sucesso!")
+        toast.success('Pedido criado com sucesso!');
         getOrders();
         history.push("/order")
 
@@ -347,11 +355,23 @@ export default function NewOrderPage() {
                                     <option value={payment.id}>{payment.name}</option>
                                 ))
                             }
-                           
                         </select>
 
+                        <p>Nome atendente</p>
+                        <select  onChange={event => setFk_id_user(event.target.value)} placeholder="Atendente" required>
+                            <option></option>
+                            {
+                                users.map((user: IPaymentInOrder) => (
+                                    <option value={user.id}>{user.name}</option>
+                                ))
+                            }
+                        </select>
+                       
+                    </MainSection>
 
-                        <p>Parcelamento</p>
+                    <SecondSection>
+
+                    <p>Parcelamento</p>
                         <select> 
                             <option value="vista">A vista</option>
                             <option value="2x">2x</option>
@@ -366,39 +386,16 @@ export default function NewOrderPage() {
                             <option value="11x">11x</option>
                             <option value="12x">12x</option>
                         </select>
-
-                    </MainSection>
-
-                    <SecondSection>
-
-                        <p>Nome atendente</p>
-                        <select  onChange={event => setFk_id_user(event.target.value)} placeholder="Atendente" required>
-                            <option></option>
-                            {
-                                users.map((user: IPaymentInOrder) => (
-                                    <option value={user.id}>{user.name}</option>
-                                ))
-                            }
-                        </select>
-
-
-                        <p>Número do Pedido</p>
-                        <input
-                            type="text"
-                            placeholder=""
-                        />
+                    
+                        <p id="totalPedidoText">Total do Pedido</p>
+                        <button id="totalPedidoButton" onClick={(event) => getTotalValue(event)}>Ver Total</button>
+                        <p id="totalValueText">R${totalValue}</p>
 
                     </SecondSection>
 
                    
-
                 </FormBlock>
 
-                <ThirdSection>
-                        <p id="totalPedidoText">Total do Pedido</p>
-                        <button id="totalPedidoButton" onClick={(event) => getTotalValue(event)}>Ver Total</button>
-                        <p id="totalValueText">R${totalValue}</p>
-                </ThirdSection>
 
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>

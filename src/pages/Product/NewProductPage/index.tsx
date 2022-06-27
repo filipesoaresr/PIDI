@@ -4,6 +4,7 @@ import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { BsFillPlusSquareFill } from 'react-icons/bs';
 import { useHistory } from "react-router-dom";
+import { toast } from 'react-toastify'
 import {
     Container,
     Form,
@@ -45,6 +46,10 @@ export default function NewProductPage() {
     async function handleCreateNewProduct(event: FormEvent) {
         event.preventDefault();
 
+        if(!name || !product_type || !value || !colection ){
+            return  toast.error('Campos obrigatórios não preenchidos!');
+        }
+
         const data = {
             product_type,
             name,
@@ -59,7 +64,7 @@ export default function NewProductPage() {
         };
 
         await api.post('/products', data)
-        alert("Cadastro Realizado com Sucesso!")
+        toast.success('Produto criado com sucesso!');
         getProducts()
         history.push("/products")
     }
@@ -108,13 +113,6 @@ export default function NewProductPage() {
                             type="text"
                             value={colection}
                             onChange={event => setColection(event.target.value)}
-                        />
-
-                        <p>Data do Cadastro: </p>
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={event => setDate(event.target.value)}
                         />
 
                         <p>Quantidade/Tamanho</p>

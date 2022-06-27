@@ -40,7 +40,7 @@ interface Product {
 
 export default function ShowPromotionPage() {
 
-
+    const {onePromotion} = useContext(PromotionContext)
   
     return (
         <Container>
@@ -49,12 +49,12 @@ export default function ShowPromotionPage() {
             <h1>Promoção</h1>
                 <FormBlock>
                     <MainSection>
+                        {console.log("====UMA UNICA PROMOÇÃO====", onePromotion)}
 
-
-                        Codigo da Promoção: <input placeholder="Codigo" disabled={true}/>
+                        Codigo da Promoção: <p>{onePromotion.id}</p>
                         <br/>
                         <br/>
-                        Nome da Promoção: <input placeholder="Nome da Promoção" disabled={true} />
+                        Nome da Promoção: <p>{onePromotion.name}</p>
                         <br/>
                         <br/>
                         Vendas: <input placeholder="Nome da Promoção" disabled={true} />
@@ -63,13 +63,20 @@ export default function ShowPromotionPage() {
 
                     <SecondSection>
 
-                        Inicio da Promoção: <input disabled={true}/>
+                        Inicio da Promoção: <p>{onePromotion.start_date}</p>
                         <br/>
                         <br/>
-                        Fim da Promoção: <input  disabled={true}/>
+                        Fim da Promoção:
+                        {
+                            onePromotion.end_date ? 
+                            <p>{onePromotion.end_date}</p> :
+                            <p>Ainda sem data final</p>
+                        } 
+                        
                         <br/>
                         <br/>
-                        Desconto: <input disabled={true}/>
+                        Desconto:
+                        <p>{onePromotion.discount}</p> 
 
                     </SecondSection>
                 </FormBlock>
@@ -88,7 +95,7 @@ export default function ShowPromotionPage() {
                             Produto
                         </th>
                         <th>
-                            Promoção
+                            Tipo do Produto
                         </th>
                         <th>
                             Valor
@@ -100,23 +107,26 @@ export default function ShowPromotionPage() {
                 </thead>
 
                 <tbody>
-                    
-                            <tr >
-                                <td >
-                                    
-                                </td>
-                                <td>
-                                   
-                                </td>
-                                <td>
-                                  
-                                </td>
-                                <td>                                     
-                            
-
-                                </td>
-                            </tr>
-                      
+                    {
+                        onePromotion.products.map((product: any) => (
+                        <tr >
+                            <td >
+                                {product.name}
+                            </td>
+                            <td>
+                               {product.product_type}
+                            </td>
+                            <td>
+                              R${product.value}
+                            </td>
+                            <td>                                     
+                                R${(product.value / 100 ) * (100 - Number(onePromotion.discount)) }
+                            </td>
+                        </tr>
+                  
+                        ))
+                    }
+                           
                 </tbody>
                 </table>
                 </Table>
