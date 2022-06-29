@@ -39,7 +39,7 @@ export const Container = styled.div `
 export const Form = styled.form `
 
    margin-top: 12rem;
-   width: 35%;
+   width: 30%;
    height: 25rem;
    border-radius: 10px;
    justify-content: center;
@@ -57,7 +57,7 @@ export const SalesIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-top: 4rem;
+    margin-top: 1rem;
 
     
 

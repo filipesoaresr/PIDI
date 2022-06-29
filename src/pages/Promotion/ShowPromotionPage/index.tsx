@@ -57,19 +57,18 @@ export default function ShowPromotionPage() {
                         Nome da Promoção: <p>{onePromotion.name}</p>
                         <br/>
                         <br/>
-                        Vendas: <input placeholder="Nome da Promoção" disabled={true} />
 
                     </MainSection>
 
                     <SecondSection>
 
-                        Inicio da Promoção: <p>{onePromotion.start_date}</p>
+                        Inicio da Promoção: <p>{onePromotion.start_date.split("T")[0]}</p>
                         <br/>
                         <br/>
                         Fim da Promoção:
                         {
                             onePromotion.end_date ? 
-                            <p>{onePromotion.end_date}</p> :
+                            <p>{onePromotion.end_date.split("T")[0]}</p> :
                             <p>Ainda sem data final</p>
                         } 
                         

@@ -28,7 +28,10 @@ export default function NewPaymentOption() {
     async function handleCreateNewPayment(event: FormEvent) {
         event.preventDefault();
 
-        if(!name || !flag || installment){
+        if(!name || !flag || !installment){
+            console.log(name)
+            console.log(flag)
+            console.log(installment)
             return  toast.error('Campos obrigatórios não preenchidos!');
         }
 
@@ -84,7 +87,7 @@ export default function NewPaymentOption() {
 
                         <p>Parcelamento:</p>
                         <select value={installment} onChange={event => setInstallment(event.target.value)}>
-                            <option value="A vista">A Vista</option>
+                            <option value="1x">A Vista</option>
                             <option value="2x">Até 2x</option>
                             <option value="3x">Até 3x</option>
                             <option value="4x">Até 4x</option>
@@ -110,7 +113,7 @@ export default function NewPaymentOption() {
                 <Link to='/paymentoption'> <button id="buttonCancel" type="reset">Cancelar</button></Link> 
                 &nbsp;
                 &nbsp;
-                <button id="buttonRegister" type="submit" onClick={handleCreateNewPayment}>Cadastrar <BsFillPlusSquareFill/></button>
+                <button id="buttonRegister" type="submit" onClick={(event) => handleCreateNewPayment(event)}>Cadastrar <BsFillPlusSquareFill/></button>
             </Form>
         </Container>
     )

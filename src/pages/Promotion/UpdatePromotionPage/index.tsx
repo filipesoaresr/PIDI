@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { BsCartFill } from 'react-icons/bs';
 import { Button, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,11 @@ import { api } from '../../../services/api';
 import { toast } from 'react-toastify'
 import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection} from './styles'
 import { ProductContext } from '../../../contexts/ProductContext';
+import { BsFillPencilFill } from 'react-icons/bs';
 
+interface IProductInOrder {
+    fk_id_product: string;
+}
 interface IProduct {
     id: string;
     productType: string;
@@ -19,9 +23,16 @@ interface IProduct {
     m: number;
     g: number;
     gg: number;
-    promotion: string;
+    promotion:{
+        name:string;
+        endDate:string;
+        discount:string;
+        ProductsInPromo:[]
+    } ;
     value: number;
 }
+
+
 
 export default function UpdatePromotionPage() {
 
@@ -38,19 +49,120 @@ export default function UpdatePromotionPage() {
         getProducts
         } = useContext(PromotionContext)
 
+        const inputFeilds = document.querySelectorAll("input");
+        const selectFeilds = document.querySelectorAll("select");
+
         const { products } = useContext(ProductContext)
+        const [productsInOrderList, setProductsInOrderList] = useState<String[]>([]);
+        const [ fODA_SE, setfODA_SE] = useState(true);
+    
+        function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
+        
+            let List: Array<any> = productsInOrderList
+    
+            event.preventDefault();
+            console.log("PRODUCTS IN ORDER LIST", List)
+            
+            List.forEach((i,index)=>{
+                console.log("forEach i")
+                console.log(i)
+                if(i.fk_id_product === product.id){
+                    console.log("antes")
+                    console.log(List)
+                    List.splice(index,1)
+                    console.log("depois")
+                    console.log(List)
+                    
+                }
+            } )
+            setProductsInOrderList(List)
+            console.log("PRODUCT IN ORDER LIST TIMEOUT", productsInOrderList)
+    
+            setTimeout(() => {
+                
+                setfODA_SE(true)
+                setfODA_SE(false)
+    
+            }, 500)
+           
+           
+            return  toast.dark('Produto Excluido com sucesso no pedido!');
+        }
+
+        function handleIncludeProductsInOrder(product: IProduct,) {
+
+            let productValueInOrder = 0
+    
+            productsInOrderList.push(product.id);
+            setProductsInOrderList(productsInOrderList)
+            //var oldList = productsInOrderList; 
+            console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
+            console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
+           
+            setTimeout(() => {
+             
+                setfODA_SE(false)
+                setfODA_SE(true)
+    
+            }, 500)
+    
+            toast.success('Produto incluído com sucesso no pedido!');
+       }
+    
+       function Butao_de_sim (product :IProduct){
+
+        return <Button 
+        id="addProductButton" 
+        variant="primary" 
+        size="sm" 
+
+        onClick={() => handleIncludeProductsInOrder(product)}>Incluir
+        </Button>
+}
+
+        function Butao_de_nao (product :IProduct){
+
+        return  <Button id="deleteProductButton" variant="danger" size="sm" onClick = {event =>handleExcludeProductInOrder(product,event)}>Excluir</Button>
+        }
+
+        function foda_se(vai:boolean,product:IProduct) {
+
+            if(vai){
+                return Butao_de_sim(product)
+            }
+            else{
+
+            return Butao_de_nao(product)
+            }
+        }
+
 
     function handleUpdate( id: string) {
 
+        // products in promo precisa ser recebido da /promotions/id 
+        // é um array de produtos, então as vezes vai selectFeilds
+        
+
+        const validInputs = Array.from(inputFeilds).filter( input => input.value !== "");
+        const selectFeilds = Array.from(inputFeilds).filter( input => input.value !== "");
+        
+       
+        console.log("INPUTS VALIDOS", validInputs)
+        
         const dataUpdated = {
             name,
             startDate,
             endDate,
             discount,
+            products: productsInOrderList
         }
 
+        
+        console.log("LISTA TESTE", productsInOrderList)
         console.log(dataUpdated)
-        api.put(`/promotions/${id}`, dataUpdated)
+        api.put(`/promotions/${id}`, dataUpdated).then(response => {
+            console.log("RESPOSTA UPDATE PROMO", response.data)
+        })
         toast.success('Promoção alterada com sucesso!');
 
     }
@@ -67,7 +179,7 @@ export default function UpdatePromotionPage() {
                         <p>Nome da Promoção:</p>
                         <input 
                         type="text" 
-                        placeholder="Nome da Promoção" 
+                       
                         value={name}
                         onChange={event => setName(event.target.value)}
                         />
@@ -87,6 +199,7 @@ export default function UpdatePromotionPage() {
 
                         <p>Desconto</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
+                            <option></option>
                             <option value="70">70% OFF</option>
                             <option value="60">60% OFF</option>
                             <option value="50">50% OFF</option>
@@ -132,7 +245,7 @@ export default function UpdatePromotionPage() {
                     </thead>
         
                     <tbody>
-                        {console.log(products)}
+                       
                         {
                             products.map((product: IProduct) => (
                                 <tr >
@@ -140,20 +253,13 @@ export default function UpdatePromotionPage() {
                                         {product.name}
                                     </td>
                                     <td>
-                                        {product.promotion}
+                                        {product.promotion?.name}
                                     </td>
                                     <td>
                                         {product.value}
                                     </td>
                                     <td>                                     
-                                    <Button id="addProductButton" variant="primary" size="sm" >
-                                        Incluir
-                                    </Button>
-                                       &nbsp;
-                                       &nbsp; 
-                                    <Button id="deleteProductButton" variant="primary" size="sm" >
-                                            Excluir
-                                    </Button>
+                                    {foda_se(!productsInOrderList.some(i=> i === product.id),product)}
                                     </td>
                                 </tr>
                             ))
@@ -170,7 +276,7 @@ export default function UpdatePromotionPage() {
                 &nbsp;
                 &nbsp;
                 <Link to="/promotions">   
-                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>Alterar</button>
+                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>Alterar <BsFillPencilFill/></button>
                 </Link>
             </Form>
 

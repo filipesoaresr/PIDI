@@ -228,10 +228,12 @@ export const AddProductSection = styled.section `
 
     #addProductButton{
         background-color: #569B06;
+        font-weight: bold;
     }
 
     #deleteProductButton{
         background-color: #C81D25;
+        font-weight: bold;
     }
     
     #searchButton{

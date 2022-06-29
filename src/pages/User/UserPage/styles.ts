@@ -207,10 +207,12 @@ justify-content: center;
 
   #updateButton{
       background-color: #0E14AC;
+      font-weight: bold;
   }
 
   #deleteButton{
       background-color: #C81D25;
+      font-weight: bold;
   }
 
    

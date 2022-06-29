@@ -113,6 +113,7 @@ export const MainSection = styled.div `
 export const ImageSection = styled.div `
     margin-right: 2rem;
     margin-top: 3rem;
+    padding: 3rem;
 
     width: 25rem;
     height: 25rem;
@@ -122,6 +123,12 @@ export const ImageSection = styled.div `
 
     p {
         margin-top: 1rem
+    }
+
+    img{
+       
+        width: 20rem;
+        height: 18rem;
     }
 
 `;

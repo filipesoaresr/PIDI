@@ -4,6 +4,7 @@ import { ProductContext } from '../../../contexts/ProductContext';
 import { api } from '../../../services/api';
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify'
+import { BsFillPencilFill } from 'react-icons/bs';
 import { 
     Container,
     Form, 
@@ -37,6 +38,8 @@ export default function UpdateProductPage() {
 
     const {
         id,
+        name,
+        setName,
         value,
         setValue,
         pp,
@@ -49,7 +52,11 @@ export default function UpdateProductPage() {
         setG,
         gg,
         setGG,
-        getProducts 
+        getProducts ,
+        product_type,
+        setProductType,
+        colection,
+        setColection,
     } = useContext(ProductContext)
 
 
@@ -59,6 +66,8 @@ export default function UpdateProductPage() {
         event.preventDefault();
 
        const dataUpdated = {
+           name,
+           setName,
            value,
            pp,
            p,
@@ -85,15 +94,25 @@ export default function UpdateProductPage() {
                 <FormProductBlock>
                     <MainSection>
                     <p>Tipo de Produto:</p>
-                        <input>
+                        <input
+                        type="text"
+                        value = {product_type}
+                        onChange={event => setProductType(event.target.value)}
+                        >
                         </input>
 
                         <p>Nome do Produto:</p>
-                        <input/>
+                        <input 
+                        type="text"
+                        value = {name}
+                        onChange={event => setName(event.target.value)}
+                        />
 
                         <p>Coleção:</p>
                         <input
                             type="text"
+                            value = {colection}
+                            onChange={event => setColection(event.target.value)}
                         />
 
                         <p>Quantidade/Tamanho</p>
@@ -102,7 +121,7 @@ export default function UpdateProductPage() {
                             className='size-qtd' 
                             type="number" 
                             value={pp}
-                            onChange={event => setP(Number(event.target.value))}
+                            onChange={event => setPP(Number(event.target.value))}
                             />
                         </label>
 
@@ -111,7 +130,7 @@ export default function UpdateProductPage() {
                             className='size-qtd' 
                             type="number"
                             value={p}
-                            onChange={event => setPP(Number(event.target.value))} 
+                            onChange={event => setP(Number(event.target.value))} 
                             />
                         </label>
 
@@ -160,9 +179,7 @@ export default function UpdateProductPage() {
                 <br/>
                 <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link> 
                 &nbsp;
-                <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>
-                    Alterar
-                </button>
+                <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>Alterar <BsFillPencilFill/></button>
 
             </Form>
         </Container>

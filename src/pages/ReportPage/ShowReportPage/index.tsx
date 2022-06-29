@@ -58,6 +58,8 @@ export default function ShowReportPage() {
         productsPercentage.map((product: any) => {
             chartLabels.push(product.nome)
             chartData.push(product.percent)
+
+           
         })
 
         productsWithSaleDate.map((product: any) => {
@@ -159,12 +161,14 @@ export default function ShowReportPage() {
             <h1>Relatório Inteligente</h1>
 
                 <SalesGraphBlock>
+                    <h5>Gráfico Produtos Vendidos Por Dia</h5>
                     <Line 
                     data={data2} 
                     />
                 </SalesGraphBlock>
 
                 <GraphBlock>
+                    <h5>Gráfico dos produtos com maior receita</h5>
                     <Doughnut 
                     data={data}
                     width={"50%"}
@@ -175,7 +179,7 @@ export default function ShowReportPage() {
                 <TableSection>
                 
                         <VscPackage style={{ fontSize: "3rem", color: "black" }}></VscPackage>
-                        <h5>Produtos mais Rentáveis</h5>
+                        <h5>Tabela produtos com maior receitas</h5>
             
                         <Table bordered hover responsive>
                         <table className="content-table">
@@ -195,9 +199,6 @@ export default function ShowReportPage() {
                                         </th>
                                         <th>
                                             Porcentagem
-                                        </th>
-                                        <th>
-                                            Nível Produto
                                         </th>
                                     </tr>
                                 </thead>
@@ -222,9 +223,6 @@ export default function ShowReportPage() {
                                                 </td>
                                                 <td>
                                                     {product.percent.toFixed(2)}%
-                                                </td>
-                                                <td>
-                                                    
                                                 </td>
                                             </tr>
                                         ))

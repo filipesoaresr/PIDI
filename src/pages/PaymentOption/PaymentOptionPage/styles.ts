@@ -207,6 +207,7 @@ export const PaymentTable = styled.div `
 
   #deleteButton{
       background-color: #C81D25;
+      font-weight: bold;
   }
    
 

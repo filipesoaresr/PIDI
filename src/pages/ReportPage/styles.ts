@@ -38,7 +38,7 @@ export const Container = styled.div `
 export const Form = styled.form `
 
    margin-top: 12rem;
-   width: 35%;
+   width: 25%;
    height: 25rem;
    border-radius: 10px;
    justify-content: center;
@@ -56,7 +56,7 @@ export const ReportIntro = styled.div `
     justify-content: center;
     align-items: center;
 
-    margin-top: 4rem;
+    margin-top: 1rem;
 
     h1{
         display: flex;

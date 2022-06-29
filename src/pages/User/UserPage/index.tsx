@@ -108,7 +108,7 @@ export default function UserPage() {
                                 Nome
                             </th>
                             <th id="loginColumn">
-                                Username
+                                Email
                             </th>
                             <th id="telefoneColumn">
                                 Telefone
@@ -182,7 +182,7 @@ export default function UserPage() {
                                  Nome
                              </th>
                              <th id="loginColumn">
-                                 Username
+                                 Email
                              </th>
                              <th id="telefoneColumn">
                                  Telefone

@@ -84,6 +84,12 @@ export default function OrderPage() {
         })
     }
 
+    async function handleUpdateInOrder(id: string) {
+        console.log("MANDANDO ID", id)
+        await setId(id)
+        history.push('/order/updateorder')
+    }
+
     function handleGetBack(){
         setNotFound(false)
     }
@@ -139,7 +145,7 @@ export default function OrderPage() {
                         result.map((order: IOrder) => (
                             <tr key={order.id}>
                                 <td>
-                                    {order.date_created}
+                                    {order.date_created.split("T")[0]}
                                 </td>
                                 <td>
                                     {order.product_has_order.map((product) => (
@@ -162,11 +168,11 @@ export default function OrderPage() {
                                     &nbsp;
                                    {
                                     order.is_open ?
-                                    <Link to='/order/updateorder' >
-                                        <Button id="updateButton" variant="primary" size="sm">
+                                    
+                                        <Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdateInOrder(order.id)}>
                                             Alterar
                                         </Button>
-                                    </Link> :
+                                     :
                                     "" 
                                    }
                                     &nbsp;
@@ -192,7 +198,7 @@ export default function OrderPage() {
                     <thead>
                         <tr>
                             <th>
-                                Nº do Pedido
+                                Data do Pedido
                             </th>
                             <th>
                                 Produto
@@ -213,7 +219,7 @@ export default function OrderPage() {
                         orders.map((order: IOrder) => (
                             <tr key={order.id}>
                                 <td>
-                                    {order.id}
+                                    {order.date_created.split("T")[0]}
                                 </td>
                                 <td>
                                     {order.product_has_order.map((product) => (
@@ -234,7 +240,7 @@ export default function OrderPage() {
                                     </Button>
 
                                     <Link to='/order/updateorder' >
-                                        <Button id="updateButton" variant="primary" size="sm">
+                                        <Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdateInOrder(order.id)}>
                                             Alterar
                                         </Button>
                                     </Link>

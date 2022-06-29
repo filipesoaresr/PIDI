@@ -33,7 +33,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
     const [name, setName] = useState('');
     const [colection, setColection] = useState('');
     const [date, setDate] = useState('');
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState();
     const [pp, setPP] = useState(0);
     const [p, setP] = useState(0);
     const [m, setM] = useState(0);

@@ -83,6 +83,9 @@ export const Form = styled.form `
         background: #118233;
         color: #fff;
 
+        font-size: 20px;
+        font-weight: bold;
+
         padding: 0.8rem 4rem;
         cursor: pointer;
 
@@ -94,6 +97,9 @@ export const Form = styled.form `
 
         margin-top: 5rem;
         margin-bottom: 2rem;
+
+        font-size: 20px;
+        font-weight: bold;
 
         padding: 0.8rem 4rem;
         cursor: pointer;
@@ -188,10 +194,12 @@ export const AddProductSection = styled.section `
 
     #addProductButton{
         background-color: #569B06;
+        font-weight: bold;
     }
 
     #deleteProductButton{
         background-color: #C81D25;
+        font-weight: bold;
     }
     
     #searchButton{

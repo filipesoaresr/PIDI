@@ -4,6 +4,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify'
 import { Container, Form, FormBlock, MainSection, SecondSection } from './styles';
+import { BsFillPencilFill } from 'react-icons/bs';
 
 export default function UpdateUserPage() {
 
@@ -32,18 +33,23 @@ export default function UpdateUserPage() {
 
         event.preventDefault();
         
+        console.log(phone)
+        console.log(email)
+        console.log(role)
+        console.log(username)
+        console.log(password)
         console.log("========ID======",id)
-
+      
 
         const userUpdated = {
-            phone,
-            email,
-            role,
-            username,
-            password,
-            confirmedPassword
+            phone: phone,
+            email: email,
+            role: role,
+            username: username,
+            password: password,
         };
         
+
         await api.put(`/users/${id}`, userUpdated)
         toast.success('Usuário alterado com sucesso!');
         getUsers();
@@ -96,8 +102,9 @@ export default function UpdateUserPage() {
 
                         <p>Cargo:</p>
                         <select value={role} onChange={event => setRole(event.target.value)}>
-                            <option value="Atendimento">Atendimento</option>
-                            <option value="Financeiro">Financeiro</option>
+                            <option></option>
+                            <option value={"Atendimento"}>Atendimento</option>
+                            <option value={"Financeiro"}>Financeiro</option>
                         </select>
                         
                         
@@ -118,9 +125,7 @@ export default function UpdateUserPage() {
                 &nbsp;
                 &nbsp;
                 <Link to='/users'>  
-                <button id="buttonUpdate" type="submit" onClick={(event) => {handleUpdate(event, id)}}>
-                    Alterar
-                </button>
+                <button id="buttonUpdate" type="submit" onClick={(event) => {handleUpdate(event, id)}}>Alterar <BsFillPencilFill/></button>
                 </Link>
             </Form>
         </Container>

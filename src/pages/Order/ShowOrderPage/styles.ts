@@ -22,6 +22,17 @@ export const FormBlock = styled.div `
 export const SecondSection = styled.section `
     margin-left: 2rem;
     margin-top: 3rem;
+
+    label{
+        margin-right: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    p{
+        margin-right: 2rem;
+        font-size: 1.2rem;
+    }
     
 `;
 
@@ -84,6 +95,9 @@ export const Form = styled.form `
         background: #118233;
         color: #fff;
 
+        font-size: 20px;
+        font-weight: bold;
+
         padding: 0.8rem 4rem;
         cursor: pointer;
 
@@ -100,6 +114,9 @@ export const Form = styled.form `
         padding: 0.8rem 4rem;
         cursor: pointer;
 
+        font-size: 20px;
+        font-weight: bold;
+
         border-radius: 5px;
         background: #C81D25;
         color: #fff;
@@ -110,9 +127,16 @@ export const Form = styled.form `
 export const MainSection = styled.section `
     margin-right: 2rem;
     margin-top: 3rem;
+
+    label{
+        margin-right: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
     
     p{
         margin-right: 2rem;
+        font-size: 1.2rem;
     }
 
 `;

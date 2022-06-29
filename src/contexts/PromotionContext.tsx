@@ -19,10 +19,10 @@ export function PromotionProvider({children}: PromotionProviderProps) {
 
     const [id, setId] = useState('');
 
-    const [name, setName] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [discount, setDiscount] = useState('');
+    const [name, setName] = useState();
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+    const [discount, setDiscount] = useState();
 
     const [promotions, setPromotions] = useState<Promotion[]>([])
     const [productsInPromo, setProductsInPromo] = useState('')

@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 
 interface IProductInOrder {
     product_name: string;
+    productType: string;
     pp?: number,
     p?: number,
     m?: number,
@@ -101,10 +102,17 @@ async function handleUpdate(event: FormEvent, id: string) {
    }
 
     console.log(dataUpdated)
-    await api.put(`/sales/${id}`, dataUpdated)
-    await getOrders()
-    toast.success('Venda do pedido realizada com sucesso!');
-    history.push("/order")
+    await api.put(`/sales/${id}`, dataUpdated).then(response => {
+        console.log("RESPOSTA AO CONFIRMAR VENDA", response.data)
+        if (response.data.status === 'erro') {
+            return toast.error('Algum produto esta em falta no estoque, Por favor faça um novo pedido');
+        }else {
+
+            toast.success('Venda do pedido realizada com sucesso!');
+            getOrders()
+            history.push("/order")
+        }
+    })
     
 }
 
@@ -120,7 +128,7 @@ async function handleUpdate(event: FormEvent, id: string) {
                 <h2>Pedido</h2>
 
                 <AddProductSection>
-                    <BsCartFill style={{fontSize: "2.5rem"}}></BsCartFill>
+                    <BsCartFill style={{fontSize: "2.5rem", color: "black"}}></BsCartFill>
                     <h5>Produtos do Pedido</h5>
                    
                         <Table bordered hover responsive >
@@ -128,7 +136,7 @@ async function handleUpdate(event: FormEvent, id: string) {
                             <thead>
                                 <tr>
                                     <th>
-                                        Código
+                                        Tipo do Produto
                                     </th>
                                     <th>
                                         Produto
@@ -156,7 +164,7 @@ async function handleUpdate(event: FormEvent, id: string) {
                                     oneOrder.product_has_order.map((product: IProductInOrder) => (
                                         <tr key={product.fk_id_product}>
                                             <th scope="row">
-                                                {product.fk_id_product}
+                                                {product.productType}
                                             </th>
                                             <td>
                                                 {product.product_name}
@@ -186,28 +194,31 @@ async function handleUpdate(event: FormEvent, id: string) {
                     <FormBlock>
 
                     <MainSection>
-                        <p>Data do Pedido:</p>
-                        <p>{oneOrder.date_created}</p>
+                        <label>Data do Pedido</label>
 
-                        <p>Opçao de Pagamento</p>
+                        <p>{oneOrder.date_created.split("T")[0]}</p>
+
+                        <label>Opçao de Pagamento</label>
+
                         <p>{orderPayment}</p>
 
 
-                        <p>Parcelamento</p>
+                        <label>Parcelamento</label>
+
                         <p>{orderInstallment}</p>
                                               
                     </MainSection>
 
                     <SecondSection>
 
-                    <p>Nome atendente:</p>
+                    <label>Nome atendente</label>
                     <p>{userName}</p>
 
-                    <p>Número do Pedido:</p>
+                    <label>Número do Pedido</label>
                     <p>{oneOrder.id}</p>    
 
                         
-                    <p>Total do Pedido:</p>
+                    <label>Total do Pedido:</label>
                     <p>{oneOrder.total_value}</p>
 
                     
@@ -218,9 +229,16 @@ async function handleUpdate(event: FormEvent, id: string) {
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>
                 </Link>
+                &nbsp;
+                &nbsp;
+                {
+                oneOrder.is_open ? 
                 <button id="registerSaleButton" type="submit" onClick={(event) => handleUpdate(event, id)}>
                     Confirmar Venda
                 </button>
+                :
+                ""
+                }
 
             </Form>
 

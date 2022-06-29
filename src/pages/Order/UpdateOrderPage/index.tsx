@@ -7,6 +7,11 @@ import { Container, Form, MainSection, AddProductSection, FormBlock, SecondSecti
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from "react-icons/bs";
+import { OrderContext } from '../../../contexts/OrderContext';
+import { PaymentContext } from '../../../contexts/PaymentContext';
+import { UserContext } from '../../../contexts/UserContext';
+import { toast } from 'react-toastify';
+import { BsFillPencilFill } from 'react-icons/bs';
 
 interface Product {
     id: string;
@@ -25,35 +30,110 @@ interface Product {
         };
     value: string;
 }
+interface IProductInOrder {
+    product_name: string;
+    pp: number;
+    p: number;
+    m: number;
+    g: number;
+    gg: number;
+    order_product_value: number;
+    fk_id_product: string;
+}
+interface IUpdateOrder {
+    name: string;
+    fk_id_user: string;
+    fk_id_payment_options: string;
+    product_has_order: []
+
+}
 
 export default function UpdateOrderPage() {
 
     const {
-        name,
-        setName,
-        startDate,
-        setStartDate,
-        endDate,
-        setEndDate,
-        discount,
-        setDiscount,
-    } = useContext(PromotionContext)
+        id,
+        pp,
+        setPP,
+        p,
+        setP,
+        m,
+        setM,
+        g,
+        setG,
+        gg,
+        setGG,
+        installment,
+        setInstallment,
+        fk_id_payment_options, 
+        setFk_id_payment_options,
+        fk_id_user, 
+        setFk_id_user,
+       
+    } = useContext(OrderContext)
 
     const { products } = useContext(ProductContext)
+    const { payments } = useContext(PaymentContext)
+    const { users } = useContext(UserContext)
+    const [productsInOrderList, setProductsInOrderList] = useState<IProductInOrder[]>([]);
 
-    function handleUpdatePromotion(event: FormEvent) {
+    function handleUpdateOrder(event: FormEvent, id: string) {
         event.preventDefault();
 
         const data = {
-            name,
-            startDate,
-            endDate,
-            discount,
-        };
 
-        api.post('/promotions', data)
+            fk_id_user: fk_id_user,
+            fk_id_payment_options: fk_id_payment_options,
+            product_has_order: productsInOrderList
+               
+          
+        };
+        console.log("=====ID=====", id)
+        console.log("=======DATA=======",data)
+        api.put(`/orders/${id}`, data)
         alert("Cadastro Realizado com Sucesso!")
     }
+
+    function handleIncludeProductsInOrder(product: any,) {
+
+        
+        let productAmount = pp + p + m + g + gg;
+        let discount = product.promotion?.discount;
+        let productValueInOrder = 0
+
+        product.promotion ? 
+        productValueInOrder = (product.value * (1 - discount/100)) * productAmount :
+        productValueInOrder = product.value * productAmount
+       
+
+        const productsOrder: IProductInOrder = {
+            product_name: product.name,
+            pp: pp,
+            p: p,
+            m: m,
+            g: g,
+            gg: gg,
+            order_product_value: productValueInOrder,
+            fk_id_product: product.id,
+        }
+        
+        productsInOrderList.push(productsOrder);
+        //var oldList = productsInOrderList; 
+        console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
+        console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
+       
+        setTimeout(() => {
+            setPP(0)
+            setP(0)
+            setM(0)
+            setG(0)
+            setGG(0)
+
+        }, 500)
+
+        toast.success('Produto incluído com sucesso no pedido!');
+   }
+
+  
 
     return (
         <Container>
@@ -63,10 +143,7 @@ export default function UpdateOrderPage() {
 
                 <AddProductSection>
                     <BsCartFill style={{ fontSize: "2rem", color: "black" }}></BsCartFill>
-                    <h5>Nome do Produto</h5>
-                    <input type="text" />
-                    <br />
-                    <button id="searchButton">Consultar</button>
+                    <h5>Produtos</h5>
                     <Table bordered hover responsive >
                     <table className="content-table">
                         <thead>
@@ -106,6 +183,7 @@ export default function UpdateOrderPage() {
                                                     className='size-qtd'
                                                     type="number"
                                                     placeholder={product.pp.toString()}
+                                                    onChange={event => setPP(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -113,7 +191,8 @@ export default function UpdateOrderPage() {
                                                 P: <input
                                                     className='size-qtd'
                                                     type="number"
-                                                    placeholder={product.p.toString()} 
+                                                    placeholder={product.p.toString()}
+                                                    onChange={event => setP(Number(event.target.value))} 
                                                 />
                                             </label>
 
@@ -122,6 +201,7 @@ export default function UpdateOrderPage() {
                                                     className='size-qtd'
                                                     type="number"
                                                     placeholder={product.m.toString()}
+                                                    onChange={event => setM(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -130,6 +210,7 @@ export default function UpdateOrderPage() {
                                                     className='size-qtd'
                                                     type="number"
                                                     placeholder={product.g.toString()}
+                                                    onChange={event => setG(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -138,6 +219,7 @@ export default function UpdateOrderPage() {
                                                     className='size-qtd'
                                                     type="number"
                                                     placeholder={product.gg.toString()}
+                                                    onChange={event => setGG(Number(event.target.value))}
                                                 />
                                             </label>
 
@@ -152,7 +234,7 @@ export default function UpdateOrderPage() {
                                             Total
                                         </td>
                                         <td id="actionsColumn">
-                                            <Button id="addProductButton" variant="primary" size="sm" >
+                                            <Button id="addProductButton" variant="primary" size="sm" onClick={() => handleIncludeProductsInOrder(product)}>
                                                 Adicionar
                                             </Button>
                                             &nbsp;
@@ -172,32 +254,33 @@ export default function UpdateOrderPage() {
                 <FormBlock>
 
                     <MainSection>
-
+                        {console.log("ARRAY DE PAGAMENTOS", payments)}
                         <p>Opçao de Pagamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
-                            <option value="dinheiro">Dinheiro</option>
-                            <option value="credito">Cartão Crédito</option>
-                            <option value="debito">Cartão Débito</option>
-                            <option value="pix">PIX</option>
-                            <option value="picpay">Pic pay</option>
-                            <option value="paypal">PayPal</option>
+                        <select value={fk_id_payment_options} onChange={event => setFk_id_payment_options(event.target.value)}>
+                        <option></option>
+                           {
+                            payments?.map((payment: any) => (
+                                
+                                <option key={payment.id} value={payment.id}>{payment.name}</option>
+                            ))
+                           }
                         </select>
 
-
+                        {console.log("ARRAY DE USERS", users)}
                         <p>Parcelamento</p>
-                        <select value={discount} onChange={event => setDiscount(event.target.value)}>
+                        <select value={installment} onChange={event => setInstallment(event.target.value)}>
                             <option value="vista">A vista</option>
-                            <option value="2x">2x</option>
-                            <option value="3x">3x</option>
-                            <option value="4x">4x</option>
-                            <option value="5x">5x</option>
-                            <option value="6x">6x</option>
-                            <option value="7x">7x</option>
-                            <option value="8x">8x</option>
-                            <option value="9x">9x</option>
-                            <option value="10x">10x</option>
-                            <option value="11x">11x</option>
-                            <option value="12x">12x</option>
+                            <option value="2">2x</option>
+                            <option value="3">3x</option>
+                            <option value="4">4x</option>
+                            <option value="5">5x</option>
+                            <option value="6">6x</option>
+                            <option value="7">7x</option>
+                            <option value="8">8x</option>
+                            <option value="9">9x</option>
+                            <option value="10">10x</option>
+                            <option value="11">11x</option>
+                            <option value="12">12x</option>
                         </select>
 
                     </MainSection>
@@ -205,23 +288,21 @@ export default function UpdateOrderPage() {
                     <SecondSection>
 
                         <p>Nome atendente:</p>
-                        <input
-                            type="text"
-                            placeholder="Digite seu nome"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
+                        <select value={fk_id_user} onChange={event => setFk_id_user(event.target.value)}>
+                        <option></option>
+                           {
+                            users?.map((user: any) => (
+                                
+                                <option key={user.id} value={user.id}>{user.name}</option>
+                            ))
+                           }
+                        </select>
 
 
 
-                        <p>Total do Pedido:</p>
-                        <input
-                            type="text"
-                            placeholder=""
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-                        />
-
+                        {/* < <p id="totalPedidoText">Total do Pedido</p>
+                        <button id="totalPedidoButton" onClick={(event) => getTotalValue(event)}>Ver Total</button>
+                        <p id="totalValueText">R${totalValue}</p> */}
 
                     </SecondSection>
 
@@ -231,9 +312,7 @@ export default function UpdateOrderPage() {
                     <button id="buttonCancel" type="reset">Voltar</button>
                 </Link> 
 
-                <button id="registerButton" type="submit" onClick={(event) => handleUpdatePromotion(event)}>
-                    Alterar
-                </button>
+                <button id="registerButton" type="submit" onClick={(event) => handleUpdateOrder(event, id)}>Alterar <BsFillPencilFill/></button>
 
             </Form>
 

@@ -92,9 +92,6 @@ export default function PaymentOption(){
                  <thead>
                      <tr>
                          <th>
-                             Código
-                         </th>
-                         <th>
                              Nome Opção de Pagamento
                          </th>
                          <th>
@@ -112,9 +109,6 @@ export default function PaymentOption(){
                      {result.map((payment: PaymentOption) => (
                          <tr key={payment.id}>
                              <td scope="row">
-                                 {payment.id}
-                             </td>
-                             <td>
                                  {payment.name}
                              </td>
                              <td>

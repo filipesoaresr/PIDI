@@ -84,6 +84,7 @@ export const OrderIntro = styled.div `
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+
     margin-top: 5rem;
 
     h1{
@@ -108,7 +109,7 @@ export const OrderIntro = styled.div `
         margin-top: 2rem;
         //margin-left: 7.5rem;
 
-        width: 100%;
+        width: 80%;
         height: 3rem;
         color: #fff;
 

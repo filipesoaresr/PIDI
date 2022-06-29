@@ -214,10 +214,12 @@ export const ProductTable = styled.div `
 
   #updateButton{
       background-color: #0E14AC;
+      font-weight: bold;
   }
 
   #deleteButton{
       background-color: #C81D25;
+      font-weight: bold;
   }
    
 

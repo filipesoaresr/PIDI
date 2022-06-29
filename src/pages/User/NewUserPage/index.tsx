@@ -50,6 +50,13 @@ export default function NewUserPage() {
     async function handleCreateNewUser(event: FormEvent) {
         event.preventDefault();
 
+        console.log(name)
+        console.log(birthDate)
+        console.log(role)
+        console.log(cpf)
+        console.log(username)
+        console.log(password)
+        console.log(sex)
         if(!name || !birthDate || !role || !cpf || !username || !password || !sex){
             return  toast.error('Campos obrigatórios não preenchidos!');
         }
@@ -123,8 +130,9 @@ export default function NewUserPage() {
 
                         <p>Sexo:</p>
                         <select value={sex} onChange={event => setSex(event.target.value)}>
-                            <option value="Atendimento">Masculino</option>
-                            <option value="Financeiro">Feminino</option>
+                            <option></option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
                         </select>
 
                         <p>Email: </p>
@@ -148,6 +156,7 @@ export default function NewUserPage() {
                 <ThirdSection>
                         <p>Cargo:</p>
                         <select value={role} onChange={event => setRole(event.target.value)}>
+                            <option></option>
                             <option value="Atendimento">Atendimento</option>
                             <option value="Financeiro">Financeiro</option>
                         </select>

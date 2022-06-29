@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Button } from 'reactstrap';
 import { OrderContext } from '../../contexts/OrderContext';
 import { api } from '../../services/api';
-
+import { FcPositiveDynamic } from 'react-icons/fc';
 interface IProductInOrder {
     pp?: number,
     p?: number,
@@ -226,6 +226,8 @@ export default function ReportPage() {
         <Form>
 
             <ReportIntro>
+
+            <FcPositiveDynamic style={{ fontSize: "4rem", marginLeft: "4rem", marginBottom: "1rem" }}></FcPositiveDynamic>
 
                 <h1>Relatório</h1>
 

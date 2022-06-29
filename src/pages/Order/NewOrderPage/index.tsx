@@ -79,6 +79,7 @@ export default function NewOrderPage() {
     //REfatorar: usar o do contexto
     const [productsInOrderList, setProductsInOrderList] = useState<IProductInOrder[]>([]);
     const [ orderProductValue, setOrderProductValue] = useState<number[]>([]);
+    const [ fODA_SE, setfODA_SE] = useState(true);
 
 
     function calculateTotalInsideProduct(value :number,id:string,discount:number){
@@ -112,6 +113,39 @@ export default function NewOrderPage() {
         return 0
     }
 
+    function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
+        
+        let List: Array<any> = productsInOrderList
+
+        event.preventDefault();
+        console.log("PRODUCTS IN ORDER LIST", List)
+        
+        List.forEach((i,index)=>{
+            console.log("forEach i")
+            console.log(i)
+            if(i.fk_id_product === product.id){
+                console.log("antes")
+                console.log(List)
+                List.splice(index,1)
+                console.log("depois")
+                console.log(List)
+                
+            }
+        } )
+        setProductsInOrderList(List)
+        console.log("PRODUCT IN ORDER LIST TIMEOUT", productsInOrderList)
+
+        setTimeout(() => {
+            
+            setfODA_SE(true)
+            setfODA_SE(false)
+
+        }, 500)
+       
+       
+        return  toast.dark('Produto Excluido com sucesso no pedido!');
+    }
+
    function handleIncludeProductsInOrder(product: IProduct,) {
 
         
@@ -138,6 +172,7 @@ export default function NewOrderPage() {
         }
         
         productsInOrderList.push(productsOrder);
+        setProductsInOrderList(productsInOrderList)
         //var oldList = productsInOrderList; 
         console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
         console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
@@ -148,6 +183,8 @@ export default function NewOrderPage() {
             setM(0)
             setG(0)
             setGG(0)
+            setfODA_SE(false)
+            setfODA_SE(true)
 
         }, 500)
 
@@ -177,6 +214,39 @@ export default function NewOrderPage() {
     }
 
 
+   }
+
+
+   function Butao_de_sim (product :IProduct){
+
+                return <Button 
+                id="addProductButton" 
+                variant="primary" 
+                size="sm" 
+
+                onClick={() => handleIncludeProductsInOrder(product)}>Incluir
+                </Button>
+   }
+
+   function Butao_de_nao (product :IProduct){
+
+   return  <Button id="deleteProductButton" variant="danger" size="sm" onClick = {event =>handleExcludeProductInOrder(product,event)}>Excluir</Button>
+}
+
+   function foda_se(vai:boolean,product:IProduct) {
+    
+    
+    if(vai){
+        
+        return Butao_de_sim(product)
+        
+    }
+    else{
+        
+        return Butao_de_nao(product)
+
+    }
+    
    }
 
     function handleCreateNewOrder(event: FormEvent) {
@@ -233,14 +303,14 @@ export default function NewOrderPage() {
                 
                 <AddProductSection>
                     <BsCartFill style={{ fontSize: "3rem", color: "black" }}></BsCartFill>
-                    <h5>Nome do Produto</h5>
-                    <input type="text" placeholder="Digite aqui" />
-                    <br />
-                    <button id="searchButton">Consultar</button>
+                    <h5>Produtos</h5>
                     <Table bordered hover responsive >
                         <table className="content-table">
                         <thead>
                             <tr>
+                                <th>
+                                    Tipo do Produto
+                                </th>
                                 <th>
                                     Produto
                                 </th>
@@ -268,6 +338,9 @@ export default function NewOrderPage() {
 
                                     <tr key={product.id}>
                                         <td scope="row">
+                                            {product.productType}
+                                        </td>
+                                        <td>
                                             {product.name}
                                         </td>
                                         <td>
@@ -328,10 +401,29 @@ export default function NewOrderPage() {
                                         </td>
 
                                         <td id="actionsColumn">
-                                            <Button id="addProductButton" variant="primary" size="sm" onClick={() => handleIncludeProductsInOrder(product)}>Incluir</Button>
+                                            {console.log("======LA NO BUTON=========", productsInOrderList)}
+                                            {console.log("VERIFICAÇÃO DE LÓGICA ",!productsInOrderList.some(i=> i.fk_id_product === product.id))}
+
+                                            {foda_se(!productsInOrderList.some(i=> i.fk_id_product === product.id),product)}
+                                            
+                                            
+                                            
+                                            {/* {!productsInOrderList.some(i=> i.fk_id_product === product.id)?
+                                            <Button 
+                                            id="addProductButton" 
+                                            variant="primary" 
+                                            size="sm" 
+
+                                            onClick={() => handleIncludeProductsInOrder(product)}>Incluir</Button>
+                                            
+                                            :
+                                            <Button id="deleteProductButton" variant="danger" size="sm" onClick = {event =>handleExcludeProductInOrder(product,event)}>Excluir</Button>
+                                        
+                                        } */}
+                                            {/* <Button id="addProductButton" variant="primary" size="sm" onClick={() => handleIncludeProductsInOrder(product)}>Incluir</Button>
                                             &nbsp;
                                             &nbsp; 
-                                            <Button id="deleteProductButton" variant="danger" size="sm" >Excluir</Button>
+                                            <Button id="deleteProductButton" variant="danger" size="sm" >Excluir</Button> */}
 
                                         </td>
                                     </tr>

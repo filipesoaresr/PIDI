@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Button } from 'reactstrap';
 import { api } from '../../../services/api';
 import { OrderContext } from '../../../contexts/OrderContext';
+import { HiOutlineClipboardList } from 'react-icons/hi';
 
 interface IProductInOrder {
     pp?: number,
@@ -63,8 +64,8 @@ export default function SalesPage() {
         <Container>
             <Form>
                 <SalesIntro>
-
-                    <h1>Vendas</h1>
+                    <HiOutlineClipboardList style={{ fontSize: "4rem", marginLeft: "8rem", marginBottom: "1rem", color: "#0dcaf0" }}></HiOutlineClipboardList>
+                    <h1>Listar Vendas</h1>
 
                     <p>Data Inicial:</p> <input type='date'  onChange={event => setStartDate(new Date(event.target.value))}/>
 

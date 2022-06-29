@@ -147,7 +147,7 @@ export default function ListSalesPage() {
                                 sales.map((sale: any) => (
                                     <tr key={sale.id}>
                                         <td scope="row">
-                                            {sale.date_submitted}
+                                            {sale.date_submitted.split("T")[0]}
                                         </td>
                                         <td>
                                             {sale.product_has_order.map((product: any) => (

@@ -18,12 +18,12 @@ export const GraphBlock = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color:  #EBEBEB;
 
     padding: 1.5rem;
 
-    height: 500px;
-
+    height: 550px;
 
     margin-left: 2rem;
     margin-right: 2rem;
@@ -31,6 +31,13 @@ export const GraphBlock = styled.div `
 
     border-radius: 5px;
 
+    h5 {
+        margin-top: 1rem;
+        color: black;
+        font-Size: 2rem;
+        font-weight: bold;
+
+    }
     
 `;
 
@@ -39,11 +46,12 @@ export const SalesGraphBlock = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color:  #EBEBEB;
 
-    padding: 1.5rem;
+    //padding: 1.5rem;
 
-    height: 650px;
+    height: 750px;
 
 
     margin-left: 2rem;
@@ -52,7 +60,13 @@ export const SalesGraphBlock = styled.div `
 
     border-radius: 5px;
 
-    
+     h5 {
+        margin-top: 1rem;
+        color: black;
+        font-Size: 2rem;
+        font-weight: bold;
+        
+    }
 `;
 
 
