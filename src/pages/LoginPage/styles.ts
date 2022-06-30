@@ -7,12 +7,16 @@ export const Container = styled.div`
 `;
 
 export const LoginBlock = styled.form`
-  margin-top: 8rem;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  margin-top: 6rem;
+ 
 
   padding: 3rem 6rem;
-  background: #001021;
+  background: #194676;
 
   border-radius: 5px;
   color: #fff;
@@ -28,12 +32,15 @@ export const LoginBlock = styled.form`
 `;
 
 export const ButtonsBlock = styled.div`
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  padding: 0rem 3rem;
 
   #createUser {
-    margin-left: 35px;
+    //margin-left: 35px;
   }
 
   button {
@@ -46,7 +53,7 @@ export const ButtonsBlock = styled.div`
     font-size: 1.3rem;
 
     border-radius: 5px;
-    margin-left: 2.7rem;
+    //margin-left: 2.7rem;
     padding: 0.5rem 0.5rem;
     width: 60%;
 
@@ -83,6 +90,6 @@ export const UserImage = styled.div`
     width: 10rem;
     height: 10rem;
     margin-bottom: 10px;
-    margin-left: 25px;
+    //margin-left: 25px;
   }
 `;

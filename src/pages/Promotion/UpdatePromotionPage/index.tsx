@@ -23,6 +23,7 @@ interface IProduct {
     m: number;
     g: number;
     gg: number;
+    id_promotion?: string;
     promotion:{
         name:string;
         endDate:string;
@@ -46,9 +47,9 @@ export default function UpdatePromotionPage() {
         setEndDate,
         discount,
         setDiscount,
-        getProducts
         } = useContext(PromotionContext)
 
+        const {getProducts} = useContext(ProductContext)
         const inputFeilds = document.querySelectorAll("input");
         const selectFeilds = document.querySelectorAll("select");
 
@@ -56,7 +57,7 @@ export default function UpdatePromotionPage() {
         const [productsInOrderList, setProductsInOrderList] = useState<String[]>([]);
         const [ fODA_SE, setfODA_SE] = useState(true);
     
-        function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
+        async function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
         
             let List: Array<any> = productsInOrderList
     
@@ -85,7 +86,8 @@ export default function UpdatePromotionPage() {
     
             }, 500)
            
-           
+            await api.put(`promotions/remove-products/${product.id}`)
+            getProducts()
             return  toast.dark('Produto Excluido com sucesso no pedido!');
         }
 
@@ -127,7 +129,8 @@ export default function UpdatePromotionPage() {
 
         function foda_se(vai:boolean,product:IProduct) {
 
-            if(vai){
+            if(vai && !(product.id_promotion === id)){
+                
                 return Butao_de_sim(product)
             }
             else{
@@ -141,13 +144,6 @@ export default function UpdatePromotionPage() {
 
         // products in promo precisa ser recebido da /promotions/id 
         // é um array de produtos, então as vezes vai selectFeilds
-        
-
-        const validInputs = Array.from(inputFeilds).filter( input => input.value !== "");
-        const selectFeilds = Array.from(inputFeilds).filter( input => input.value !== "");
-        
-       
-        console.log("INPUTS VALIDOS", validInputs)
         
         const dataUpdated = {
             name,
@@ -261,6 +257,7 @@ export default function UpdatePromotionPage() {
                                     <td>                                     
                                     {foda_se(!productsInOrderList.some(i=> i === product.id),product)}
                                     </td>
+                                    
                                 </tr>
                             ))
                         }

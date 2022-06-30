@@ -178,7 +178,7 @@ export default function ShowReportPage() {
 
                 <TableSection>
                 
-                        <VscPackage style={{ fontSize: "3rem", color: "black" }}></VscPackage>
+                        <VscPackage style={{ fontSize: "6rem", color: "black" }}></VscPackage>
                         <h5>Tabela produtos com maior receitas</h5>
             
                         <Table bordered hover responsive>

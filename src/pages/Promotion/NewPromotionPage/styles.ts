@@ -37,7 +37,7 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;

@@ -1,6 +1,6 @@
 import { Container, HomeIntro } from './styles';
 import { Link } from 'react-router-dom'
-import HomeImg from '../../assets/imageHome.png';
+import HomeImg from '../../assets/pngwing.com (2).png';
 import { useEffect } from 'react';
 import { api } from '../../services/api'
 import axios from 'axios';

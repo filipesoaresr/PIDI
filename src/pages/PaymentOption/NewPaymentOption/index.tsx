@@ -66,6 +66,7 @@ export default function NewPaymentOption() {
 
                        <p>Bandeira:</p>
                         <select value={flag} onChange={event => setFlag(event.target.value)}>
+                            <option></option>
                             <option value="Visa">Visa</option>
                             <option value="Mastercard">Mastercard</option>
                             <option value="Elo">Elo</option>
@@ -87,6 +88,7 @@ export default function NewPaymentOption() {
 
                         <p>Parcelamento:</p>
                         <select value={installment} onChange={event => setInstallment(event.target.value)}>
+                            <option></option>
                             <option value="1x">A Vista</option>
                             <option value="2x">Até 2x</option>
                             <option value="3x">Até 3x</option>

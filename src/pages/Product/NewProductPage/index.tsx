@@ -172,7 +172,7 @@ export default function NewProductPage() {
                     </MainSection>
 
                     <ImageSection>
-                        <img src="https://cdn.discordapp.com/attachments/983476542577455198/991111518953422939/unknown.png" alt="" />
+                        <img src="https://cdn.discordapp.com/attachments/983476542577455198/991111518953422939/unknown.png" alt="Imagem caixa" />
                     </ImageSection>
 
                 </FormProductBlock>

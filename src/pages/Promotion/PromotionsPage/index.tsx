@@ -49,15 +49,13 @@ export default function PromotionsPage() {
     return (
         <Container>
             <PromoIntro>
-                <div className="container">
-                    <div className="child">
+             
                         <h1>Promoções</h1>
 
                         <input type='text' placeholder='Digite o Nome da Promoção'  onChange={(event) => setPromotionName(event.target.value)}/>
                         <br/>
                         <button type='submit' onClick={() => handleSearch(promotionName)}>Consultar</button>
-                    </div>
-                </div>
+             
             </PromoIntro>
                
             { result.length == 0 && notFound && (

@@ -62,8 +62,8 @@ export default function OrderPage() {
            
             toast.success('Pedido excluído com sucesso!');
             
+            getOrders()
         })
-        getOrders()
         console.log("TENTANDO DELETAR", orders)
     }
 
@@ -157,7 +157,7 @@ export default function OrderPage() {
                                     {order.is_open ? "Em andamento" : "Finalizado"}
                                 </td>
                                 <td>
-                                    {order.total_value}
+                                    R${order.total_value}
                                 </td>
                                 <td>
                                     
@@ -166,7 +166,13 @@ export default function OrderPage() {
                                     </Button>
                                     &nbsp;
                                     &nbsp;
-                                   {
+                            
+                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>
+                                        Excluir
+                                    </Button>
+                                    &nbsp;
+                                    &nbsp;
+                                    {
                                     order.is_open ?
                                     
                                         <Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdateInOrder(order.id)}>
@@ -175,11 +181,7 @@ export default function OrderPage() {
                                      :
                                     "" 
                                    }
-                                    &nbsp;
-                                    &nbsp;
-                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>
-                                        Excluir
-                                    </Button>
+                                    
                                 </td>
                             </tr>
                             ))
@@ -234,18 +236,24 @@ export default function OrderPage() {
                                     {order.total_value}
                                 </td>
                                 <td>
-                                    
+                              
                                     <Button id="showButton" variant="primary" size="sm" onClick={() => handleOrderID(order.id)}>
                                         Exibir
                                     </Button>
-
-                                    <Link to='/order/updateorder' >
-                                        <Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdateInOrder(order.id)}>
-                                            Alterar
-                                        </Button>
-                                    </Link>
-                                    
-                                    <Button id="deleteButton" variant="danger" size="sm" onClick={() => handleDelete(order.id)}>
+                                    &nbsp;
+                                    &nbsp; 
+                                    {
+                                      order.is_open ?  
+                                      <Link to='/order/updateorder' >
+                                          <Button id="updateButton" variant="primary" size="sm" onClick={() => handleUpdateInOrder(order.id)}>
+                                              Alterar
+                                          </Button>
+                                      </Link> :
+                                      null
+                                    }
+                                    &nbsp;
+                                    &nbsp; 
+                                    <Button id="deleteButton"  size="sm" onClick={() => handleDelete(order.id)}>
                                         Excluir
                                     </Button>
                                 </td>

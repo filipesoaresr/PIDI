@@ -40,7 +40,7 @@ export const Form = styled.form `
     width: 60%;
    
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     border-radius: 10px;
@@ -50,13 +50,13 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #118233;
+        background: #30C78F;
         font-size: 20px;
         font-weight: bold;
     }
 
     #buttonCancel{
-        background: #C81D25;
+        background: #9A031E;
         font-size: 20px;
         font-weight: bold;
     }
@@ -101,10 +101,11 @@ export const MainSection = styled.div `
     }
 
     input.size-qtd {
-        width: 2.7rem;
-        height: 1.4rem;
-
-        margin-left:-0.1rem;
+        
+        width: 1rem ;
+        height: 1rem !important;
+        padding: 0 !important;
+     
     }
 
    

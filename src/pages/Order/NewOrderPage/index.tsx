@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 interface IProduct {
     id: string;
-    productType: string;
+    product_type: string;
     name: string;
     collection: string;
     dateCreated: string;
@@ -249,7 +249,7 @@ export default function NewOrderPage() {
     
    }
 
-    function handleCreateNewOrder(event: FormEvent) {
+   async function handleCreateNewOrder(event: FormEvent) {
         event.preventDefault();
 
         if(!fk_id_user || !totalValue || !fk_id_payment_options){
@@ -281,7 +281,7 @@ export default function NewOrderPage() {
         console.log("DATA", data)
         api.post('/orders', data)
         toast.success('Pedido criado com sucesso!');
-        getOrders();
+        await getOrders();
         history.push("/order")
 
         setTimeout(() => {
@@ -338,14 +338,14 @@ export default function NewOrderPage() {
 
                                     <tr key={product.id}>
                                         <td scope="row">
-                                            {product.productType}
+                                            {product.product_type}
                                         </td>
                                         <td>
                                             {product.name}
                                         </td>
                                         <td>
                                             <label>
-                                                PP:<input
+                                                PP: <input
                                                     className='size-qtd'
                                                     type="number"
                                                     id = {"pp"+product.id}

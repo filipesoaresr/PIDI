@@ -25,7 +25,7 @@ export const Container = styled.div `
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #24AC15;
+        background: #30C78F;
         transition: filter 0.2s;
 
         &:hover {
@@ -44,7 +44,8 @@ export const Form = styled.form `
    border-radius: 10px;
    justify-content: center;
    align-items: center;
-   background: #001021;
+   //background-color: #272838;
+   background: #194676;
    color: #fff;
 
 

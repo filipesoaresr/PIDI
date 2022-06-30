@@ -20,7 +20,7 @@ interface Promotion {
 export default function Promotion({ _id, name, endDate, discount, products }: Promotion) {
     const deleteIcon = { color: "#9b1a20", fontSize: "2rem", marginLeft:"" }
     const editIcon = { color: "white", fontSize: "2rem", marginLeft:"" }
-    const showIcon = { color: "#0b84d5", fontSize: "2rem", marginLeft:"" }
+    const showIcon = { color: "#97CC04", fontSize: "2rem", marginLeft:"" }
 
     const {setId, id,  getPromotions,
         onePromotion, setOnePromotion, getOnePromotion, promotions} = useContext(PromotionContext)
@@ -30,18 +30,16 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
     const history = useHistory();
 
     async function handleDelete(id: string) {
-        api.delete(`/promotions/${id}`).then((response) => {
+        await api.delete(`/promotions/${id}`).then((response) => {
             console.log("RESPOSTA DELETE", response)
             if(!response.data.name){
                 return toast.error('Promoção vinculada a um Pedido ou Venda!');
             }
             else {
-                
+                getPromotions()
                 toast.success('Promoção excluída com sucesso!');
             }
         })
-        getPromotions()
-        console.log(id)
     }
 
     function idTransfer(id: string) {

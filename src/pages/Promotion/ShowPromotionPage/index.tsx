@@ -51,31 +51,29 @@ export default function ShowPromotionPage() {
                     <MainSection>
                         {console.log("====UMA UNICA PROMOÇÃO====", onePromotion)}
 
-                        Codigo da Promoção: <p>{onePromotion.id}</p>
+                        Inicio da Promoção: <p>{onePromotion.start_date.split("T")[0]}</p>
+                       
                         <br/>
                         <br/>
+                        
                         Nome da Promoção: <p>{onePromotion.name}</p>
-                        <br/>
-                        <br/>
-
                     </MainSection>
 
                     <SecondSection>
 
-                        Inicio da Promoção: <p>{onePromotion.start_date.split("T")[0]}</p>
-                        <br/>
-                        <br/>
                         Fim da Promoção:
                         {
                             onePromotion.end_date ? 
                             <p>{onePromotion.end_date.split("T")[0]}</p> :
                             <p>Ainda sem data final</p>
                         } 
-                        
                         <br/>
                         <br/>
                         Desconto:
-                        <p>{onePromotion.discount}</p> 
+                        <p id="discount">{onePromotion.discount}%OFF</p> 
+                        
+                        <br/>
+                       
 
                     </SecondSection>
                 </FormBlock>

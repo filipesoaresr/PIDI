@@ -46,7 +46,7 @@ export const Container = styled.div `
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #24AC15;
+        background: #30C78F;
         transition: filter 0.2s;
 
         &:hover {
@@ -79,16 +79,18 @@ export const Container = styled.div `
 
 export const OrderIntro = styled.div `
 
-    display: block;
+    display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
     margin-left: auto;
     margin-right: auto;
 
     margin-top: 5rem;
 
     h1{
-        margin-left: 7rem;
+        //margin-left: 7rem;
         font-size: 3rem;
         font-weight: bold;
         
@@ -96,20 +98,20 @@ export const OrderIntro = styled.div `
 
     input {
 
-        width: 25rem;
+        width: 20rem;
         height: 2.5rem;
 
-        margin-top: 2rem;
+        margin-top: 1rem;
 
         border-radius: 5px;
         
     }
 
     button {
-        margin-top: 2rem;
+        margin-top: 1rem;
         //margin-left: 7.5rem;
 
-        width: 80%;
+        width: 100%;
         height: 3rem;
         color: #fff;
 
@@ -121,7 +123,7 @@ export const OrderIntro = styled.div `
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #8190A4;
+        background: #30C78F;
 
         transition: filter 0.2s;
 
@@ -156,7 +158,8 @@ export const OrderTable = styled.div `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
+        //background-color: #1F5976;
         font-size: 24px;
         text-align: center;
         color: white;
@@ -174,13 +177,14 @@ export const OrderTable = styled.div `
 
      .content-table td{
         font-size: 15px;
-        text-align: left;
+        text-align: center;
         font-weight: bold;
     }
 
     .content-table th{
         font-size: 22px;
         text-align: center;
+        background: var(--blue);
     }
 
     .content-table tbody tr.active-row {
@@ -205,21 +209,21 @@ export const OrderTable = styled.div `
 
 
   #updateButton{
-      background-color: #0E14AC;
-      font-size: 15px;
-      font-weight: 300;
+      background-color: var(--blue);
+      font-size: 12px;
+      font-weight: bold;
   }
 
   #deleteButton{
-      background-color: #C81D25;
-      font-size: 15px;
-      font-weight: 300;
+      background-color: #9A031E;
+      font-size: 12px;
+      font-weight: bold;
   }
 
   #showButton{
-    background-color: #bba901;
-    font-size: 15px;
-    font-weight: 300;
+    background-color: #30C78F;
+    font-size: 12px;
+    font-weight: bold;
   }
 
 

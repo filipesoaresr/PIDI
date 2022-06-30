@@ -47,7 +47,7 @@ export const Container = styled.div`
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #24AC15;
+        background: #30C78F;
         transition: filter 0.2s;
 
         &:hover {
@@ -79,8 +79,9 @@ export const Container = styled.div`
 
 export const PromoIntro = styled.div`
 
-    display: block;
+    display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -91,8 +92,8 @@ export const PromoIntro = styled.div`
     margin-bottom: 3rem;
 
     h1{
-        margin-left: 4rem;
-        font-size: 3rem;
+        //margin-left: 4rem;
+        font-size: 2.5rem;
         font-weight: bold;
     }
 
@@ -107,7 +108,7 @@ export const PromoIntro = styled.div`
     }
 
     button {
-        margin-top: 2rem;
+        margin-top: 1rem;
         //margin-left: 4rem;
 
         width: 100%;
@@ -121,7 +122,7 @@ export const PromoIntro = styled.div`
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #8190A4;
+        background: #30C78F;
 
         transition: filter 0.2s;
 

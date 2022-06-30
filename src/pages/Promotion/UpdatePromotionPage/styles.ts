@@ -32,7 +32,7 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;
@@ -77,7 +77,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #118233;
+        background: var(--green);
         color: #fff;
         font-size: 20px;
         font-weight: bold;
@@ -94,7 +94,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #C81D25;
+        background: #9A031E;
         color: #fff;
         font-size: 20px;
         font-weight: bold;
@@ -184,7 +184,7 @@ export const AddProductSection = styled.section `
 
 
     #addProductButton{
-        background-color: #569B06;
+        background-color: var(--green);
     }
 
     #deleteProductButton{

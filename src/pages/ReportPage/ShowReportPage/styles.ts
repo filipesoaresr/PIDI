@@ -21,7 +21,7 @@ export const GraphBlock = styled.div `
     flex-direction: column;
     background-color:  #EBEBEB;
 
-    padding: 1.5rem;
+    padding: 6rem;
 
     height: 550px;
 
@@ -32,7 +32,8 @@ export const GraphBlock = styled.div `
     border-radius: 5px;
 
     h5 {
-        margin-top: 1rem;
+        
+        margin-bottom: 3rem;
         color: black;
         font-Size: 2rem;
         font-weight: bold;
@@ -49,7 +50,7 @@ export const SalesGraphBlock = styled.div `
     flex-direction: column;
     background-color:  #EBEBEB;
 
-    //padding: 1.5rem;
+    padding: 6rem;
 
     height: 750px;
 
@@ -81,7 +82,7 @@ export const Report = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;
@@ -114,7 +115,7 @@ export const Report = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #118233;
+        background: #9A031E;
         color: #fff;
         font-size: 20px;
         font-weight: bold;
@@ -148,7 +149,7 @@ export const TableSection = styled.section `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
         font-size: 24px;
         text-align: center;
         color: white;

@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div `
     width: 18rem;
     height: 14rem;
-
-    background:  #1F5976;
+    background-color: var(--blue);
+    //background:  #1F5976;
     color: #fff;
     border-radius: 25px;
-    padding: 15%;
+    padding: 7%;
+    padding-top: 2.5rem;
 
     h4 {
         font-size: 1.3rem;
@@ -19,8 +20,9 @@ export const Container = styled.div `
 
     p.discount{
         font-size: 1.7rem;
+        font-weight: bold;
         font-style: bold;
-        color: #F28118;
+        color: #30C78F;
 
         margin-top: 0.2rem;
     }
@@ -35,8 +37,9 @@ export const Container = styled.div `
     #icons {
 
         margin-top: 10%;
-        margin-bottom: 10%;
+        margin-bottom: 15%;
         padding: 10%;
+        
 
         display: flex;
         align-items: center;

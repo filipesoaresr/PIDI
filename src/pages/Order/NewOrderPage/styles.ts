@@ -9,6 +9,7 @@ export const Container = styled.div `
     width: 100%;
     height: 100%;
 
+   
     
 `;
 
@@ -35,10 +36,10 @@ export const SecondSection = styled.section `
         height: 2.5rem;
         border-radius: 5px;
 
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: bold;
 
-        background-color: #FFBC42;
+        background-color: var(--green);
         color: #EBEBEB;
     }
 
@@ -62,10 +63,10 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
-    width: 80%;
+    width: 90%;
 
     border-radius: 5px;
 
@@ -82,14 +83,10 @@ export const Form = styled.form `
     }
 
     input {
-        width: 15rem;
-        height: 2rem;
+        width: 2rem;
+        height: 1.3rem;
+        padding: 0;
         border-radius: 5px;
-    }
-
-    input.size-qtd {
-        width: 2.7rem;
-        height: 1.6rem;
     }
 
 
@@ -114,7 +111,7 @@ export const Form = styled.form `
         color: #FFFF;
         transition: filter 0.2s;
 
-        background: #118233;
+        background: var(--green);
         font-size: 20px;
         font-weight: bold;
 
@@ -136,7 +133,7 @@ export const Form = styled.form `
         color: #FFFF;
         transition: filter 0.2s;
 
-        background: #C81D25;
+        background: #9A031E;
         font-size: 20px;
         font-weight: bold;
 
@@ -195,14 +192,17 @@ export const AddProductSection = styled.section `
     }
 
      .content-table td{
-        font-size: 15px;
-        text-align: left;
+        font-size: 1rem;
+        text-align: center;
         font-weight: bold;
+
+      
     }
 
     .content-table th{
-        font-size: 22px;
+        font-size: 20px;
         text-align: center;
+        background: var(--blue);
     }
 
     .content-table tbody tr.active-row {
@@ -227,12 +227,12 @@ export const AddProductSection = styled.section `
 
 
     #addProductButton{
-        background-color: #569B06;
+        background-color: var(--green);
         font-weight: bold;
     }
 
     #deleteProductButton{
-        background-color: #C81D25;
+        background-color: #9A031E;
         font-weight: bold;
     }
     

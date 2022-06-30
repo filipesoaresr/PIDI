@@ -51,7 +51,7 @@ export const Container = styled.div `
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #24AC15;
+        background: #30C78F;
         transition: filter 0.2s;
 
         &:hover {
@@ -84,9 +84,11 @@ export const Container = styled.div `
 
 export const UserIntro = styled.div `
 
-    display: block;
+    display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
     margin-left: auto;
     margin-right: auto;
 
@@ -110,7 +112,7 @@ export const UserIntro = styled.div `
     }
 
     button {
-        margin-top: 2rem;
+        margin-top: 1rem;
         //margin-left: 7.5rem;
 
         width: 100%;
@@ -123,7 +125,7 @@ export const UserIntro = styled.div `
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #8190A4;;
+        background: #30C78F;;
 
         transition: filter 0.2s;
 
@@ -136,7 +138,7 @@ export const UserIntro = styled.div `
 
 export const UserTable = styled.div `
 
-justify-content: center;
+    justify-content: center;
     align-items: center;
     margin-top: 3%;
     //margin-left: 12rem;
@@ -157,7 +159,8 @@ justify-content: center;
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
+        //background-color: #1F5976;
         font-size: 24px;
         text-align: center;
         color: white;
@@ -175,11 +178,12 @@ justify-content: center;
 
      .content-table td{
         font-size: 15px;
-        text-align: left;
+        text-align: center;
         font-weight: bold;
     }
 
     .content-table th{
+        background: var(--blue);
         font-size: 22px;
         text-align: center;
     }
@@ -206,13 +210,15 @@ justify-content: center;
 
 
   #updateButton{
-      background-color: #0E14AC;
+      background-color: var(--blue);
       font-weight: bold;
+      font-size: 12px;
   }
 
   #deleteButton{
       background-color: #C81D25;
       font-weight: bold;
+      font-size: 12px;
   }
 
    

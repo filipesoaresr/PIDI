@@ -4,15 +4,16 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
     :root {
+        --blue:#276EB9;
         --background: #EBEBEB;
         --shape: #FFFFFF;
-        --green: #33cc95;
+        --green: #30C78F;
 
         --red: #E52E4D;
-        --blue: #5429CC;
+        //--background: #ECEBF3;
 
         --blue-light: #6933ff;
-
+        --dark-blue: #194676
         --text-title: #363f5f;
         --text-body: #969cb3;
 
@@ -25,6 +26,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     html {
+
+            input {
+                padding: 1rem;
+            }
             //Quando estiver em uma tela menor que "max-width"
             @media (max-width: 1080px) {
                 font-size: 93.75%large; //16px

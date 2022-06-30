@@ -22,7 +22,7 @@ export const FormBlock = styled.div `
 `;
 
 export const SecondSection = styled.section `
-    margin-left: 3rem;
+    margin-left: 8rem;
     margin-top: 3rem;
     
     text-align: left;
@@ -43,7 +43,7 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;
@@ -59,7 +59,14 @@ export const Form = styled.form `
     }
 
     p {
+        font-size: 1.5rem;
         margin-top: 0.5rem;
+        
+       
+    }
+    #discount{  
+        color: var(--green);
+        font-weight: bold;
     }
 
     input {
@@ -105,7 +112,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #118233;
+        background: #9A031E;
         color: #fff;
         font-size: 20px;
         font-weight: bold;
@@ -117,6 +124,8 @@ export const Form = styled.form `
 
 export const MainSection = styled.section `
     
+    margin-left: 6rem;
+    margin-right: 4rem;
     margin-top: 3rem;
     text-align: left;
 
@@ -150,7 +159,7 @@ export const AddProductSection = styled.section `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
         font-size: 24px;
         text-align: center;
         color: white;

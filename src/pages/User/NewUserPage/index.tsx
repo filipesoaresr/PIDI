@@ -167,10 +167,12 @@ export default function NewUserPage() {
                     <button id="buttonCancel" type="reset">Cancelar</button>
                 </Link>
                 &nbsp;
-                &nbsp; 
+                &nbsp;
+                <Link to='/login'> 
                 <button id="buttonRegister" type="submit" onClick={handleCreateNewUser} >
                     Cadastrar  <BsFillPlusSquareFill/>
                 </button>
+                </Link>
 
             </Form>
 

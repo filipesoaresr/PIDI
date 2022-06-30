@@ -11,8 +11,8 @@ export const Container = styled.div `
 
 
     img {
-        width: 800px;
-        height: 400px;
+        width: 900px;
+        height: 500px;
 
         margin: 2rem;
     }
@@ -50,7 +50,7 @@ export const HomeIntro = styled.div `
         font-size: 1.5rem;
         font-weight: bold;
         
-        background: #24AC15;
+        background: var(--green);
         border-radius: 5px;
         color: #FFF;
         border: none;

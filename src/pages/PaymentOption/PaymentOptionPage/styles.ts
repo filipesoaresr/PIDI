@@ -51,7 +51,7 @@ export const Container = styled.div `
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
-        background: #24AC15;
+        background: #30C78F;
         transition: filter 0.2s;
 
         &:hover {
@@ -85,16 +85,17 @@ export const Container = styled.div `
 
 export const PaymentIntro = styled.div `
 
-    display: block;
+    display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5rem;
 
     h1{
-        margin-left: -5rem;
-        font-size: 3rem;
+        
+        font-size: 2.5rem;
         font-weight: bold;
         text-align: center;
     }
@@ -111,7 +112,7 @@ export const PaymentIntro = styled.div `
     }
 
     button {
-        margin-top: 2rem;
+        margin-top: 1rem;
         //margin-left: 4rem;
 
         width: 84%;
@@ -125,7 +126,7 @@ export const PaymentIntro = styled.div `
         border-style: none;
 
         //padding: 1rem 10rem;
-        background: #8190A4;
+        background: #30C78F;
 
         transition: filter 0.2s;
 
@@ -157,8 +158,9 @@ export const PaymentTable = styled.div `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
-        font-size: 24px;
+        background-color: var(--blue);
+        //background-color: #1F5976;
+        font-size: 17px;
         text-align: center;
         color: white;
     }
@@ -175,11 +177,12 @@ export const PaymentTable = styled.div `
 
      .content-table td{
         font-size: 15px;
-        text-align: left;
+        text-align: center;
         font-weight: bold;
     }
 
     .content-table th{
+        background: var(--blue);
         font-size: 22px;
         text-align: center;
     }
@@ -208,6 +211,8 @@ export const PaymentTable = styled.div `
   #deleteButton{
       background-color: #C81D25;
       font-weight: bold;
+      font-size: 12px;
+      
   }
    
 

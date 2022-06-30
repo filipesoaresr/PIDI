@@ -29,7 +29,7 @@ export const Form = styled.form `
     h1{
             margin-top: -2rem;
             margin-bottom: 2rem;
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: bold;
         }    
 
@@ -39,7 +39,7 @@ export const Form = styled.form `
    
     
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     border-radius: 10px;
@@ -49,13 +49,13 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonCancel{
-        background: #C81D25;
+        background: #9A031E;
         font-size: 20px;
         font-weight: bold;
     }
 
     #buttonRegister{
-        background: #118233;
+        background: var(--green);
         font-size: 20px;
         font-weight: bold;
     }

@@ -35,7 +35,7 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;
@@ -55,15 +55,13 @@ export const Form = styled.form `
     }
 
     input {
-        width: 15rem;
+        width: 2rem;
         height: 1.5rem;
         border-radius: 5px;
+
+        padding: 0;
     }
 
-    input.size-qtd {
-        width: 2.7rem;
-        height: 1.6rem;
-    }
 
     select {
         width: 15rem;
@@ -80,7 +78,7 @@ export const Form = styled.form `
 
         margin-top: 5rem;
         margin-bottom: 2rem;
-        background: #118233;
+        background: var(--green);
         color: #fff;
 
         font-size: 20px;
@@ -105,7 +103,7 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #C81D25;
+        background: #9A031E;
         color: #fff;
     }
 
@@ -144,7 +142,7 @@ export const AddProductSection = styled.section `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
         font-size: 24px;
         text-align: center;
         color: white;
@@ -193,12 +191,12 @@ export const AddProductSection = styled.section `
 
 
     #addProductButton{
-        background-color: #569B06;
+        background-color: var(--green);
         font-weight: bold;
     }
 
     #deleteProductButton{
-        background-color: #C81D25;
+        background-color: #9A031E;
         font-weight: bold;
     }
     

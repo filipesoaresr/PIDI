@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contexts/ProductContext';
 import { PromotionContext } from '../../../contexts/PromotionContext';
@@ -12,6 +12,25 @@ import { PaymentContext } from '../../../contexts/PaymentContext';
 import { UserContext } from '../../../contexts/UserContext';
 import { toast } from 'react-toastify';
 import { BsFillPencilFill } from 'react-icons/bs';
+
+
+interface IProduct {
+    id: string;
+    product_type: string;
+    name: string;
+    collection: string;
+    dateCreated: string;
+    pp: number;
+    p: number;
+    m: number;
+    g: number;
+    gg: number;
+    promotion: {
+        discount: number;
+        name: string;
+    };
+    value: number;
+}
 
 interface Product {
     id: string;
@@ -68,13 +87,22 @@ export default function UpdateOrderPage() {
         setFk_id_payment_options,
         fk_id_user, 
         setFk_id_user,
-       
+       orders,
+       getOrders
     } = useContext(OrderContext)
 
     const { products } = useContext(ProductContext)
     const { payments } = useContext(PaymentContext)
     const { users } = useContext(UserContext)
     const [productsInOrderList, setProductsInOrderList] = useState<IProductInOrder[]>([]);
+
+    //const [productsInOrderList, setProductsInOrderList] = useState<String[]>([]);
+    const [ fODA_SE, setfODA_SE] = useState(true);
+    const [ teste, setTeste] = useState(false);
+    
+
+  
+
 
     function handleUpdateOrder(event: FormEvent, id: string) {
         event.preventDefault();
@@ -133,6 +161,71 @@ export default function UpdateOrderPage() {
         toast.success('Produto incluído com sucesso no pedido!');
    }
 
+
+   function Butao_de_sim (product :IProduct){
+
+    return <Button 
+    id="addProductButton" 
+    variant="primary" 
+    size="sm" 
+
+    onClick={() => handleIncludeProductsInOrder(product)}>Incluir
+    </Button>
+}
+
+function Butao_de_nao (product :IProduct){
+
+return  <Button id="deleteProductButton" variant="danger" size="sm" onClick = {event =>handleExcludeProductInOrder(product,event)}>Excluir</Button>
+}
+
+ function foda_se(vai:boolean,product:IProduct) {
+   
+    
+        if(vai){
+            
+            return Butao_de_sim(product)
+        }
+        else{
+
+        return Butao_de_nao(product)
+
+        }
+
+}
+
+async function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
+        
+        let List: Array<any> = productsInOrderList
+
+        event.preventDefault();
+        console.log("PRODUCTS IN ORDER LIST", List)
+        
+        List.forEach((i,index)=>{
+            console.log("forEach i")
+            console.log(i)
+            if(i.fk_id_product === product.id){
+                console.log("antes")
+                console.log(List)
+                List.splice(index,1)
+                console.log("depois")
+                console.log(List)
+                
+            }
+        } )
+        setProductsInOrderList(List)
+        console.log("PRODUCT IN ORDER LIST TIMEOUT", productsInOrderList)
+
+        setTimeout(() => {
+            
+            setfODA_SE(true)
+            setfODA_SE(false)
+
+        }, 500)
+       /////////////////////////////////////////
+        await api.put(`promotions/remove-products/${product.id}`)
+        //getProducts()
+        return  toast.dark('Produto Excluido com sucesso no pedido!');
+    }
   
 
     return (
@@ -172,7 +265,7 @@ export default function UpdateOrderPage() {
                         <tbody>
                             {console.log(products)}
                             {
-                                products?.map((product: Product) => (
+                                products?.map((product: IProduct) => (
                                     <tr key={product.id}>
                                         <td scope="row">
                                             {product.name}
@@ -234,14 +327,7 @@ export default function UpdateOrderPage() {
                                             Total
                                         </td>
                                         <td id="actionsColumn">
-                                            <Button id="addProductButton" variant="primary" size="sm" onClick={() => handleIncludeProductsInOrder(product)}>
-                                                Adicionar
-                                            </Button>
-                                            &nbsp;
-                                            &nbsp; 
-                                            <Button id="deleteProductButton" variant="danger" size="sm" >
-                                                Excluir
-                                            </Button>
+                                        {foda_se(!productsInOrderList.some(i=> i.fk_id_product === product.id),product)}
                                         </td>
                                     </tr>
                                 ))

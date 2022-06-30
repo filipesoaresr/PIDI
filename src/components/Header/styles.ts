@@ -2,16 +2,22 @@ import styled from 'styled-components';
 
 
 export const Container = styled.header `
-    background: #001021;
-
+    //background: #2D7DD2;
     margin: 0;
 
+    background: var(--blue);
+    position: sticky;   
+
+    top: 0; 
+    //background: #272838;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    //#33658A
     
 `;
 
 
 export const Content = styled.div `
-    max-width: 1420px;
+    max-width: 1795px;
 
     //Sempre centralizado
     margin: 0 auto;
@@ -51,7 +57,9 @@ export const Content = styled.div `
     div {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        width:70%;
+
     }
 
     a {
@@ -76,10 +84,20 @@ export const Content = styled.div `
 
     #entrarButton{
         background-color: #062FC1;
+        font-size: 0.7rem;
+        font-weight: bold;
+        height: 2rem;
+        width: 5rem;
     }
 
     #sairButton{
-        background-color: #C20808;
+        margin-left: 5rem;
+        background-color: #9A031E;
+        font-size: 0.7rem;
+        font-weight: bold;
+        height: 2rem;
+        width: 5rem;
+        //font-weight: bold;
     }
 
 

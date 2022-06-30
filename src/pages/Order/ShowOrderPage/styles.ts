@@ -46,12 +46,12 @@ export const Form = styled.form `
     margin-top: 5rem;
     margin-bottom: 2rem;
 
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 80%;
    
-
+    padding: 4rem;
     border-radius: 5px;
 
 
@@ -149,7 +149,7 @@ export const AddProductSection = styled.section `
 
     background:#CDD7DA;
 
-    padding: 2rem;
+    padding: 6rem;
     border-radius: 8px;  
 
     .content-table{
@@ -164,7 +164,7 @@ export const AddProductSection = styled.section `
       }
   
       .content-table thead tr{
-          background-color: #1F5976;
+          background-color: var(--blue);
           font-size: 24px;
           text-align: center;
           color: white;
@@ -173,12 +173,18 @@ export const AddProductSection = styled.section `
       .content-table th, 
       .content-table td {
           padding: 20px;
-          
+          text-align: center;
+          margin-left: 2rem;
       }
   
   
       .content-table tbody tr{
+        text-align: center;
           border-bottom: 1px solid #dddddd;
+
+          p{
+            margin-left: 4rem;
+          }
       }
   
        .content-table td{

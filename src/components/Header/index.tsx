@@ -41,13 +41,15 @@ export function Header() {
 
                     <Link to="/report"><h6>Relatório</h6></Link>
 
+                </div>
+                {
+                    !localStorage.getItem("token") ?
                     <Link className="Login" to="/login">
-                        <button type='button' id="entrarButton" className="register">Entrar</button>
-                    </Link>
+                        <button type='button' id="entrarButton" className="register">Entrar</button> 
+                    </Link> :
 
                     <button type="submit" id="sairButton" onClick={() => handleLogOut()}>Sair</button>
-
-                </div>
+                    }
 
             </Content>
         </Container>

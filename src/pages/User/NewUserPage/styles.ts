@@ -41,7 +41,7 @@ export const Form = styled.form `
 
     margin-top: 5rem;
     margin-bottom: 5rem;
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 60%;
@@ -79,14 +79,14 @@ export const Form = styled.form `
     }
 
     #buttonRegister{
-        background: #118233;
+        background: var(--green);
         font-size: 20px;
         font-weight: bold;
         
     }
 
     #buttonCancel{
-        background: #C81D25;
+        background: #9A031E;
         font-size: 20px;
         font-weight: bold;
     }

@@ -10,8 +10,7 @@ import { Button } from 'reactstrap';
 import { BsCartFill, BsFillPlusSquareFill } from 'react-icons/bs';
 import { GiTShirt } from 'react-icons/gi';
 
-
-interface Product {
+interface IProduct {
     id: string;
     productType: string;
     name: string;
@@ -22,11 +21,16 @@ interface Product {
     m: number;
     g: number;
     gg: number;
-    promotion: {
-        name: string;
-    };
-    value: string;
+    id_promotion?: string;
+    promotion:{
+        name:string;
+        endDate:string;
+        discount:string;
+        ProductsInPromo:[]
+    } ;
+    value: number;
 }
+
 
 
 
@@ -49,40 +53,108 @@ export default function NewPromotionPage() {
 
     
 
-    const { products } = useContext(ProductContext)
-    const [recivedProducts, setRecivedProducts] = useState<Product[]>([])
+//const [recivedProducts, setRecivedProducts] = useState<Product[]>([])
+    const { products, getProducts } = useContext(ProductContext)
+    const [ fODA_SE, setfODA_SE] = useState(true);
+    const [productsInOrderList, setProductsInOrderList] = useState<String[]>([]);
     //const recivedProducts: Array<any> = []
 
-    function addProductsInPromo(product: any) {
-       
-        //const recivedProducts: string[] = []
-        recivedProducts.push(product.id)
+    function handleIncludeProductsInOrder(product: IProduct,) {
 
-       
-        //setProductsInPromo(recivedProducts)
-        console.log("====LIST====")
-        console.log("=====Added products=====", recivedProducts)
-        toast.success('Produto incluído com sucesso na promoção!');
-        getPromotions()
+        let productValueInOrder = 0
 
+        productsInOrderList.push(product.id);
+        setProductsInOrderList(productsInOrderList)
+        //var oldList = productsInOrderList; 
+        console.log("PRODUCT ORDER IN ORDER", productsInOrderList)
+        console.log("PRODUCT VALUE WITH SIZES IN ORDER",productValueInOrder)
+       
+        setTimeout(() => {
+         
+            setfODA_SE(false)
+            setfODA_SE(true)
+
+        }, 500)
+
+        toast.success('Produto incluído com sucesso no pedido!');
+   }
+
+   function Butao_de_sim (product :IProduct){
+
+    return <Button 
+    id="addProductButton" 
+    variant="primary" 
+    size="sm" 
+
+    onClick={() => handleIncludeProductsInOrder(product)}>Incluir
+    </Button>
+}
+
+    function Butao_de_nao (product :IProduct){
+    return  <Button id="deleteProductButton" variant="danger" size="sm" onClick = {event =>handleExcludeProductInOrder(product,event)}>Excluir</Button>
     }
 
-    function handleCreateNewPromotion(event: FormEvent) {
-        event.preventDefault();
 
-        if(!name || !endDate || !discount){
-            return  toast.error('Campos obrigatórios não preenchidos!');
+    function foda_se(vai:boolean,product:IProduct) {
+
+        if(vai){
+            return Butao_de_sim(product)
         }
+        else{
+
+        return Butao_de_nao(product)
+        }
+    }
+
+
+    async function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
+        
+        let List: Array<any> = productsInOrderList
+
+        event.preventDefault();
+        console.log("PRODUCTS IN ORDER LIST", List)
+        
+        List.forEach((i,index)=>{
+            console.log("forEach i")
+            console.log(i)
+            if(i === product.id){
+                console.log("antes")
+                console.log(List)
+                List.splice(index,1)
+                console.log("depois")
+                console.log(List)
+                
+            }
+        } )
+        setProductsInOrderList(List)
+        console.log("PRODUCT IN ORDER LIST TIMEOUT", productsInOrderList)
+
+        setTimeout(() => {
+            
+            setfODA_SE(true)
+            setfODA_SE(false)
+
+        }, 500)
+       
+        //await api.put(`promotions/remove-products/${product.id}`)
+        getProducts()
+        return  toast.dark('Produto Excluido com sucesso no pedido!');
+    }
+
+
+    async function handleCreateNewPromotion(event: FormEvent) {
+        event.preventDefault();
 
         const data = {
            name,
            endDate,
            discount,
-           products: recivedProducts,
+           products: productsInOrderList,
         };
 
         console.log("PRomo nova", data)
-        api.post('/promotions', data)
+        await api.post('/promotions', data)
+        getPromotions()
         toast.success('Promoção criada com sucesso!');
         setTimeout(() => {
             history.push("/promotions")
@@ -157,7 +229,7 @@ export default function NewPromotionPage() {
                 <tbody>
                     {console.log(products)}
                     {
-                        products.map((product: Product) => (
+                        products.map((product: IProduct) => (
                             <tr key={product.id}>
                                 <td >
                                     {product.name}
@@ -168,16 +240,8 @@ export default function NewPromotionPage() {
                                 <td>
                                     {product.value}
                                 </td>
-                                <td id="actionsColumn">                                     
-                                    <Button id="addProductButton" variant="primary" size="sm" 
-                                    onClick={() => addProductsInPromo(product)}>
-                                        Incluir
-                                    </Button>
-                                    
-                                    <Button id="deleteProductButton" variant="primary" size="sm" >
-                                        Excluir
-                                    </Button>
-
+                                <td id="actionsColumn">
+                                    {foda_se(!productsInOrderList.some(i=> i === product.id),product)}                                     
                                 </td>
                             </tr>
                         ))

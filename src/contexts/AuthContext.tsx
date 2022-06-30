@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 import { api } from "../services/api";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 type User = {
@@ -57,7 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 history.push("/products");
             }
             else {
-                console.log("Sem Autorização")
+                toast.error("Por favor crie uma conta ou faça o login!")
             }
 
             console.log("============ AQUIIIIIIIIIIII", response.data);

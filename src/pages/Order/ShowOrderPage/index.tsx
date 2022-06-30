@@ -14,12 +14,12 @@ import { toast } from 'react-toastify';
 
 interface IProductInOrder {
     product_name: string;
-    productType: string;
-    pp?: number,
-    p?: number,
-    m?: number,
-    g?: number,
-    gg?:number,
+    product_type: string;
+    pp: number,
+    p: number,
+    m: number,
+    g: number,
+    gg:number,
     order_product_value: number,
     fk_id_product: string,
     hasPromotion: false,
@@ -34,7 +34,7 @@ interface Payment {
 }
 interface Product {
     id: string;
-    productType: string;
+    product_type: string;
     name: string;
     collection: string;
     dateCreated: string;
@@ -52,14 +52,7 @@ export default function ShowOrderPage() {
     const history = useHistory();
 
     const {
-        name,
-        setName,
-        startDate,
-        setStartDate,
-        endDate,
-        setEndDate,
-        discount,
-        setDiscount,
+        promotions
     } = useContext(PromotionContext)
     const { payments } = useContext(PaymentContext)
     const { oneOrder, id, isOpen, setIsOpen, getOrders } = useContext(OrderContext)
@@ -68,10 +61,10 @@ export default function ShowOrderPage() {
     const [orderPayment, setOrderPayment] = useState('');
     const [orderInstallment, setOrderInstallment] = useState('');
 
-
-
     const { users } = useContext(UserContext)
     const { products } = useContext(ProductContext)
+
+
 
    function handleUserName(){
         users.map((user: Product) => {
@@ -136,16 +129,10 @@ async function handleUpdate(event: FormEvent, id: string) {
                             <thead>
                                 <tr>
                                     <th>
-                                        Tipo do Produto
-                                    </th>
-                                    <th>
                                         Produto
                                     </th>
                                     <th>
                                         Tamanho/Qtd
-                                    </th>
-                                    <th>
-                                        Promoção
                                     </th>
                                     <th>
                                         Valor
@@ -163,9 +150,6 @@ async function handleUpdate(event: FormEvent, id: string) {
                                 {
                                     oneOrder.product_has_order.map((product: IProductInOrder) => (
                                         <tr key={product.fk_id_product}>
-                                            <th scope="row">
-                                                {product.productType}
-                                            </th>
                                             <td>
                                                 {product.product_name}
                                             </td>
@@ -177,10 +161,9 @@ async function handleUpdate(event: FormEvent, id: string) {
                                                <p>GG : {product.gg}</p>
                                             </td>
                                             <td>
-                                                {product.hasPromotion}
+                                                {product.order_product_value / Number((product.pp + product.p + product.m + product.g + product.gg))}
                                             </td>
                                             <td>
-                                                <p>Total</p>
                                                 {product.order_product_value}
                                             </td>
                                         </tr>

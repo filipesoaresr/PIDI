@@ -5,6 +5,7 @@ export const Container = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    
     background-color: #EBEBEB;
     width: 100%;
     height: 100%;
@@ -19,8 +20,8 @@ export const MainSection  = styled.section `
 
         margin-top: 5rem;
         margin-bottom: 2rem;
-
-        background: #001021;
+        background-color: #272838;
+        //background: #001021;
         color: #fff;
 
         width: 80%;
@@ -49,7 +50,7 @@ export const MainSection  = styled.section `
         font-size: 1.5rem;
 
         border-radius: 5px;
-        background: #C81D25;
+        background: #9A031E;
         color: #fff;
     }
 
@@ -112,7 +113,8 @@ export const SalesTable  = styled.section `
     }
 
     .content-table thead tr{
-        background-color: #1F5976;
+        background-color: var(--blue);
+        //background-color: #1F5976;
         font-size: 24px;
         text-align: center;
         color: white;

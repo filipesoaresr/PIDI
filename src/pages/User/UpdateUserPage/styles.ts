@@ -40,11 +40,11 @@ export const Form = styled.form `
     text-align: center;
     margin-top: 10rem;
     margin-bottom: 5rem;
-    background: #001021;
+    background: #194676;
     color: #fff;
 
     width: 60%;
-    height: 35rem;
+    height: 40rem;
 
     text-align: center;
 
@@ -79,7 +79,7 @@ select {
 
 #buttonUpdate{
     margin-top: 4rem;
-    background: #118233;
+    background: var(--green);
     font-size: 20px;
     font-weight: bold;
     
@@ -87,7 +87,7 @@ select {
 
 #buttonCancel{
     margin-top: 4rem;
-    background: #C81D25;
+    background: #9A031E;
     font-size: 20px;
     font-weight: bold;
 }
