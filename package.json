@@ -1,6 +1,9 @@
 {
   "name": "pidi_proto",
   "version": "0.1.0",
+  "engines": {
+    "node": "16.13.1"
+ },
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
