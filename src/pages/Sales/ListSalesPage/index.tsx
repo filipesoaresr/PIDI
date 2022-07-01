@@ -102,7 +102,7 @@ export default function ListSalesPage() {
                 <h1>Listagem de Vendas</h1>
 
                 <SalesTable>
-                    <BsFillCalendarRangeFill style={{ fontSize: "3rem", color: "black", verticalAlign: 'middle', marginLeft: "41rem", }}></BsFillCalendarRangeFill>
+                    <BsFillCalendarRangeFill style={{ fontSize: "3rem", color: "black", verticalAlign: 'middle', marginLeft: "38rem", }}></BsFillCalendarRangeFill>
                     <br />
 
                     <FormBlock>

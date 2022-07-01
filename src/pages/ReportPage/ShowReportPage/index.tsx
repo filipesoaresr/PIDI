@@ -66,6 +66,12 @@ export default function ShowReportPage() {
             chartLabels2.push(product.sale_date)
             chartData2.push(product.sold_amount)
         })
+
+        chartLabels2.map((date: any) => {
+            date = new Date(date)
+        })
+
+        chartLabels2.sort()
         console.log("CHART DATA", chartData2)
         console.log("CHART LABELS", chartLabels2)
     }
@@ -123,14 +129,14 @@ export default function ShowReportPage() {
             label: '# of Votes',
             data: chartData,
             backgroundColor: [
-              '#CA054D',
-              '#17BEBB',
-              '#F9DC5C',
-              '#004777',
               '#6F58C9',
+              '#17BEBB',
+              '#CA054D',
+              '#F9DC5C',
               '#2D7DD2',
               '#B4E33D',
               '#EB4511',
+              '#004777',
               '#352D39',
               '#FF6978'
             ],
@@ -148,7 +154,7 @@ export default function ShowReportPage() {
         label: 'QUANTIDADE DE PRODUTOS VENDIDA',
         data: chartData2,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: '#A480CF',
         tension: 0.1
     }]
     };

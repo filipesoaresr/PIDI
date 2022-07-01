@@ -49,6 +49,11 @@ export default function PaymentOption(){
 
 
     function handleSearch(name: string){
+
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
+
         api.get(`/payment_options/search/${name}`).then(response => {
             console.log("DAta", response.data)
             console.log("NAme", name)
@@ -137,7 +142,7 @@ export default function PaymentOption(){
 
 
         {
-        result.length == 0 && !notFound && (
+        result.length == 0 && !notFound && localStorage.getItem('token') && (
             <PaymentTable>
              <Table bordered hover responsive >
                  <table className="content-table">
@@ -190,9 +195,15 @@ export default function PaymentOption(){
                 )
             }
 
-            <Link to='/paymentoption/newpaymentoption'>
-                <button type='button' className ="register">+ Cadastrar</button>
-            </Link>
+
+            {
+                localStorage.getItem('token') && (
+
+                <Link to='/paymentoption/newpaymentoption'>
+                    <button type='button' className ="register">+ Cadastrar</button>
+                </Link>
+                )
+            }
        </Container>
     )
 }

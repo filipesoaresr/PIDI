@@ -48,6 +48,7 @@ export default function UpdatePromotionPage() {
         setEndDate,
         discount,
         setDiscount,
+        getPromotions
         } = useContext(PromotionContext)
 
         const {getProducts} = useContext(ProductContext)
@@ -159,6 +160,7 @@ export default function UpdatePromotionPage() {
         console.log(dataUpdated)
         api.put(`/promotions/${id}`, dataUpdated).then(response => {
             console.log("RESPOSTA UPDATE PROMO", response.data)
+            getPromotions()
         })
         toast.success('Promoção alterada com sucesso!');
 

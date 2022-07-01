@@ -68,6 +68,11 @@ export default function OrderPage() {
     }
 
     function handleSearch(start_date: any, end_date: any){
+
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
+
         const start_dateISO = start_date.toISOString()
         const end_dateISO = end_date.toISOString()
 
@@ -193,7 +198,7 @@ export default function OrderPage() {
             )}
 
 
-            { result.length == 0 && !notFound && (
+            { result.length == 0 && !notFound && localStorage.getItem('token') && (
                 <OrderTable>
                 <Table bordered hover responsive >
                     <table className="content-table">
@@ -275,9 +280,14 @@ export default function OrderPage() {
                 )
             }
 
-            <Link to='/order/neworder'>
-                <button type='button' className="register">+ Cadastrar</button>
-            </Link>
+            {
+                localStorage.getItem('token') && (
+
+                    <Link to='/order/neworder'>
+                        <button type='button' className="register">+ Cadastrar</button>
+                    </Link>
+                )
+            }
         </Container>
     )
 }

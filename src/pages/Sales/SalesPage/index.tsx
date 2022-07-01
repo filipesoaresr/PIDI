@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { api } from '../../../services/api';
 import { OrderContext } from '../../../contexts/OrderContext';
 import { HiOutlineClipboardList } from 'react-icons/hi';
+import { toast } from 'react-toastify';
 
 interface IProductInOrder {
     pp?: number,
@@ -38,6 +39,9 @@ export default function SalesPage() {
 
     function getSales(startDate: any, endDate: any) {
 
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
         //.toISOString()
         const start_dateNonFormatted= startDate
         const end_dateNonFormatted= endDate

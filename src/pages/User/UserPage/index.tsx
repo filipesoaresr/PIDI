@@ -58,6 +58,11 @@ export default function UserPage() {
      
 
     function handleSearch(name: string){
+
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
+
         api.get(`/users/search/${name}`).then(response => {
             console.log("DAta", response.data)
             setResult(response.data)
@@ -169,7 +174,7 @@ export default function UserPage() {
             )}
 
 
-            {result.length == 0 && !notFound && (
+            {result.length == 0 && !notFound && localStorage.getItem('token') && (
                  <UserTable>
                  <Table bordered hover responsive >
                      <table className="content-table">
@@ -239,9 +244,13 @@ export default function UserPage() {
             )
             }
 
-            <Link to='/users/newuser'>
-                <button type='button' className ="register">+ Cadastrar</button>
-            </Link>
+
+           
+                <Link to='/users/newuser'>
+                    <button type='button' className ="register">+ Cadastrar</button>
+                </Link>
+                
+           
 
        </Container>
     )

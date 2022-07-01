@@ -63,6 +63,11 @@ export default function ProductsPage() {
     }
 
     function handleSearch(name: string){
+
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
+
         api.get(`/products/search/${name}`).then(response => {
             console.log("DAta", response.data)
             setResult(response.data)
@@ -136,7 +141,7 @@ export default function ProductsPage() {
                                         {product.name}
                                     </td>
                                     <td>
-                                        {product.collection}
+                                        {product.collection != null ? product.collection : "Sem coleção"}
                                     </td>
                                     <td>
                                         R${product.value}
@@ -168,7 +173,7 @@ export default function ProductsPage() {
             )}
 
             { 
-            result.length == 0 && !notFound && (
+            result.length == 0 && !notFound && localStorage.getItem('token') && (
                 <ProductTable>   
                     <Table bordered hover responsive >
                         <table className="content-table">
@@ -229,11 +234,16 @@ export default function ProductsPage() {
                 </ProductTable>
                 )
             }
-           
 
-            <Link to='/products/newproduct'>
-                <button type='button' className="register">+ Cadastrar</button>
-            </Link>
+            {
+                localStorage.getItem('token') && (
+
+                <Link to='/products/newproduct'>
+                    <button type='button' className="register">+ Cadastrar</button>
+                </Link>
+                )
+            }
+
 
             { result.length == 0 && notFound && (
                  <button type='button' className="getBack" onClick={() => handleGetBack()}>

@@ -6,6 +6,7 @@ import { api } from '../../../services/api';
 import { PromotionContext } from '../../../contexts/PromotionContext';
 import { BiCaretLeft, BiError } from 'react-icons/bi';
 import { Button } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 interface PromotionPage {
     id: string,
@@ -30,6 +31,11 @@ export default function PromotionsPage() {
 
 
     function handleSearch(promotion_name: string){
+
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
+
         console.log(promotion_name)
         api.get(`/promotions/search/${promotion_name}`).then(response => {
             console.log("DAta", response.data)
@@ -110,9 +116,14 @@ export default function PromotionsPage() {
             )
             }
             
-            <Link to='/promotion/newpromotion'>
-                <button type='submit' className ="register">+ Cadastrar</button>
-            </ Link>
+
+            {
+                localStorage.getItem('token') && (
+                <Link to='/promotion/newpromotion'>
+                    <button type='submit' className ="register">+ Cadastrar</button>
+                </ Link>
+                )
+            }
 
         </Container>
     )

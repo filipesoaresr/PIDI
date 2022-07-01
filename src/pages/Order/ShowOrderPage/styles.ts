@@ -9,6 +9,11 @@ export const Container = styled.div `
     width: 100%;
     height: 100%;
 
+
+    #totalOrder {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 `;
 
 export const FormBlock = styled.div `
@@ -33,6 +38,9 @@ export const SecondSection = styled.section `
         margin-right: 2rem;
         font-size: 1.2rem;
     }
+
+   
+
     
 `;
 
@@ -191,6 +199,7 @@ export const AddProductSection = styled.section `
       .content-table th, 
       .content-table td {
           padding: 20px;
+          justify-content: center;
           text-align: center;
           margin-left: 2rem;
       }
@@ -207,7 +216,7 @@ export const AddProductSection = styled.section `
   
        .content-table td{
           font-size: 15px;
-          text-align: left;
+          text-align: center;
           font-weight: bold;
       }
   

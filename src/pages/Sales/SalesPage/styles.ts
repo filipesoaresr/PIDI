@@ -38,16 +38,18 @@ export const Container = styled.div `
 
 export const Form = styled.form `
 
-   margin-top: 12rem;
+   margin-top: 10rem;
+   margin-bottom: 5rem;
    width: 30%;
-   height: 25rem;
+   height: 30rem;
    border-radius: 10px;
    justify-content: center;
    align-items: center;
    //background-color: #272838;
    background: #194676;
    color: #fff;
-
+   padding: 2rem;
+   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
 
 `;
 

@@ -129,6 +129,9 @@ async function handleUpdate(event: FormEvent, id: string) {
                             <thead>
                                 <tr>
                                     <th>
+                                        Tipo do Produto
+                                    </th>
+                                    <th>
                                         Produto
                                     </th>
                                     <th>
@@ -150,6 +153,9 @@ async function handleUpdate(event: FormEvent, id: string) {
                                 {
                                     oneOrder.product_has_order.map((product: IProductInOrder) => (
                                         <tr key={product.fk_id_product}>
+                                             <td>
+                                                {product.product_type}
+                                            </td>
                                             <td>
                                                 {product.product_name}
                                             </td>
@@ -178,36 +184,25 @@ async function handleUpdate(event: FormEvent, id: string) {
 
                     <MainSection>
                         <label>Data do Pedido</label>
-
                         <p>{oneOrder.date_created.split("T")[0]}</p>
-
+                        
                         <label>Opçao de Pagamento</label>
-
-                        <p>{orderPayment}</p>
-
-
-                        <label>Parcelamento</label>
-
-                        <p>{orderInstallment}</p>
-                                              
+                        <p>{orderPayment}</p> 
                     </MainSection>
 
                     <SecondSection>
+                        <label>Nome atendente</label>
+                        <p>{userName}</p>         
 
-                    <label>Nome atendente</label>
-                    <p>{userName}</p>
-
-                    <label>Número do Pedido</label>
-                    <p>{oneOrder.id}</p>    
-
-                        
-                    <label>Total do Pedido:</label>
-                    <p>{oneOrder.total_value}</p>
-
-                    
+                        <label>Parcelamento</label>
+                        <p id="showOrder">{orderInstallment}</p>
                     </SecondSection>
-
+                    
                     </FormBlock>
+                    <div id="totalOrder">
+                    <label>Total do Pedido:</label>
+                    <p>R${oneOrder.total_value}</p>
+                    </div>
 
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>

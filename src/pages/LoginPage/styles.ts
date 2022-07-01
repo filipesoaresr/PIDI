@@ -14,11 +14,11 @@ export const LoginBlock = styled.form`
   
   margin-top: 6rem;
  
-
+  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   padding: 3rem 6rem;
   background: #194676;
 
-  border-radius: 5px;
+  border-radius: 15px;
   color: #fff;
 
   align-items: center;

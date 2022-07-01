@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { OrderContext } from '../../contexts/OrderContext';
 import { api } from '../../services/api';
 import { FcPositiveDynamic } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 interface IProductInOrder {
     pp?: number,
     p?: number,
@@ -51,6 +52,9 @@ export default function ReportPage() {
 
     function getSales(startDate: any, endDate: any) {
 
+        if(!localStorage.getItem('token')){
+            return toast.error('É preciso estar logado para realizar essa ação!')
+        }
         //.toISOString()
         const start_dateNonFormatted= startDate
         const end_dateNonFormatted= endDate

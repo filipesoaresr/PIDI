@@ -48,7 +48,7 @@ export const Form = styled.form `
    background: #194676;
    color: #fff;
     padding: 2rem;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
 `;
 
 

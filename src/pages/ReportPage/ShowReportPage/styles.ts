@@ -8,7 +8,7 @@ export const Container = styled.div `
 
     width: 100%;
     height: 100%;
-
+    
     background-color: #EBEBEB;
 
 `;
@@ -20,7 +20,7 @@ export const GraphBlock = styled.div `
     align-items: center;
     flex-direction: column;
     background-color:  #EBEBEB;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     padding: 6rem;
 
     height: 550px;
@@ -49,7 +49,7 @@ export const SalesGraphBlock = styled.div `
     align-items: center;
     flex-direction: column;
     background-color:  #EBEBEB;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     padding: 6rem;
 
     height: 750px;
@@ -78,13 +78,13 @@ export const Report = styled.form `
     //align-items: center;
 
     text-align: center;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     margin-top: 5rem;
     margin-bottom: 2rem;
 
     background: #194676;
     color: #fff;
-
+    
     width: 80%;
    
 
@@ -113,7 +113,7 @@ export const Report = styled.form `
 
         padding: 0.8rem 4rem;
         cursor: pointer;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         border-radius: 5px;
         background: #9A031E;
         color: #fff;
@@ -141,7 +141,7 @@ export const TableSection = styled.section `
     margin-top: 2rem;
 
     background:#CDD7DA;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     padding: 2rem;
     border-radius: 8px;  
 

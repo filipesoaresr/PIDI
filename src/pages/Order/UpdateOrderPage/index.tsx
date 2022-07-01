@@ -397,8 +397,7 @@ async function handleExcludeProductInOrder(product: IProduct, event: FormEvent){
                 <Link to="/order">
                     <button id="buttonCancel" type="reset">Voltar</button>
                 </Link> 
-                &nbsp;
-                &nbsp;
+                
                 <button id="registerButton" type="submit" onClick={(event) => handleUpdateOrder(event, id)}>Alterar <BsFillPencilFill/></button>
 
             </Form>

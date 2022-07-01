@@ -126,9 +126,9 @@ export const MainSection = styled.div `
     }
 
     input.size-qtd {
-        width: 3.5rem;
+        width: 2.7rem;
         height: 2.5rem;
-        padding: 3px;
+        padding: 1px;
     }
 
    
