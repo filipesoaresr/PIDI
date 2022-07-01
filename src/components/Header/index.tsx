@@ -18,7 +18,7 @@ export function Header() {
         toast.dark('Saiu!')
         setTimeout(() => {
             history.push("/login")
-            location.reload()
+            window.location.reload()
 
         }, 400)
     } 

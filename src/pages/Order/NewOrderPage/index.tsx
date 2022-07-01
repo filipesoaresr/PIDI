@@ -285,6 +285,7 @@ export default function NewOrderPage() {
         history.push("/order")
 
         setTimeout(() => {
+            // eslint-disable-next-line no-unused-expressions
             setFk_id_payment_options(""),
             setFk_id_user(""),
             setTotalValue(0)

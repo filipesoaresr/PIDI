@@ -71,6 +71,7 @@ export default function NewProductPage() {
 
     function handlResetFields() {
         setProductType("")
+        // eslint-disable-next-line no-unused-expressions
         setName(""),
         setColection(""),
         setDate(""),

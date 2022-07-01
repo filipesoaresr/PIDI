@@ -27,7 +27,7 @@ export default function LoginPage() {
                   return  toast.error('Usuário ou senha incorreta. Por favor tente novamente')
                 }
     
-                location.reload()
+                window.location.reload()
                 toast.success('Entrou!')
             }, 400)
         }
