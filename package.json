@@ -4,6 +4,11 @@
   "engines": {
     "node": "16.13.1"
  },
+  "rules": {
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": ["error"]
+    
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
