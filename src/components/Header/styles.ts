@@ -39,7 +39,7 @@ export const Content = styled.div `
 
         border-radius: 4px;
         border-style: none;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); 
         //padding: 1rem 10rem;
         background: #022DC9;
 
@@ -83,7 +83,7 @@ export const Content = styled.div `
     }
 
     #entrarButton{
-        background-color: #062FC1;
+        background-color: var(--green);
         font-size: 0.7rem;
         font-weight: bold;
         height: 2rem;

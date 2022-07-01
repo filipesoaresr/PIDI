@@ -50,16 +50,41 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #30C78F;
-        font-size: 20px;
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        //padding: 1rem 10rem;
+        background: #30C78F;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #buttonCancel{
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         background: #9A031E;
-        font-size: 20px;
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
+
 
     
 
@@ -101,27 +126,33 @@ export const MainSection = styled.div `
     }
 
     input.size-qtd {
-        
-        width: 1rem ;
-        height: 1rem !important;
-        padding: 0 !important;
-     
+        width: 3.5rem;
+        height: 2.5rem;
+        padding: 3px;
     }
 
    
 `;
 
 export const ImageSection = styled.div `
-     margin-right: 2rem;
-    margin-top: 3rem;
+        margin-right: 2rem;
+        margin-top: 3rem;
+        padding: 3rem;
 
-    width: 25rem;
-    height: 25rem;
+        width: 25rem;
+        height: 25rem;
 
-    background: #FFFF;
-    border-radius: 5px;
+        background: #FFFF;
+        border-radius: 5px;
 
-    p {
-        margin-top: 1rem
-    }
+        p {
+            margin-top: 1rem
+        }
+
+        img{
+        
+            width: 20rem;
+            height: 18rem;
+        }
+
 `;

@@ -24,7 +24,7 @@ export const LoginBlock = styled.form`
   align-items: center;
 
   input {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     border-radius: 5px;
     height: 2rem;
@@ -46,16 +46,16 @@ export const ButtonsBlock = styled.div`
   button {
     margin-top: 1rem;
 
-    background: #24AC15;
+    background: var(--green);
     color: #fff;
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
 
     border-radius: 5px;
     //margin-left: 2.7rem;
-    padding: 0.5rem 0.5rem;
-    width: 60%;
+    padding: 0.5rem 3rem;
+    //width: 60%;
 
     cursor: pointer;
     transition: filter 0.2s;
@@ -66,8 +66,8 @@ export const ButtonsBlock = styled.div`
   }
 
   a {
-    margin-left: 1.6rem;
-    margin-right: 1.3rem;
+    //margin-left: 1.6rem;
+    //margin-right: 1.3rem;
 
     font-size: 1rem;
 

@@ -182,9 +182,12 @@ export default function NewPromotionPage() {
 
                         <p>Desconto</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
+                            <option></option>
+                            <option value="80">80% OFF</option>
                             <option value="70">70% OFF</option>
                             <option value="60">60% OFF</option>
                             <option value="50">50% OFF</option>
+                            <option value="40">40% OFF</option>
                             <option value="30">30% OFF</option>
                             <option value="20">20% OFF</option>
                             <option value="10">10% OFF</option>
@@ -203,10 +206,7 @@ export default function NewPromotionPage() {
 
                 <AddProductSection>
                 <GiTShirt style={{ fontSize: "3rem", color: "black" }}></GiTShirt>
-                <h5>Nome do Produto</h5>
-                <input type="text" placeholder="Digite aqui"/>
-                <br />
-                <button id="searchButton">Consultar</button>
+                <h5>Produtos</h5>
                 <Table bordered hover responsive>
                 <table className="content-table">
                 <thead>

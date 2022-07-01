@@ -229,11 +229,23 @@ export const AddProductSection = styled.section `
     #addProductButton{
         background-color: var(--green);
         font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #deleteProductButton{
         background-color: #9A031E;
         font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
     
     #searchButton{
@@ -251,6 +263,11 @@ export const AddProductSection = styled.section `
         font-weight: bold;
     }
     
+    input.size-qtd {
+        width: 2.4rem;
+        height: 1.6rem;
+        
+    }
 
    
     `;

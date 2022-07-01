@@ -53,7 +53,7 @@ export const Container = styled.div `
         color: #FFFF;
         background: #30C78F;
         transition: filter 0.2s;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         &:hover {
         filter: brightness(0.8);
         cursor: pointer;
@@ -64,7 +64,7 @@ export const Container = styled.div `
         display: flex;
         justify-content: center;
         align-items: center;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         margin-top: 2.5%;
         margin-bottom: 25%;
         background-color: #F4FFFD;
@@ -114,7 +114,7 @@ export const UserIntro = styled.div `
     button {
         margin-top: 1rem;
         //margin-left: 7.5rem;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         width: 100%;
         height: 3rem;
         color: #fff;
@@ -213,12 +213,27 @@ export const UserTable = styled.div `
       background-color: var(--blue);
       font-weight: bold;
       font-size: 12px;
+      box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+      transition: filter 0.2s;
+
+      &:hover {
+      filter: brightness(0.8);
+      cursor: pointer;
+      }
   }
 
   #deleteButton{
-      background-color: #C81D25;
+      background-color: #9A031E;
       font-weight: bold;
       font-size: 12px;
+      box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+
+      transition: filter 0.2s;
+
+      &:hover {
+      filter: brightness(0.8);
+      cursor: pointer;
+      }
   }
 
    

@@ -172,12 +172,13 @@ export default function UpdateProductPage() {
                     </MainSection>
 
                     <ImageSection>
-                        <img src="https://i.pinimg.com/originals/fe/7f/4b/fe7f4b418e2778863247a7dcc6aed421.png" alt="" />
+                    <img src="https://cdn.discordapp.com/attachments/983476542577455198/991111518953422939/unknown.png" alt="Imagem caixa" />
                     </ImageSection>
 
                 </FormProductBlock>
                 <br/>
                 <Link to="/products"><button id="buttonCancel" type="reset">Cancelar</button></Link> 
+                &nbsp;
                 &nbsp;
                 <button id="buttonRegister" type="submit" onClick={(event) => { handleUpdate(event, id) }}>Alterar <BsFillPencilFill/></button>
 

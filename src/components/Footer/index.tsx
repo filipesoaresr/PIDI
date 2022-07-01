@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container } from './styles'
 
-export default function Footer() {
+export function Footer() {
     return (
         <Container>
-            
+            <p>@PIDI 2022 - Finance App - 🐱‍👤</p>
         </Container>
     )
 }

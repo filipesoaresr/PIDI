@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Container, LoginBlock, ButtonsBlock, UserImage } from './styles';
 
@@ -20,7 +21,15 @@ export default function LoginPage() {
             }
 
             await signIn(data);
-            location.reload()
+
+            setTimeout(() => {
+                if(!localStorage.getItem("token")){
+                  return  toast.error('Usuário ou senha incorreta. Por favor tente novamente')
+                }
+    
+                location.reload()
+                toast.success('Entrou!')
+            }, 400)
         }
         catch (error) {
             console.log(error)

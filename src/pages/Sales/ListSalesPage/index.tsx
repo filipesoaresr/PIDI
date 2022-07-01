@@ -102,23 +102,25 @@ export default function ListSalesPage() {
                 <h1>Listagem de Vendas</h1>
 
                 <SalesTable>
-                    <BsFillCalendarRangeFill style={{ fontSize: "3rem", color: "black", verticalAlign: 'middle', marginLeft: "32rem", }}></BsFillCalendarRangeFill>
+                    <BsFillCalendarRangeFill style={{ fontSize: "3rem", color: "black", verticalAlign: 'middle', marginLeft: "41rem", }}></BsFillCalendarRangeFill>
                     <br />
 
                     <FormBlock>
                     <InitialDateSection>
                     <div id="initialDate">
-                    <label id="initialDateLabel">Data Inicial: </label>
+                    <label id="initialDateLabel">Data Inicial</label>
                     <br />
-                    <p>{startDate.toString()}</p>
+                    <br />
+                    <p id="showInitialDate">{startDate.toString()}</p>
                     </div>
                     </InitialDateSection>
 
                     <EndDateSection>
                     <div id="endDate">
-                    <label id="endDateLabel">Data Final: </label>
+                    <label id="endDateLabel">Data Final</label>
                     <br />
-                    <p>{endDate.toString()}</p>
+                    <br />
+                    <p id="showEndDate">{endDate.toString()}</p>
                     </div>
                     </EndDateSection>
                     

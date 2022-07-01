@@ -48,16 +48,40 @@ export const Form = styled.form `
     margin-top: 2rem;
     margin-bottom: 5rem;
 
-    #buttonCancel{
-        background: #9A031E;
-        font-size: 20px;
+    #buttonRegister{
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        //padding: 1rem 10rem;
+        background: #30C78F;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
-    #buttonRegister{
-        background: var(--green);
-        font-size: 20px;
+    #buttonCancel{
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        background: #9A031E;
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     

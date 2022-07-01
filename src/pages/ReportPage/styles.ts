@@ -15,7 +15,7 @@ export const Container = styled.div `
         position:fixed;
         bottom:10%;
         right: 40px;
-
+         box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         font-size: 1.3rem;
         font-weight: bold;
         margin:0;
@@ -37,16 +37,17 @@ export const Container = styled.div `
 
 export const Form = styled.form `
 
-   margin-top: 12rem;
-   width: 25%;
-   height: 25rem;
+   margin-top: 10rem;
+   margin-bottom: 5rem;
+   width: 30%;
+   height: 30rem;
    border-radius: 10px;
    justify-content: center;
    align-items: center;
    //background-color: #272838;
    background: #194676;
    color: #fff;
-
+    padding: 2rem;
 
 `;
 

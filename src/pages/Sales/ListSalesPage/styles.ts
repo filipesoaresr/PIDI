@@ -20,7 +20,7 @@ export const MainSection  = styled.section `
 
         margin-top: 5rem;
         margin-bottom: 2rem;
-        background-color: #272838;
+        background-color: #194676;
         //background: #001021;
         color: #fff;
 
@@ -52,6 +52,15 @@ export const MainSection  = styled.section `
         border-radius: 5px;
         background: #9A031E;
         color: #fff;
+
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
 `;
@@ -72,7 +81,7 @@ export const SalesTable  = styled.section `
 
         Label{
             display: inline-block;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: black;
             font-weight: 550; 
         }
@@ -175,6 +184,11 @@ export const FormBlock = styled.div `
 export const InitialDateSection = styled.section `
     margin-right: 25rem;
     margin-top: 3rem;
+    
+    #showInitialDate{
+        color: black;
+        font-size: 1rem;
+    }
 `;
 
 
@@ -182,5 +196,10 @@ export const EndDateSection = styled.section `
     margin-left: 2rem;
     margin-top: 3rem;
     
+    #showEndDate{
+        color: black;
+        font-size: 1rem;
+    }
+   
 `;
 

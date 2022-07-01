@@ -78,20 +78,40 @@ select {
 }
 
 #buttonUpdate{
-    margin-top: 4rem;
-    background: var(--green);
-    font-size: 20px;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    font-size: 1.3rem;
     font-weight: bold;
-    
+
+    border-radius: 5px;
+    border-style: none;
+
+    //padding: 1rem 10rem;
+    background: #30C78F;
+
+    transition: filter 0.2s;
+
+    &:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+    }
 }
 
 #buttonCancel{
-    margin-top: 4rem;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     background: #9A031E;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: bold;
-}
 
+    border-radius: 5px;
+    border-style: none;
+
+    transition: filter 0.2s;
+
+    &:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+    }
+}
 
 `;
 

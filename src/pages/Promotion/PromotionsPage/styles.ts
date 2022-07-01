@@ -43,7 +43,7 @@ export const Container = styled.div`
         padding:12px 20px;
         font-size: 1.3rem;
         font-weight: bold;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         border-style: none;
         border-radius: 5px;
         color: #FFFF;
@@ -65,7 +65,7 @@ export const Container = styled.div`
         margin-bottom: 25%;
         background-color: #F4FFFD;
         border-radius: 10px;
-        
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         padding:1.5rem 3rem;
         
         p {
@@ -110,7 +110,7 @@ export const PromoIntro = styled.div`
     button {
         margin-top: 1rem;
         //margin-left: 4rem;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         width: 100%;
         height: 3rem;
         color: #fff;

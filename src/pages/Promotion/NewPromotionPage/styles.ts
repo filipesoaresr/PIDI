@@ -73,19 +73,27 @@ export const Form = styled.form `
 
     #buttonRegister{
 
-        width: 20rem;
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
+        font-weight: bold;
 
+        width: 20rem;
         margin-top: 5rem;
         margin-bottom: 2rem;
 
-        padding: 0.8rem 4rem;
-        cursor: pointer;
-
         border-radius: 5px;
-        background: #118233;
+        border-style: none;
+
+        padding: 0.8rem 4rem;
+        background: #30C78F;
         color: #fff;
-        font-size: 20px;
-        font-weight: bold;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
         
     }
 
@@ -99,11 +107,20 @@ export const Form = styled.form `
         cursor: pointer;
 
         border-radius: 5px;
-        background: #C81D25;
+        border-style: none;
+        background: #9A031E;
         color: #fff;
         font-size: 20px;
         font-weight: bold;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
+
 
 
 
@@ -191,12 +208,27 @@ export const AddProductSection = styled.section `
 
 
     #addProductButton{
-        background-color: #569B06;
+        background-color: var(--green);
+        font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #deleteProductButton{
-        background-color: #C81D25;
+        background-color: #9A031E;
+        font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
+    
     
     #searchButton{
         width: 10%;
@@ -208,7 +240,7 @@ export const AddProductSection = styled.section `
 
     h5{
         margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         color: black;
         font-Size: 2rem;
         font-weight: bold;

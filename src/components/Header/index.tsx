@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ProductContext } from "../../contexts/ProductContext";
+import { toast } from "react-toastify";
 
 export function Header() {
 
@@ -12,10 +13,14 @@ export function Header() {
     //const { getProducts } = useContext(ProductContext)
     const history = useHistory();
 
-    function handleLogOut() {
+    async function handleLogOut() {
         localStorage.clear();
-        history.push("/login")
-        location.reload()
+        toast.dark('Saiu!')
+        setTimeout(() => {
+            history.push("/login")
+            location.reload()
+
+        }, 400)
     } 
 
     return (

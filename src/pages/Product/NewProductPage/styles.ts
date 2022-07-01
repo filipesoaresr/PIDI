@@ -4,7 +4,7 @@ export const Container = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     background-color: #EBEBEB;
 
     button {
@@ -40,7 +40,7 @@ export const Form = styled.form `
     width: 60%;
    
     
-
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     background: #194676;
     color: #fff;
 
@@ -51,15 +51,39 @@ export const Form = styled.form `
     margin-bottom: 5rem;
 
     #buttonRegister{
-        background: #118233;
-        font-size: 20px;
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        //padding: 1rem 10rem;
+        background: #30C78F;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #buttonCancel{
-        background: #C81D25;
-        font-size: 20px;
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        background: #9A031E;
+        font-size: 1.3rem;
         font-weight: bold;
+
+        border-radius: 5px;
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     
@@ -101,10 +125,9 @@ export const MainSection = styled.div `
     }
 
     input.size-qtd {
-        width: 2.7rem;
-        height: 1.4rem;
-
-        margin-left:-0.1rem;
+        width: 3.5rem;
+        height: 2.5rem;
+        padding: 3px;
     }
 
    

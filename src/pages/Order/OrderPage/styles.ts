@@ -14,7 +14,7 @@ export const Container = styled.div `
         position:fixed;
         bottom:10%;
         left: 40px;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         font-size: 1.3rem;
         font-weight: bold;
 
@@ -37,7 +37,7 @@ export const Container = styled.div `
         position:fixed;
         bottom:10%;
         right: 40px;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         font-size: 1.3rem;
         font-weight: bold;
         margin:0;
@@ -59,7 +59,7 @@ export const Container = styled.div `
         display: flex;
         justify-content: center;
         align-items: center;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         margin-top: 2.5%;
         margin-bottom: 25%;
         background-color: #F4FFFD;
@@ -110,11 +110,11 @@ export const OrderIntro = styled.div `
     button {
         margin-top: 1rem;
         //margin-left: 7.5rem;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         width: 100%;
         height: 3rem;
         color: #fff;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         font-size: 1.3rem;
         font-weight: bold;
 
@@ -212,18 +212,39 @@ export const OrderTable = styled.div `
       background-color: var(--blue);
       font-size: 12px;
       font-weight: bold;
+      box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+      transition: filter 0.2s;
+
+      &:hover {
+      filter: brightness(0.8);
+      cursor: pointer;
+      }
   }
 
   #deleteButton{
       background-color: #9A031E;
       font-size: 12px;
       font-weight: bold;
+      box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+      transition: filter 0.2s;
+
+      &:hover {
+      filter: brightness(0.8);
+      cursor: pointer;
+      }
   }
 
   #showButton{
     background-color: #30C78F;
     font-size: 12px;
     font-weight: bold;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    transition: filter 0.2s;
+
+    &:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+    }
   }
 
 

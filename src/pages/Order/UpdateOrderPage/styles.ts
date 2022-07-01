@@ -56,7 +56,7 @@ export const Form = styled.form `
 
     input {
         width: 2rem;
-        height: 1.5rem;
+        height: 2rem;
         border-radius: 5px;
 
         padding: 0;
@@ -65,29 +65,36 @@ export const Form = styled.form `
 
     select {
         width: 15rem;
-        height: 1.5rem;
+        height: 2rem;
 
         border-radius: 5px;
 
     }
 
-
     #registerButton{
 
-        width: 20rem;
-
-        margin-top: 5rem;
-        margin-bottom: 2rem;
-        background: var(--green);
-        color: #fff;
-
-        font-size: 20px;
+       
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
         font-weight: bold;
 
-        padding: 0.8rem 4rem;
-        cursor: pointer;
+        width: 20rem;
+        margin-top: 5rem;
+        margin-bottom: 2rem;
 
         border-radius: 5px;
+        border-style: none;
+
+        padding: 0.8rem 4rem;
+        background: #30C78F;
+        color: #fff;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #buttonCancel{
@@ -96,15 +103,23 @@ export const Form = styled.form `
         margin-top: 5rem;
         margin-bottom: 2rem;
 
-        font-size: 20px;
-        font-weight: bold;
-
         padding: 0.8rem 4rem;
         cursor: pointer;
 
         border-radius: 5px;
+        border-style: none;
         background: #9A031E;
         color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+
+        
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
 `;
@@ -160,7 +175,7 @@ export const AddProductSection = styled.section `
 
      .content-table td{
         font-size: 15px;
-        text-align: left;
+        text-align: center;
         font-weight: bold;
     }
 
@@ -193,12 +208,25 @@ export const AddProductSection = styled.section `
     #addProductButton{
         background-color: var(--green);
         font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
     #deleteProductButton{
         background-color: #9A031E;
         font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
+    
     
     #searchButton{
         width: 10%;
@@ -212,7 +240,13 @@ export const AddProductSection = styled.section `
         margin-top: 1rem;
         color: black;
         font-Size: 2rem;
-        font-style: bold;
+        font-weight: bold;
+    }
+
+    input.size-qtd {
+        width: 2.4rem;
+        height: 1.6rem;
+        
     }
     
     

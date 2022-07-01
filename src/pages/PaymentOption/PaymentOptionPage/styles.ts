@@ -44,7 +44,7 @@ export const Container = styled.div `
 
         font-size: 1.3rem;
         font-weight: bold;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         margin:0;
         padding:12px 20px;
 
@@ -64,7 +64,7 @@ export const Container = styled.div `
         display: flex;
         justify-content: center;
         align-items: center;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         margin-left: -3rem;
         margin-top: 2.5%;
         margin-bottom: 25%;
@@ -114,7 +114,7 @@ export const PaymentIntro = styled.div `
     button {
         margin-top: 1rem;
         //margin-left: 4rem;
-
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
         width: 84%;
         height: 3rem;
         color: #fff;
@@ -205,14 +205,22 @@ export const PaymentTable = styled.div `
     #actionsColumn{
         text-align: center;
         vertical-align: middle;
+        
     }
 
 
   #deleteButton{
-      background-color: #C81D25;
+      background-color: #9A031E;
       font-weight: bold;
       font-size: 12px;
-      
+      box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+
+      transition: filter 0.2s;
+
+      &:hover {
+      filter: brightness(0.8);
+      cursor: pointer;
+      }
   }
    
 

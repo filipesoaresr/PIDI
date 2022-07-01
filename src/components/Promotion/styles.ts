@@ -10,6 +10,15 @@ export const Container = styled.div `
     padding: 7%;
     padding-top: 2.5rem;
 
+
+    //border-radius: 5px;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    //padding: 30px;
+    margin: 20px;
+    //width: 400px;
+    transition: all 0.3s ease-out;
+
+
     h4 {
         font-size: 1.3rem;
     }
@@ -30,9 +39,24 @@ export const Container = styled.div `
     transition:  0.3s;
 
     &:hover {
-    background: #4F759B;
+    //background: #4F759B;
     cursor: pointer;
+
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
     }
+
+    .iconsImage{
+
+        &:hover {
+            -webkit-transform: scale(1.3);
+            -ms-transform: scale(1.3);
+            transform: scale(1.3);
+        }
+    }
+    
+    
 
     #icons {
 

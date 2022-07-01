@@ -119,6 +119,14 @@ export const Report = styled.form `
         color: #fff;
         font-size: 20px;
         font-weight: bold;
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
 

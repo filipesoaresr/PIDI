@@ -86,22 +86,32 @@ export const Form = styled.form `
     }
 
 
+
     #registerSaleButton{
 
-        width: 20rem;
-
-        margin-top: 5rem;
-        margin-bottom: 2rem;
-        background: #118233;
-        color: #fff;
-
-        font-size: 20px;
+        box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+        font-size: 1.3rem;
         font-weight: bold;
 
-        padding: 0.8rem 4rem;
-        cursor: pointer;
+        width: 20rem;
+        margin-top: 5rem;
+        margin-bottom: 2rem;
 
         border-radius: 5px;
+        
+
+        padding: 0.8rem 4rem;
+        background: #30C78F;
+        color: #fff;
+
+        border-style: none;
+
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
         
     }
 
@@ -114,12 +124,20 @@ export const Form = styled.form `
         padding: 0.8rem 4rem;
         cursor: pointer;
 
+        border-radius: 5px;
+        border-style: none;
+        background: #9A031E;
+        color: #fff;
         font-size: 20px;
         font-weight: bold;
 
-        border-radius: 5px;
-        background: #C81D25;
-        color: #fff;
+        
+        transition: filter 0.2s;
+
+        &:hover {
+        filter: brightness(0.8);
+        cursor: pointer;
+        }
     }
 
 `;

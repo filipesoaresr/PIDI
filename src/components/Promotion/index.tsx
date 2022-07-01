@@ -20,7 +20,7 @@ interface Promotion {
 export default function Promotion({ _id, name, endDate, discount, products }: Promotion) {
     const deleteIcon = { color: "#9b1a20", fontSize: "2rem", marginLeft:"" }
     const editIcon = { color: "white", fontSize: "2rem", marginLeft:"" }
-    const showIcon = { color: "#97CC04", fontSize: "2rem", marginLeft:"" }
+    const showIcon = { color: "#97CC04", fontSize: "2rem"}
 
     const {setId, id,  getPromotions,
         onePromotion, setOnePromotion, getOnePromotion, promotions} = useContext(PromotionContext)
@@ -81,12 +81,12 @@ export default function Promotion({ _id, name, endDate, discount, products }: Pr
             
             <div id="icons">
                 <Link to="/promotion/updatepromotions">
-                    <TiPencil style={editIcon} onClick={() =>{idTransfer(_id)}}/>
+                    <TiPencil className="iconsImage" style={editIcon} onClick={() =>{idTransfer(_id)}}/>
                 </Link>
                 
-                <TiDocumentText style={showIcon} onClick={() => handlePromotionID(_id)}/>
+                <TiDocumentText className="iconsImage" style={showIcon} onClick={() => handlePromotionID(_id)}/>
                 
-                <TiTrash onClick={() => handleDelete(_id)} style={deleteIcon}/> 
+                <TiTrash className="iconsImage" onClick={() => handleDelete(_id)} style={deleteIcon}/> 
             </div>
 
         </Container>

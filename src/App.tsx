@@ -11,7 +11,7 @@ import OrderPage from './pages/Order/OrderPage';
 import ReportPage from './pages/ReportPage';
 import UserPage from './pages/User/UserPage';
 import SalesPage from './pages/Sales/SalesPage';
-import Footer from './components/Footer';
+import {Footer} from './components/Footer';
 import NewPromotionPage from './pages/Promotion/NewPromotionPage';
 import NewOrderPage from './pages/Order/NewOrderPage';
 import NewUserPage from './pages/User/NewUserPage';
@@ -86,9 +86,9 @@ export function App() {
 
           </Switch>
 
-          <Footer />
         
         </div>
+        <Footer />
         </OrderProvider>
         </ProductProvider>
         </PromotionProvider>

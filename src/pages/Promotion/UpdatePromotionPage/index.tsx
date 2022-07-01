@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { Container,Form, MainSection, AddProductSection, FormBlock, SecondSection} from './styles'
 import { ProductContext } from '../../../contexts/ProductContext';
 import { BsFillPencilFill } from 'react-icons/bs';
+import { GiTShirt } from 'react-icons/gi';
 
 interface IProductInOrder {
     fk_id_product: string;
@@ -195,10 +196,11 @@ export default function UpdatePromotionPage() {
 
                         <p>Desconto</p>
                         <select value={discount} onChange={event => setDiscount(event.target.value)}>
-                            <option></option>
+                            <option value="80">80% OFF</option>
                             <option value="70">70% OFF</option>
                             <option value="60">60% OFF</option>
                             <option value="50">50% OFF</option>
+                            <option value="40">40% OFF</option>
                             <option value="30">30% OFF</option>
                             <option value="20">20% OFF</option>
                             <option value="10">10% OFF</option>
@@ -216,15 +218,15 @@ export default function UpdatePromotionPage() {
                     </FormBlock>
 
                     <AddProductSection>
-                    <BsCartFill style={{  fontSize: "3rem", color: "black" }}></BsCartFill>
-                    <h5>Nome do Produto</h5>
-                    <input type="text" />
-                    <br />
-                    <button id="searchButton">Consultar</button>
+                    <GiTShirt style={{  fontSize: "3rem", color: "black" }}></GiTShirt>
+                    <h5>Produtos</h5>
                     <Table bordered hover responsive>
                     <table className="content-table">
                     <thead>
                         <tr>
+                            <th>
+                                Tipo do Produto
+                            </th>
                             <th>
                                 Produto
                             </th>
@@ -245,6 +247,9 @@ export default function UpdatePromotionPage() {
                         {
                             products.map((product: IProduct) => (
                                 <tr >
+                                    <td>
+                                        {product.productType}
+                                    </td>
                                     <td key={product.name}>
                                         {product.name}
                                     </td>
@@ -273,7 +278,7 @@ export default function UpdatePromotionPage() {
                 &nbsp;
                 &nbsp;
                 <Link to="/promotions">   
-                <button id="form-btn" type="submit" onClick={() => {handleUpdate(id)}}>Alterar <BsFillPencilFill/></button>
+                <button id="buttonRegister" type="submit" onClick={() => {handleUpdate(id)}}>Alterar <BsFillPencilFill/></button>
                 </Link>
             </Form>
 
