@@ -289,6 +289,7 @@ export default function NewOrderPage() {
             setFk_id_payment_options(""),
             setFk_id_user(""),
             setTotalValue(0)
+            return
         }, 1000)
     }
 

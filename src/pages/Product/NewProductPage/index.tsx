@@ -81,6 +81,7 @@ export default function NewProductPage() {
         setM(0), 
         setG(0),
         setGG(0)
+        return
     }
 
     return (
