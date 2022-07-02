@@ -5,7 +5,7 @@ import axios from 'axios';
 const token = localStorage.getItem('token');
 
 export const api = axios.create({
-    baseURL: 'http://localhost:3333',
+    baseURL: 'https://financepidibackend.herokuapp.com',
     headers: { Authorization: `Bearer ${token}` } 
 });
 
