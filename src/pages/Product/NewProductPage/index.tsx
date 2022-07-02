@@ -72,16 +72,15 @@ export default function NewProductPage() {
     function handlResetFields() {
         setProductType("")
         //@typescript-eslint-disable-next-line no-unused-expressions
-        setName(""),
-        setColection(""),
-        setDate(""),
-        setValue(0),
-        setPP(0),
-        setP(0),
-        setM(0), 
-        setG(0),
+        setName("")
+        setColection("")
+        setDate("")
+        setValue(0)
+        setPP(0)
+        setP(0)
+        setM(0)
+        setG(0)
         setGG(0)
-        return
     }
 
     return (

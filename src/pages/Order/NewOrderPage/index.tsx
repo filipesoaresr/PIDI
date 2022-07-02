@@ -286,10 +286,9 @@ export default function NewOrderPage() {
 
         setTimeout(() => {
             // @typescript-eslint-disable-next-line no-unused-expressions
-            setFk_id_payment_options(""),
-            setFk_id_user(""),
+            setFk_id_payment_options("")
+            setFk_id_user("")
             setTotalValue(0)
-            return
         }, 1000)
     }
 

@@ -40,7 +40,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
     const [dateCreated, setDateCreated] = useState('');
     const [dateSubmitted, setDateSubmitted] = useState('');
     const [isOpen, setIsOpen] = useState(true);
-    const [fk_id_payment_options, setFk_id_payment_options] = useState('');
+    const [fk_id_payment_options, setFk_id_payment_options] = useState();
     const [fk_id_user, setFk_id_user] = useState('');
     const [totalValue, setTotalValue] = useState(0);
     const [installment, setInstallment] = useState('A vista');
